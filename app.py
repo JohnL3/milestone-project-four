@@ -25,7 +25,7 @@ def viewrecipe(recipeid):
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-    return 'login'
+    return render_template('signuplogin.html')
     
 @app.route('/signup', methods=['GET','POST'])
 def signup():

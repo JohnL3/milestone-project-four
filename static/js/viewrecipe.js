@@ -16,6 +16,8 @@ $( window ).resize(function() {
   }
 });
 
+
+//used for the clicking on recipe and method page secion on viewrecipe page on mobile views
 $('.li-first').click(function(){
     
    if($(this).css('background-color') === 'rgb(240, 128, 128)' && $(window).width() < 768) {

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block head %}
+
+<link rel='stylesheet' href={{url_for('static',filename='css/styles.css')}}>
+{% endblock %}
+
+{% block header %}
+<span class='page-title'>Login/Sign up Page</span>
+{% endblock %}
+
+  {% block section %}
+    <ul>
+      <li><a href="{{ url_for('recipe') }}">Recipes</a></li>
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+    </ul>
+  {% endblock %}
+  
+  {% block content %}
+  
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src={{url_for('static',filename='js/signuplogin.js')}}> </script>
+{% endblock %}
