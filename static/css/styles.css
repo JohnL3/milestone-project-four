@@ -504,7 +504,7 @@ i {
   }
 
 /*****************************************************************/
-.flex-div {
+/*.flex-div {
     display: flex;
     justify-content: center;
     height: calc(100vh - 120px);
@@ -513,7 +513,7 @@ i {
 
 .pre-tab {
     width: 100%;
-}
+}*/
 
 .tab-holder {
   display: grid;
@@ -559,7 +559,6 @@ i {
 }
 
 .tab-page-holder {
-    border-top: 1px solid lightcoral;
     grid-column: 1;
     grid-row: 1;
     position: relative;
@@ -568,11 +567,13 @@ i {
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 40px;
+    background: #f1ececb3;
 }
 
 #user {
     box-sizing: border-box;
-    padding-left: 20px;
+    padding: 0 15px;
 }
 
 .main-signup-page {
@@ -589,7 +590,7 @@ i {
     margin: 5px 0;
     height: 35px;
     padding-left: 5px;
-    width: 95%;
+    width: 99%;
     font-size: 20px;
 }
 
@@ -750,6 +751,9 @@ i {
      padding-top: 170px;
  }
  
+ #user {
+     padding: 0;
+ }
 }
 
 @media only screen and (min-width: 1101px) {

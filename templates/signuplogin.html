@@ -23,6 +23,24 @@
                     <li class='second'>LOGIN</li>
                 </ul>
             </div>
+          <div class='tab-page-holder'>
+            <div class='main-signup-page'>
+                  
+                  <form id='myForm' action='https://database-cook-johnl3.c9users.io/signup' method='POST'>
+                    <div id="user">
+                        <label>username</label>
+                        <input type='text' required='true' maxlength='12' name='username' value=''>
+                        <label>password</label>
+                        <input type='password' required='true' maxlength='40' name='password' value=''>
+                        {% if username %}
+                        <button type="submit" disabled value='submit'>Login</button>
+                        {% else %}
+                        <button type="submit" value='submit'>Sign Up</button>
+                        {% endif %}
+                    </div>
+                </form>
+            </div>
+          </div>
         
           
    
