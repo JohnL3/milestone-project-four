@@ -127,3 +127,41 @@ nav span:first-of-type {
 }
 
 /*********************************************************/
+
+
+@media only screen and (min-width: 768px) {
+   header {
+    display: grid;
+    grid-template-columns: 270px 1fr;
+    background: lightcoral;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 30;
+  }
+
+  .title-scetion {
+    display: inline-block;
+    width: 270px;
+  }
+
+  nav {
+    display: inline-block;
+  }
+
+  .inner-nav {
+    display: none;
+  }
+
+  .nav-items {
+    display: block;
+    border: none;
+  }
+  ul {
+    float: right;
+    margin-top: 30px;
+  }
+  ul li {
+    display: inline;
+  }
+}
