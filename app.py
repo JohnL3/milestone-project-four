@@ -18,6 +18,10 @@ def index():
 @app.route('/recipe', methods=['GET','POST'])
 def recipe():
     return render_template('recipe.html')
+    
+@app.route('/viewrecipe/<recipeid>')
+def viewrecipe(recipeid):
+    return render_template('viewrecipe.html',id=recipeid)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
