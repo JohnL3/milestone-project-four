@@ -429,7 +429,12 @@ i {
     display: inline;
   }
   
-  
+  /**********filter ********************************************/
+  .filters {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 90px;
+  }
   /**************************veiw recipe page***********************/
   .grids {
     display: grid;
