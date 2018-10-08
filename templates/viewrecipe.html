@@ -18,7 +18,67 @@
     
     
   {% block content %}
-  
+  <div class='stuff'>
+        
+    </div>
+    <div class='recipe-container'>
+        <div class='recipe-title'>
+            <span>Ice Cream Sunday</span>
+        </div>
+       <div class="my-img">
+          <img src='https://github.com/JohnL3/Photos/blob/master/alldesert.jpg?raw=true'>
+        </div>
+        
+        <div class='recipe-page-icon'>
+            <div>
+                <i class="far fa-folder-open"></i>
+                <span>collect</span>
+            </div>
+        </div>
+        <div class='prep'>
+            <div class='prep-inner'>
+                <span>PREP</span><span>10 MINUTES</span>
+            </div>
+            <div class='prep-inner'>
+                <div>
+                    
+                    <span>COOK</span>
+                </div>
+                <span>10 MINUTES</span>
+            </div>
+            <div class='prep-inner'>
+                <span>SERVES</span><span>4</span>
+            </div>
+            <div class='prep-inner'>
+                <div>
+                    <i class="far fa-folder-open"></i>
+                    <span>COLLECTED BY</span>
+                </div>
+                <span>30</span>
+            </div>
+        </div>
+        
+        <div class='instruct-method-header'>
+            <ul>
+                <li class='li-first sm'>INGREDIENTS</li>
+                <li class='li-first lg'>RECIPE</li>
+                <li class='li-second'>METHOD</li>
+            </ul>
+        </div>
+        <div class='display-ing'>
+            <span>Eggs 5 medium</span>
+            <span>Milk 750 ml</span>
+            <span>Nuts 50g</span>
+            <span>Strawberry Sauce 20ml</span>
+        </div>
+        <div class='display-method'>
+            <p>Remove yolk from 3 eggs and beat until fluffy.</p>
+            <p>Add milk gradually and mix well.</p>
+            <p>Freeze for one hour.</p>
+            <p>When serving sprinkle with nuts and cover in strawberry sauce.</p>
+        </div>
+        
+    </div>
   
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script src={{url_for('static',filename='js/viewrecipe.js')}}> </script>

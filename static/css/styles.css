@@ -14,7 +14,17 @@ a:hover {
 }
 
 /***************shared between pages ************************************/
-
+.my-img,
+.my-img-card {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  height: 200px;
+  align-items: center;
+  margin-bottom: 10px;
+}
 /*********************** Header ***************************/
 header {
   box-sizing: border-box;
@@ -319,17 +329,6 @@ nav span:first-of-type {
   margin: 0 auto;
 }
 
-.my-img-card {
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  margin: auto;
-  height: 200px;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
 img {
   width: 100%;
   height: auto;
@@ -391,6 +390,112 @@ i {
   color: darkslategray;
   cursor: pointer;
 }
+
+/************************veiw recipe page ******************************/
+.stuff {
+  width: 100%;
+  height: 20px;
+  position: relative;
+  top: 90px;
+  margin-bottom: 10px;
+}
+
+.recipe-title {
+    background: white;
+    font-size: 24px;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    font-weight: 600;
+  }
+  
+  .prep {
+    box-sizing: border-box;
+    padding: 5px;
+  }
+  
+  .prep-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 30px;
+  }
+  
+  .prep-inner i {
+    font-size: 24px;
+  }
+  
+  .recipe-page-icon {
+    box-sizing: border-box;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .recipe-page-icon div {
+    height: 60px;
+    box-sizing: border-box;
+    padding: 5px;
+    width: 70px;
+    border: 1px solid lightslategray;
+    cursor: pointer;
+  }
+  
+  .recipe-page-icon i {
+    font-size: 30px;
+  }
+  
+  .recipe-page-icon span {
+    font-size: 16px;
+    font-weight: 600;
+    color: darkslategray;
+  }
+  
+  .instruct-method-header ul {
+    list-style: none;
+    border-bottom: 4px solid lightcoral;
+    padding-left: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  .li-first {
+    display: inline-block;
+    padding: 20px;
+    background-color: lightcoral;
+    margin-right: 2%;
+    font-weight: 600;
+    color: white;
+  }
+  
+  .li-second {
+    display: inline-block;
+    background-color: #f7bfbf;
+    padding: 20px;
+    font-weight: 600;
+    color: darkslategray;
+  }
+  
+  .li-first.sm {
+    display: inline;
+  }
+  .li-first.lg {
+    display: none;
+  }
+  
+  .display-ing {
+    box-sizing: border-box;
+    padding: 5px 10px;
+  }
+  .display-ing span {
+    display: block;
+    line-height: 1.6;
+  }
+  
+  .display-method {
+    box-sizing: border-box;
+    padding: 5px 10px;
+    padding-top: 0;
+    display: none;
+  }
 
 
 @media only screen and (min-width: 768px) {
@@ -475,7 +580,55 @@ i {
     grid-column: 1;
     grid-row: 1;
   }
+  
+/*********************************************************************************/
+.prep {
+    box-sizing: border-box;
+    padding: 20px 10px 10px 40px;
+    border-top: 1px solid lightslategray;
+    grid-column: 2;
+    grid-row: 1;
+  }
+  
+  .instruct-method-header {
+    grid-row: 3;
+    grid-column: 1/-1;
+    width: 100%;
+  }
+  
+  .instruct-method-header ul {
+    width: 100%;
+    margin-top: 10px;
+  }
+  
+  .li-second {
+    display: none;
+  }
+  
+  .li-first {
+    width: fit-content;
+  }
+  .li-first.sm {
+    display: none;
+  }
+  .li-first.lg {
+    display: inline;
+    padding: 10px 20px;
+  }
+  
+  .display-ing {
+    grid-column: 1;
+    display: block !important;
+  }
+  
+  .display-method {
+    grid-column: 2;
+    grid-row: 4;
+    display: block !important;
+  }
 }
+
+
 
 @media only screen and (min-width: 1101px) {
   
