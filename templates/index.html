@@ -10,8 +10,8 @@
 
   {% block section %}
     <ul>
-      <li><a href="#">Login</a></li>
-      <li><a href="#">Recipes</a></li>
+      <li><a href="{{ url_for('login') }}">Login</a></li>
+      <li><a href="{{ url_for('recipe') }}">Recipes</a></li>
     </ul>
     {% endblock %}
     
