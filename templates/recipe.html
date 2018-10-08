@@ -16,7 +16,66 @@
 {% endblock %}
 
 {% block content %}
+    <div class='filters'>
+      <div class='filters-header'>
+        <div class='filter-con'>
+          <span>FILTERS</span>
+        </div>
+        <i class="fas fa-angle-down"></i>
+      </div>
+      
+      <div class=filter-items-con>
+        <div class="btn-wrap">
+            <button class="sub-btn" disabled="">SUBMIT</button>
+            <button class="clear-btn">CLEAR</button>
+        </div>
 
+        <div class='filter-items'>
+          <div class='filter-hdr' id='filter-A'>
+              <div class="item allergen"><span>Allergens</span></div>
+              <div class="item category"><span>Category</span></div>
+              <div class="item author"><span>Authors</span></div>
+          </div>
+        </div>
+
+      <div class='author-input type'>
+        <input class='author-sel' type='text' name='author'>
+        <div class='filter-select-C'>
+            <div class='inner-filter-C'>
+            </div>
+        </div>
+      </div>
+
+      <div class='category-input type'>
+        <input class='category-sel' type='text' name='category'>
+        <div class='filter-select-B'>
+            <div class='inner-filter-B'>
+            </div>
+        </div>
+      </div>
+      <div class='allergen-con type'>
+      <div class='filter-select-A'>
+        <div class="inner-filter-A">
+          <div class='inner-divs'><input type="checkbox" name='allergen' class='hasEgg'><label>Egg</label></div>
+          <div><input type="checkbox" name='allergen'  class='hasMolluscs'><label>Molluscs</label></div>
+          <div><input type="checkbox" name='allergen'  class='hasPeanuts'><label>Peanuts</label></div>
+          <div><input type="checkbox" name='allergen'  class='hasNuts'><label>Nuts</label></div>
+          <div><input type="checkbox" name='allergen'  class='hasSoyabeans'><label>Soyabeans</label></div>
+          <div><input type="checkbox" name='allergen'  class='hasMilk'><label>Milk</label></div>
+          <div><input type="checkbox" name='allergen'  class='hasCelery'><label>Celery</label></div>
+          <div><input type="checkbox" name='allergen'  class='hasMustard'><label>Mustard</label></div>
+          <div><input type="checkbox" name='allergen'  class='hasSesameseeds'><label>Sesame Seeds</label></div>
+          <div><input type="checkbox" name='allergen'  class='hasFish'><label>Fish</label></div>
+          <div><input type="checkbox" name='allergen'  class='hasLupin'><label>Lupin</label></div>
+          <div><input type="checkbox" name='allergen'  class='hasSulpherdioxide'><label>Sulpher Dioxide</label></div>
+          <div><input type="checkbox" name='allergen'  class='hasCerals'><label>Cereals</label></div>
+          <div><input type="checkbox" name='allergen'  class='hasCrustaceans'><label>Crustaceans </label></div>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
+    
     <div class='grids'>
       <div id='1' class='recipe'>
         <div class="recipe-header">
