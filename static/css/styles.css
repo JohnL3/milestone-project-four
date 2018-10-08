@@ -628,11 +628,17 @@ i {
   }
 }
 
-
-
 @media only screen and (min-width: 1101px) {
   
   .grids {
     grid-template-columns: 33% 33% 33%;
+  }
+}
+
+@media only screen and (min-width: 1209px) {
+  
+  .recipe-container {
+    max-width: 1210px;
+    margin: 0 auto;
   }
 }
