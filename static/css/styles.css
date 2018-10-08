@@ -302,4 +302,52 @@ i {
   ul li {
     display: inline;
   }
+  
+  /**************************veiw recipe page***********************/
+  .grids {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 10px;
+    max-width: 75%;
+    box-sizing: border-box;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: auto;
+    margin: 0 auto;
+  }
+  
+  .recipe-container {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    grid-column-gap: 20px;
+    position: relative;
+    top: 90px;
+    box-sizing: border-box;
+    padding: 20px 0;
+    overflow: hidden;
+    margin: 0 50px;
+  }
+  
+  .recipe-title {
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+    top: -18px;
+    width: fit-content;
+    left: 30px;
+    height: 40px;
+  }
+  
+  .my-img {
+    height: auto;
+    grid-column: 1;
+    grid-row: 1;
+  }
+}
+
+@media only screen and (min-width: 1101px) {
+  
+  .grids {
+    grid-template-columns: 33% 33% 33%;
+  }
 }
