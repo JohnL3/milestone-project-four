@@ -555,8 +555,8 @@ i {
   
   .recipe-container {
     display: grid;
-    grid-template-columns: 45% 55%;
-    grid-column-gap: 20px;
+    grid-template-columns: 45% 53%;
+    grid-column-gap: 2%;
     position: relative;
     top: 90px;
     box-sizing: border-box;
