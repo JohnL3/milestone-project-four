@@ -4,9 +4,19 @@
 <link rel='stylesheet' href={{url_for('static',filename='css/styles.css')}}>
 {% endblock %}
 
+{% block header %}
+<span class='page-title'>Home Page</span>
+{% endblock %}
 
+  {% block section %}
+    <ul>
+      <li><a href="#">Login</a></li>
+      <li><a href="#">Recipes</a></li>
+    </ul>
+    {% endblock %}
+    
 {% block content %}
-    <h1>Up and Running</h1>
+    
     
    
 

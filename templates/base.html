@@ -17,7 +17,37 @@
         
     </head>
     <body>
-  
+      <header>
+      <div class='title-section'>
+        <i class="fas fa-book"></i>
+        <span class='sp'>Our Cook Book</span>
+        {% block header %}
+        
+        {% endblock %}
+        
+      </div>
+    <nav>
+      <div class="inner-nav">
+        <div class="menu">
+          <span>MENU</span>
+        </div>
+        <div class='burger-container'>
+              <div id='burger'>
+                  <span class='burger'></span>
+                  <span class='burger'></span>
+                  <span class='burger'></span>
+              </div>
+          </div>
+      </div>
+    
+    <div class='nav-items'>
+      {% block section %}
+      
+      {% endblock %}
+      
+    </div>
+    </nav>
+    </header>
     
       {% block content %}
 

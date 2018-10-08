@@ -1,0 +1,129 @@
+body {
+  font-family: 'Raleway', sans-serif;
+}
+body,html {
+  margin: 0;
+  background: #f1ececb3;
+}
+/**************************************************/
+a {
+    text-decoration: none;
+}
+a:hover {
+    cursor: pointer;
+}
+
+/***************shared between pages ************************************/
+
+/**************************************************/
+header {
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
+
+header i {
+  font-size: 45px;
+  color: brown;
+  position: absolute;
+  left: 40px;
+  top: 20px;
+}
+
+.sp {
+  position: absolute;
+  left: 90px;
+  top: 15px;
+  font-size: 24px;
+  font-weight: 600;
+  color: brown;
+}
+
+.title-section {
+  width: 100%;
+  height: 80px;
+  background: lightcoral;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-bottom: 5px;
+}
+
+.page-title {
+  position: absolute;
+  top: 43px;
+  left: 110px;
+  font-size: 22px;
+  font-weight: 600;
+  color: brown;
+}
+/*********************************************************/
+nav {
+  box-sizing: border-box;
+  padding: 0 5px;
+  margin-bottom: 5px;
+  width: 100%;
+}
+nav span:first-of-type {
+  font-size: 24px;
+}
+
+.nav-items ul li {
+  text-decoration: none;
+  padding-right: 0px;
+  margin-right: 10px;
+  padding: 3px;
+}
+
+.nav-items ul li:hover {
+    font-weight: 600;
+    background: lightgray;
+}
+
+.nav-items ul {
+    list-style-type: none;
+    padding-left: 10px;
+}
+
+.nav-items {
+  border: 1px solid lightgray;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.inner-nav {
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  border: 1px solid lightgray;
+  background: lightgrey;
+  text-align: center;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*********************************************************/
+
+.burger-container {
+  width: 30px;
+}
+#burger {
+  width: 30px;
+  margin: 10px 0;
+  grid-column: 2;
+}
+
+#burger span {
+  border: 2px solid gray;
+}
+.burger {
+  display: block;
+  border: 2px solid white;
+  margin: 5px 0;
+}
+
+#burger:hover span {
+  border: 2px solid darkslategray;
+}
+
+/*********************************************************/
