@@ -13,7 +13,7 @@ mysql = DB_configuration(app)
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    return 'All Good'
+    return render_template('index.html')
     
 
 if __name__ == '__main__':
