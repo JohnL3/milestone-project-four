@@ -14,7 +14,18 @@ mysql = DB_configuration(app)
 @app.route('/', methods=['GET','POST'])
 def index():
     return render_template('index.html')
+
+@app.route('/login', methods=['GET','POST'])
+def login():
+    return 'login'
     
+@app.route('/signup', methods=['GET','POST'])
+def signup():
+    return 'signup'
+
+@app.route('/logout', methods=['GET','POST'])
+def logout():
+    return 'logout'
 
 if __name__ == '__main__':
     app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')))
