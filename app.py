@@ -15,6 +15,10 @@ mysql = DB_configuration(app)
 def index():
     return render_template('index.html')
 
+@app.route('/recipe', methods=['GET','POST'])
+def recipe():
+    return render_template('recipe.html')
+
 @app.route('/login', methods=['GET','POST'])
 def login():
     return 'login'
