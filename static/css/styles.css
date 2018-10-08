@@ -86,7 +86,7 @@ nav span:first-of-type {
 .nav-items {
   border: 1px solid lightgray;
   margin-bottom: 10px;
-  display: block;
+  display: none;
 }
 
 .inner-nav {
