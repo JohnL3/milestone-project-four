@@ -15,3 +15,17 @@ $( window ).resize(function() {
       $('.nav-items').css('display','none');
   }
 });
+
+$('.login-tab').click(function(){
+    $(this).css('z-index', 20);
+    $('.signup-tab').css('z-index', 10);
+    $('button').text('LOGIN');
+    $('form').attr('action', 'http://books-practice-johnl3.c9users.io:8080/login');
+});
+
+$('.signup-tab').click(function(){
+    $(this).css('z-index', 20);
+    $('.login-tab').css('z-index', 10);
+    $('button').text('SIGN UP');
+    $('form').attr('action', 'http://books-practice-johnl3.c9users.io:8080/signup');
+});

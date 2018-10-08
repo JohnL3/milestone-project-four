@@ -38,7 +38,7 @@ a:hover {
   margin-bottom: 5px;
 }
 
-.first,
+.signup-tab,
 .li-first {
     display: inline-block;
     padding: 20px;
@@ -47,7 +47,7 @@ a:hover {
     font-weight: 600;
     color: white;
   }
-  .second,
+  .login-tab,
   .li-second {
     display: inline-block;
     background-color: #f7bfbf;
@@ -523,39 +523,6 @@ i {
   margin-left: auto;
   margin-right: auto;
   display: none;
-}
-
-.login-tab {
-    grid-column: 2;
-    width: 70px;
-    height: 40px;
-    border: 2px solid lightcoral;
-    z-index: 10;
-    position: relative;
-    top: 2px;
-    text-align: center;
-    box-sizing: border-box;
-    font-weight: 600;
-    cursor: pointer;
-    background: white;
-    border-bottom: 2px solid white;
-    padding: 10px 5px;
-}
-
-.signup-tab {
-    width: 110px;
-    height: 40px;
-    border: 2px solid lightcoral;
-    z-index: 15;
-    position: relative;
-    top: 2px;
-    box-sizing: border-box;
-    padding: 10px 0;
-    text-align: center;
-    font-weight: 600;
-    cursor: pointer;
-    background: white;
-    border-bottom: 2px solid white
 }
 
 .tab-page-holder {
