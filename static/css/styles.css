@@ -25,6 +25,41 @@ a:hover {
   align-items: center;
   margin-bottom: 10px;
 }
+
+/* used on signup/login page and other used on viewrecipe page */
+.signup-login-header ul,
+.instruct-method-header ul {
+  list-style: none;
+  border-bottom: 4px solid lightcoral;
+  padding-left: 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.first,
+.li-first {
+    display: inline-block;
+    padding: 20px;
+    background-color: lightcoral;
+    margin-right: 2%;
+    font-weight: 600;
+    color: white;
+  }
+  .second,
+  .li-second {
+    display: inline-block;
+    background-color: #f7bfbf;
+    padding: 20px;
+    font-weight: 600;
+    color: darkslategray;
+  }
+  
+  .first,
+  .li-first.sm {
+    display: inline;
+  }
 /*********************** Header ***************************/
 header {
   box-sizing: border-box;
@@ -447,36 +482,7 @@ i {
     font-weight: 600;
     color: darkslategray;
   }
-  
-  .instruct-method-header ul {
-    list-style: none;
-    border-bottom: 4px solid lightcoral;
-    padding-left: 0px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    text-align: center;
-    margin-bottom: 5px;
-  }
-  .li-first {
-    display: inline-block;
-    padding: 20px;
-    background-color: lightcoral;
-    margin-right: 2%;
-    font-weight: 600;
-    color: white;
-  }
-  
-  .li-second {
-    display: inline-block;
-    background-color: #f7bfbf;
-    padding: 20px;
-    font-weight: 600;
-    color: darkslategray;
-  }
-  
-  .li-first.sm {
-    display: inline;
-  }
+ 
   .li-first.lg {
     display: none;
   }
@@ -497,6 +503,113 @@ i {
     display: none;
   }
 
+/*****************************************************************/
+.flex-div {
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 120px);
+    align-items: center;
+}
+
+.pre-tab {
+    width: 100%;
+}
+
+.tab-holder {
+  display: grid;
+  grid-template-columns: 50px 100px 140px 1fr;
+  margin-top: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}
+
+.login-tab {
+    grid-column: 2;
+    width: 70px;
+    height: 40px;
+    border: 2px solid lightcoral;
+    z-index: 10;
+    position: relative;
+    top: 2px;
+    text-align: center;
+    box-sizing: border-box;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    border-bottom: 2px solid white;
+    padding: 10px 5px;
+}
+
+.signup-tab {
+    width: 110px;
+    height: 40px;
+    border: 2px solid lightcoral;
+    z-index: 15;
+    position: relative;
+    top: 2px;
+    box-sizing: border-box;
+    padding: 10px 0;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    background: white;
+    border-bottom: 2px solid white
+}
+
+.tab-page-holder {
+    border-top: 1px solid lightcoral;
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+    z-index: 12;
+    background: white;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#user {
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+
+.main-signup-page {
+    margin-top: 50px;
+    grid-column: 1;
+    grid-row: 1;
+    position: relative;
+    z-index: 12;
+    width: 100%;
+}
+
+.main-signup-page input {
+    display: block;
+    margin: 5px 0;
+    height: 35px;
+    padding-left: 5px;
+    width: 95%;
+    font-size: 20px;
+}
+
+#user label {
+    font-size: 18px;
+    font-weight: bold;
+    color: darkslategray;
+}
+
+.main-signup-page button {
+    width: 120px;
+    margin-top: 5px;
+    width: 100px;
+    margin-top: 5px;
+    font-size: 15px;
+    padding: 8px 15px;
+    font-weight: bold;
+    color: darkslategray;
+    box-shadow: 2px 2px 2px darkslategrey;
+}
 
 @media only screen and (min-width: 768px) {
    header {
@@ -626,6 +739,17 @@ i {
     grid-row: 4;
     display: block !important;
   }
+  
+/********************************************************************/
+ .signup-login-header ul {
+     float: none;
+     max-width: 600px;
+     margin: 0 auto;
+ }
+ .signup-login-header {
+     padding-top: 170px;
+ }
+ 
 }
 
 @media only screen and (min-width: 1101px) {
