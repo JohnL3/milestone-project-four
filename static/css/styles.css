@@ -580,7 +580,10 @@ i {
 }
 
 /********************************* User Page******************************************/
-
+.welcome-user {
+  height: 200px;
+  background: lightblue;
+}
 .user-inner-menu {
   box-sizing: border-box;
   padding: 0 5px;
@@ -764,8 +767,11 @@ i {
      padding: 0;
  }
  /******************** User page ************************/
+ .welcome-user {
+   margin-top: 95px;
+ }
+ 
  .user-inner-menu {
-   padding-top: 90px;
    max-width: 80%;
    margin: auto;
  }
@@ -773,6 +779,7 @@ i {
  .user-inner-menu ul {
    float: none;
    grid-template-columns: 1fr 1fr 1fr;
+   margin-top: 10px;
  }
 }
 
