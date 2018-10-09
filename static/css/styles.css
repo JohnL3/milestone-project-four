@@ -592,7 +592,7 @@ i {
   line-height: 1.8;
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
-  grid-column-gap: 8px;
+  grid-column-gap: 6px;
   text-align: center;
   color: darkslategrey;
 }
@@ -603,8 +603,8 @@ i {
   display: inline;
   margin-right: 0px;
   font-weight: 600;
-  padding: 7px;
-  font-size: 15px;
+  padding: 7px 5px;
+  font-size: 14px;
 }
 
 .inner-menu-a {
@@ -765,10 +765,13 @@ i {
  /******************** User page ************************/
  .user-inner-menu {
    padding-top: 90px;
+   max-width: 80%;
+   margin: auto;
  }
  
  .user-inner-menu ul {
    float: none;
+   grid-template-columns: 1fr 1fr 1fr;
  }
 }
 
