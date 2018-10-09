@@ -301,7 +301,7 @@ nav span:first-of-type {
   font-size: 20px;
 }
 
-/*********************** Recipe Page *********************/
+/*********************** Recipe Page / also used on user page*********************/
 
 .recipe {
   border-top: 1px solid lightpink;
@@ -778,7 +778,7 @@ i {
  
  .user-inner-menu ul {
    float: none;
-   grid-template-columns: 1fr 1fr 1fr;
+   grid-template-columns: 1fr 1fr 1fr 2fr;
    margin-top: 10px;
  }
 }
