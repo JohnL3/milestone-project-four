@@ -579,6 +579,47 @@ i {
     box-shadow: 2px 2px 2px darkslategrey;
 }
 
+/********************************* User Page******************************************/
+
+.user-inner-menu {
+  box-sizing: border-box;
+  padding: 0 5px;
+}
+
+.user-inner-menu ul {
+  padding-left: 0;
+  border-bottom: 4px solid lightcoral;
+  line-height: 1.8;
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr;
+  grid-column-gap: 8px;
+  text-align: center;
+  color: darkslategrey;
+}
+
+.user-inner-menu li {
+  list-style: none;
+  list-style: none;
+  display: inline;
+  margin-right: 0px;
+  font-weight: 600;
+  padding: 7px;
+  font-size: 15px;
+}
+
+.inner-menu-a {
+  color: white;
+  background-color: lightcoral;
+}
+
+.inner-menu-b {
+  background-color: #e6b9b9;
+}
+
+.inner-menu-c {
+  background-color: lightblue;
+}
+
 @media only screen and (min-width: 768px) {
    header {
     display: grid;
@@ -720,6 +761,14 @@ i {
  
  #user {
      padding: 0;
+ }
+ /******************** User page ************************/
+ .user-inner-menu {
+   padding-top: 90px;
+ }
+ 
+ .user-inner-menu ul {
+   float: none;
  }
 }
 

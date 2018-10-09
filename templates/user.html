@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block head %}
+
+<link rel='stylesheet' href={{url_for('static',filename='css/styles.css')}}>
+{% endblock %}
+
+{% block header %}
+<span class='page-title'>{{username}}</span>
+{% endblock %}
+
+  {% block section %}
+    <ul>
+      <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('recipe') }}">Recipes</a></li>
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+    </ul>
+  {% endblock %}
+  
+  {% block content %}
+   
+   <div class='user-inner-menu'>
+       <ul>
+           <li class='inner-menu-a menu-item'>Your Recipes</li>
+           <li class='inner-menu-b menu-item'>Collected</li>
+           <li class='inner-menu-c menu-item'>Create New</li>
+       </ul>
+   </div>
+          
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src={{url_for('static',filename='js/user.js')}}> </script>
+{% endblock %}

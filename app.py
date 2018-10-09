@@ -22,6 +22,10 @@ def recipe():
 @app.route('/viewrecipe/<recipeid>')
 def viewrecipe(recipeid):
     return render_template('viewrecipe.html',id=recipeid)
+    
+@app.route('/user/<username>')
+def user(username):
+    return render_template('user.html', username=username)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
