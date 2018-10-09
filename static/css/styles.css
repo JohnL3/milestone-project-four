@@ -13,6 +13,14 @@ a:hover {
     cursor: pointer;
 }
 
+ul {
+  list-style: none;
+}
+
+.less-padding {
+  padding: 0 5px !important;
+}
+
 /***************shared between pages ************************************/
 .my-img,
 .my-img-card {
@@ -359,7 +367,7 @@ nav span:first-of-type {
 }
 
 .grids {
-  height: 100vh;
+  /*height: 100vh;*/
   max-width: 500px;
   margin: 0 auto;
 }
@@ -624,6 +632,201 @@ i {
   background-color: lightblue;
 }
 
+/********************* Create-recipe *******************************/
+
+/*select {
+  margin-left: 10px;
+}
+.create-receipe {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    border: 1px solid black;
+}
+.receipe-catorgory {
+  height: 40px;
+}
+label {
+  font-size: 15px;
+}
+.receipe-name input {
+  border: none;
+  outline: none;
+  grid-row: 2;
+  margin-bottom: 14px;
+  border-bottom: 1px solid gray;
+}
+hr {
+  margin-top: 2px;
+  margin-bottom: 10px;
+  display: none;
+}
+.receipe-name {
+  display: grid;
+  grid-template-columns: minmax(40px, 1fr) minmax(40px, 1fr) 25px;
+  grid-gap: 10px;
+}
+.receipe-ing {
+  display: grid;
+  grid-template-columns: minmax(40px, 1fr) minmax(40px, 1fr) 25px;
+  margin-bottom: 10px;
+  grid-column-gap: 15px;
+}
+.receipe-ing .ing {
+  grid-column: 1;
+}
+.receipe-ing .qun {
+  grid-column: 2;
+}
+.receipe-instructions label,
+.receipe-ing label {
+  border-bottom: 1px solid;
+  width: 115px;
+}
+.receipe-allergens input,
+.receipe-ing input {
+  border: none;
+  outline: none;
+  margin-top: 10px;
+  border-bottom: 1px solid gray;
+  padding-bottom: 3px;
+}
+.list-more-ing {
+  box-sizing: border-box;
+  padding: 15px 0;
+  grid-column: 1/-1;
+}
+.more-ing {
+  color: blue;
+  cursor: pointer;
+  font-weight: 600;
+}
+.ing-del  {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: minmax(40px, 1fr) minmax(40px, 1fr) 25px;
+  grid-column-gap: 15px;
+}
+.delete {
+  align-self: center;
+  padding-top: 5px;
+  font-weight: 600;
+  color: red;
+  cursor: pointer;
+}
+.allergens {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  margin:  10px 0;
+}
+.filter-by-cat label,
+.allergens label {
+  font-weight: 100;
+  border-bottom: none;
+  margin-top: 8px;
+  padding: 0 5px;
+  position: relative;
+ 
+}
+
+.filter-by-cat input[type='checkbox'],
+.allergens input {
+  display: inline;
+  height: 16px;
+  width: 16px;
+}
+.receipe-instructions {
+  margin-top: 15px;
+}
+textarea {
+  width: 100%;
+  margin-top: 10px;
+  max-width: 100%;
+  min-height: 100px;
+}*/
+
+.create-recipe {
+  /* display: grid; */
+  padding-left: 0px;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr;
+  /* clear: BOTH; */
+  /* width: 80%; */
+  margin: 0 auto;
+}
+
+.create-recipe.type-b {
+  display: grid;
+}
+
+.create-recipe li {
+  padding: 10px 5px;
+}
+
+.create-recipe label {
+  margin-bottom: 0px;
+  font-weight: 600;
+  color: darkslategray;
+}
+
+.create-recipe input {
+  height: 30px;
+  width: 100%;
+  font-size: 16px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  padding-left: 5px;
+  box-sizing: border-box;
+  padding-top: 0px;
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+  padding-bottom: 0px;
+  outline: navajowhite;
+  border-bottom: 1px solid gray;
+}
+
+.add-lines {
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.add-lines > span {
+  cursor: pointer;
+  padding: 5px;
+  color: darkturquoise;
+  font-weight: 600;
+}
+
+.recipe-allergens {
+  margin-top: 20px;
+  box-sizing: border-box;
+  padding-left: 5px;
+}
+
+.recipe-allergens > label {
+  color: darkturquoise;
+  font-weight: 600;
+}
+
+.recipe-allergens input {
+  margin-top: 10px;
+  height: 16px;
+  width: 16px;
+}
+
+.allergens {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  margin: 5px 0;
+}
+
+.allergens label {
+  font-weight: 100;
+  padding: 0 5px;
+}
+
 @media only screen and (min-width: 768px) {
    header {
     display: grid;
@@ -781,7 +984,26 @@ i {
    grid-template-columns: 1fr 1fr 1fr 2fr;
    margin-top: 10px;
  }
+ 
+ .create {
+   width: 65%;
+   margin: 0 auto;
+ }
+ 
+ .create-recipe {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+    float: none;
+    margin: 0 auto;
+  }
+  
+  .recipe-allergens {
+    max-width: 80%;
+    margin: 20px auto;
+  }
 }
+
 
 @media only screen and (min-width: 1101px) {
   

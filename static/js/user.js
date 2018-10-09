@@ -15,3 +15,8 @@ $( window ).resize(function() {
       $('.nav-items').css('display','none');
   }
 });
+
+
+$('.inner-menu-c').click(function(){
+    $('.grids').css('display', 'none');
+});
