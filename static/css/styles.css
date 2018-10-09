@@ -595,6 +595,7 @@ i {
   grid-column-gap: 6px;
   text-align: center;
   color: darkslategrey;
+  cursor: pointer;
 }
 
 .user-inner-menu li {
