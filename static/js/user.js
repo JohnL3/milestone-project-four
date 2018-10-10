@@ -23,12 +23,12 @@ $('.inner-menu-c').click(function(){
 });
 
 $('.inner-menu-a').click(function(){
-    $('.grids').css('display', 'block');
+    $('.grids').css('display', 'grid');
     $('form').css('display', 'none');
 });
 
 // Used to add extra lines of ingredients and quanties
-$('.add-lines').click(function(){
+$('.adding-lines').click(function(){
   addOptions();
 });
 
@@ -47,5 +47,13 @@ $(function(){
        });
 });  
 
+// for adding extra textarea for instructions in create recipe section
 
+$('.add-textarea').click(function(){
+    addTextarea();
+});
 
+function addTextarea() {
+    var option = `<textarea rows="3" class='step' placeholder='Step 3 ' ></textarea>`;
+    $('.instructions-con').append(option);
+}
