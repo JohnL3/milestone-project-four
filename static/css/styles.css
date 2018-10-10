@@ -21,6 +21,17 @@ ul {
   padding: 0 5px !important;
 }
 
+.special-li {
+  display: grid;
+  grid-template-columns: 1fr 30px;
+}
+.remove-ing {
+  font-weight: 600;
+  color: red;
+  margin: auto;
+  cursor: pointer;
+}
+
 /***************shared between pages ************************************/
 .my-img,
 .my-img-card {
@@ -747,6 +758,7 @@ textarea {
 }*/
 form {
   margin-bottom: 40px;
+  display: none;
 }
 .create-recipe {
   /* display: grid; */
