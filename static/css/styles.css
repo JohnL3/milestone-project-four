@@ -32,6 +32,11 @@ ul {
   cursor: pointer;
 }
 
+#special-h1 {
+  font-size: 20px;
+  color: #2d3535;
+}
+
 /***************shared between pages ************************************/
 .my-img,
 .my-img-card {
@@ -760,6 +765,14 @@ form {
   margin-bottom: 40px;
   display: none;
 }
+
+.form-title {
+   box-sizing: border-box;
+   padding: 5px;
+   text-align: center;
+   font-size: 10px;
+ }
+ 
 .create-recipe {
   /* display: grid; */
   padding-left: 0px;
@@ -856,6 +869,7 @@ form {
   margin-bottom: 10px;
   font-size: 16px;
   box-sizing: border-box;
+  resize: vertical
 }
 
 .create-recipe.type-c {
@@ -1028,6 +1042,17 @@ form {
    float: none;
    grid-template-columns: 1fr 1fr 1fr 2fr;
    margin-top: 10px;
+ }
+ 
+ .form-title {
+   width: 65%;
+   margin: 20px auto;
+   text-align: center;
+   font-size: inherit;
+ }
+ 
+ #special-h1 {
+   font-size: 2.5vw;
  }
  
  .create {
