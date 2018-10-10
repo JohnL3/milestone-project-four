@@ -16,7 +16,40 @@ $( window ).resize(function() {
   }
 });
 
-
+// show and hide users recipes / create recipe
 $('.inner-menu-c').click(function(){
     $('.grids').css('display', 'none');
+    $('form').css('display', 'block');
 });
+
+$('.inner-menu-a').click(function(){
+    $('.grids').css('display', 'block');
+    $('form').css('display', 'none');
+});
+
+// Used to add extra lines of ingredients and quanties
+$('.add-lines').click(function(){
+  addOptions();
+});
+
+function addOptions() {
+    $('.ing span').css('display','none');
+    $('li').removeClass('special-li');
+		var option = '<li class="other-li"><input type="text" ></li><li class="special-li"><input type="text"><span class="remove-ing">X</span></li>';
+   $('.ing').append(option);
+}
+
+$(function(){
+    $('.ing').on('click', 'span.remove-ing', function(){
+       var rem = $(this).closest('li');
+    $(rem).remove();
+    $('.ing li:last').remove();
+       });
+});  
+
+$(function(){
+    $('.ing').on('click', '.special-li', function(){
+       var rem = $('.special-li').closest('.other-li');
+    $(rem).remove();
+    });
+});  
