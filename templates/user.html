@@ -156,55 +156,91 @@
         </div>
       </div>
     </div>
-    
-    <div class='create'>
-        <ul class='create-recipe type-a'>
-            <li><label>RECIPE NAME</label><input type='text'></li>
-            <li><label>AUTHOR NAME</label><input type='text'></li>
-        </ul>
-    </div>
-    
-    <div class='create'>
-        <ul class='create-recipe type-b'>
-            <li><label>INGREDIENTS</label><input type='text'></li>
-            <li><label>QUANTITY</label><input type='text'></li>
-            <li class='less-padding'><input type='text'></li>
-            <li class='less-padding'><input type='text'></li>
-        </ul>
-        <div class='add-lines'>
-            <span>Add more lines</span>
-        </div>
-    </div>
-    <div class='create'>
-        <ul class='create-recipe type-a'>
-            <li><label>PREP TIME</label><input type='text'></li>
-            <li><label>COOK TIME</label><input type='text'></li>
-        </ul>
-    </div>
-    
-    <div class='recipe-allergens'>
-        <label>Select all allergens used in recipe</label>
-        <div class="allergens">
-        <div><input type="checkbox" class='hasEgg'><label>Egg</label></div>
-        <div><input type="checkbox" class='hasMolluscs'><label>Molluscs</label></div>
-        <div><input type="checkbox" class='hasPeanuts'><label>Peanuts</label></div>
-        <div><input type="checkbox" class='hasNuts'><label>Nuts</label></div>
-        <div><input type="checkbox" class='hasSoyabeans'><label>Soyabeans</label></div>
-        <div><input type="checkbox" class='hasMilk'><label>Milk</label></div>
-        <div><input type="checkbox" class='hasCelery'><label>Celery</label></div>
-        <div><input type="checkbox" class='hasMustard'><label>Mustard</label></div>
-        <div><input type="checkbox" class='hasSesameseds'><label>Sesame Seeds</label></div>
-        <div><input type="checkbox" class='hasFish'><label>Fish</label></div>
-        <div><input type="checkbox" class='hasLupin'><label>Lupin</label></div>
-        <div><input type="checkbox" class='hasSulpherdioxide'><label>Sulpher Dioxide</label></div>
-        <div><input type="checkbox" class='hasCerals'><label>Cereals</label></div>
-        <div><input type="checkbox" class='hasCrustaceans'><label>Crustaceans </label></div>
-        </div>
+    <form>
+      <div class='create'>
+          <ul class='create-recipe type-a'>
+              <li><label>RECIPE NAME</label><input type='text'></li>
+              <li><label>AUTHOR NAME</label><input type='text'></li>
+          </ul>
+        
       </div>
+      
+      <div class='create'>
+          <ul class='create-recipe type-b'>
+              <li><label>INGREDIENTS</label><input type='text'></li>
+              <li><label>QUANTITY</label><input type='text'></li>
+              <li class='less-padding'><input type='text'></li>
+              <li class='less-padding'><input type='text'></li>
+          </ul>
+          <div class='add-lines'>
+              <span>Add more lines</span>
+          </div>
+      </div>
+      <div class='create'>
+          <ul class='create-recipe type-a'>
+              <li><label>PREP TIME</label><input type='text'></li>
+              <li><label>COOK TIME</label><input type='text'></li>
+          </ul>
+      </div>
+      
+      <div class='recipe-allergens-con'>
+        <div class='recipe-allergens'>
+            <label>Select all allergens used in recipe</label>
+            <div class="allergens">
+            <div><input type="checkbox" class='hasEgg'><label>Egg</label></div>
+            <div><input type="checkbox" class='hasMolluscs'><label>Molluscs</label></div>
+            <div><input type="checkbox" class='hasPeanuts'><label>Peanuts</label></div>
+            <div><input type="checkbox" class='hasNuts'><label>Nuts</label></div>
+            <div><input type="checkbox" class='hasSoyabeans'><label>Soyabeans</label></div>
+            <div><input type="checkbox" class='hasMilk'><label>Milk</label></div>
+            <div><input type="checkbox" class='hasCelery'><label>Celery</label></div>
+            <div><input type="checkbox" class='hasMustard'><label>Mustard</label></div>
+            <div><input type="checkbox" class='hasSesameseds'><label>Sesame Seeds</label></div>
+            <div><input type="checkbox" class='hasFish'><label>Fish</label></div>
+            <div><input type="checkbox" class='hasLupin'><label>Lupin</label></div>
+            <div><input type="checkbox" class='hasSulpherdioxide'><label>Sulpher Dioxide</label></div>
+            <div><input type="checkbox" class='hasCerals'><label>Cereals</label></div>
+            <div><input type="checkbox" class='hasCrustaceans'><label>Crustaceans </label></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class='create'>
+          <ul class='create-recipe type-c'>
+              <li><label>CATEGORY</label></li>
+              <select>
+                <option>Dessert</option>
+                <option>Cakes</option>
+              </select>
+            </ul>
+        </div>
+          
+        <div class='create'>
+            <ul class='create-recipe type-a'>
+                <li><label>INSTRUCTIONS</label></li>
+            </ul>
+        </div>
+        <div class='recipe-instructions'>
+          <div class='instructions-con'>
+            <textarea rows="3" class='step' placeholder='Pour into bowl' ></textarea>
+            <textarea rows="3" class='step' placeholder='Pour into bowl' ></textarea>
+            
+          </div>
+           <div class='add-lines'>
+              <span>Add more Instructions</span>
+          </div>
+        </div>
+        
+        <div class='create'>
+          <ul class='create-recipe type-a'>
+              <li><button>SUBMIT</button></li>
+          </ul>
+      </div>
+        
+  </form>
    
     
     
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
   <script src={{url_for('static',filename='js/user.js')}}> </script>
 {% endblock %}

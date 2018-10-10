@@ -745,7 +745,9 @@ textarea {
   max-width: 100%;
   min-height: 100px;
 }*/
-
+form {
+  margin-bottom: 40px;
+}
 .create-recipe {
   /* display: grid; */
   padding-left: 0px;
@@ -784,6 +786,7 @@ textarea {
   padding-bottom: 0px;
   outline: navajowhite;
   border-bottom: 1px solid gray;
+  background: #f1ececb3;
 }
 
 .add-lines {
@@ -798,14 +801,17 @@ textarea {
   font-weight: 600;
 }
 
-.recipe-allergens {
-  margin-top: 20px;
-  box-sizing: border-box;
+.recipe-allergens-con {
   padding-left: 5px;
 }
 
+.recipe-allergens {
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
 .recipe-allergens > label {
-  color: darkturquoise;
+  color: lightcoral;
   font-weight: 600;
 }
 
@@ -825,6 +831,33 @@ textarea {
 .allergens label {
   font-weight: 100;
   padding: 0 5px;
+}
+
+.recipe-instructions {
+  box-sizing: border-box;
+  padding: 0 5px;
+}
+
+.recipe-instructions textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.create-recipe.type-c {
+    margin-bottom: 30px;
+    display: grid;
+    margin-top: 20px;
+    box-sizing: border-box;
+    padding-right: 5px; 
+}
+
+.type-a button {
+  padding: 10px 15px;
+  font-weight: 600;
+  color: darkslategray;
 }
 
 @media only screen and (min-width: 768px) {
@@ -999,8 +1032,29 @@ textarea {
   }
   
   .recipe-allergens {
-    max-width: 80%;
+    max-width: 65%;
     margin: 20px auto;
+    padding: 0;
+  }
+  
+  /*.recipe-allergens-con {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 0;
+  }*/
+  
+  .recipe-instructions {
+    width: 65%;
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+  .create-recipe.type-c {
+    margin-bottom: 30px;
+    display: grid;
+    margin-top: 20px;
+    box-sizing: border-box;
+    padding: 0;
   }
 }
 
