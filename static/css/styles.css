@@ -56,6 +56,12 @@ select:focus {
   background: #f1ececb3 !important;
 }
 
+.step:focus {
+    outline: navajowhite;
+    background: white !important;
+    border: 1px solid gray !important;
+}
+
 /***************shared between pages ************************************/
 .my-img,
 .my-img-card {
