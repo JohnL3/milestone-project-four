@@ -102,17 +102,19 @@ function check_validation() {
   let author =  $('.author-inp').val();
   let recipeName = $('.recipe-inp').val();
   let category =  $( ".category-option option:selected" ).text();
-  let prep = $('.prep-inp').val();;
-  let cook = $('.cook-inp').val();;
+  let prep = $('.prep-inp').val();
+  let cook = $('.cook-inp').val();
+  let serves = $('.serves-inp').val();
   
   
   
-  if(author === '' || recipeName === '' || category === '' || prep === '' || cook === '' || ingAndQuan === false || instructions === false) {
+  if(!author || !recipeName  || !category  || !prep  || !cook  || !serves || ingAndQuan === false || instructions === false) {
     if(author === '') $('.author-inp').addClass('error');
     if(recipeName === '') $('.recipe-inp').addClass('error');
     if($( ".category-option option:selected" ).text() === '') $( ".category-option" ).addClass('error');
     if(prep === '') $('.prep-inp').addClass('error');
     if(cook === '') $('.cook-inp').addClass('error');
+    if(serves === '') $('.serves-inp').addClass('error');
     $('html, body').animate({scrollTop: $("form").offset().top}, 500);
     
     setTimeout(function(){
@@ -128,6 +130,7 @@ function check_validation() {
   }
 }
 
+// post details of new recipe to server
 $('.sub-btn').click(function(event){
     event.preventDefault();
     // check all fields are filled in

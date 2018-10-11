@@ -812,6 +812,11 @@ form {
   display: grid;
 }
 
+.create-receipe.type-d {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
 .create-recipe li {
   padding: 10px 5px;
 }
@@ -1093,6 +1098,10 @@ form {
     margin: 0 auto;
   }
   
+  .create-recipe.type-d {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
   .recipe-allergens.create {
     max-width: 65%;
     margin: 20px auto;
