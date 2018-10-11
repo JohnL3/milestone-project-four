@@ -132,21 +132,56 @@ function check_validation() {
 
 // post details of new recipe to server
 $('.sub-btn').click(function(event){
-    event.preventDefault();
-    // check all fields are filled in
-    let validated = check_validation();
+  event.preventDefault();
+  // check all fields are filled in
+  let validated = check_validation();
     
-    if (validated) {
-        let ing_and_quan = pair_ing_quan($('.ing :input[type=text]'));
-        console.log(ing_and_quan);
-    
-        // add instructions to an array
-        let instructions = [];
-         $('.step').each(function() {
-            instructions.push($(this).val());
-         });
+  if (validated) {
       
-        console.log(instructions);
+      // add pairs of ingredient and a quantity to  arrys
+      let ing_and_quan = pair_ing_quan($('.ing :input[type=text]'));
+            console.log(ing_and_quan);
+        
+      // add instructions to an array
+      let instructions = [];
+      $('.step').each(function() {
+        instructions.push($(this).val());
+      });
+         
+      // add allergens to an array
+      let allergens=[];
+      $('input[type=checkbox]').each(function () {
+          if ($(this).is(":checked")){
+            allergens.push('T');
+          } else {
+            allergens.push('F');
+          }
+      });
+         
+      // create data being pushed to server
+      let data = {};
+      data.author_name = $('.author-inp').val();
+      data.recipe_name = $('.recipe-inp').val();
+      data.category = $( ".category-option option:selected" ).text();
+      data.allergens = allergens;
+      data.instructions = instructions;
+      data.ing_and_quan = ing_and_quan;
+      data.prep = $('.prep-inp').val();
+      data.cook = $('.cook-inp').val();
+      data.serves = $('.serves-inp').val();
+          
+      console.log(data);
+      let url = 'http://our-cookbook-johnl3.c9users.io:8080/newrecipe';
+      $.ajax({
+        type : 'POST',
+        url : url,
+        contentType: 'application/json;charset=UTF-8',
+        dataType: 'json',
+        data : JSON.stringify(data),
+        success: function(data){
+           console.log(data);
+        }
+      });
       
-    }
+   }
 });
