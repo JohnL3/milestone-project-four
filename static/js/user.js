@@ -58,51 +58,56 @@ function addTextarea() {
     $('.instructions-con').append(option);
 }
 
-// function doing two jobs: 1st combining a ingredient and a quantity into an arry to keep them in pairs
-// 2nd to add error if only an ingredient or quantity is added and set return array to [] so user can fill in missing one
+// function combining a ingredient and a quantity into an arry to keep them in pairs
 function pair_ing_quan(ing_quan){
   let ing_and_quan = [];
   let inner = [];
   let count = 0;
   let r_len =  $('.ing :input[type=text]').length;
   let b_count = 0;
-  let all_ok = true;
   
   ing_quan.each(function(){
-    if(all_ok === true) {
-        if($(this).val() != ''){ 
-          count++;
-          b_count++;
-          if(count === 3 ) {
-            ing_and_quan.push([...inner]);
-            inner=[];
-            count=1;
-          }
-          inner.push($(this).val());
-       } else{
-         //count++;
-         //b_count++;
-         all_ok = false;
-         $(this).addClass('error');
-       }
-      if (b_count === r_len && inner.length != 0) ing_and_quan.push(inner);
-      
-    }
+  
+    count++;
+    b_count++;
+    if(count === 3 ) {
+        ing_and_quan.push([...inner]);
+        inner=[];
+        count=1;
+      }
+    inner.push($(this).val());
+       
+    if (b_count === r_len && inner.length != 0) ing_and_quan.push(inner);
     
   });
   
-  return (all_ok)? ing_and_quan: [];
+  return ing_and_quan;
 }
 
-function check_validation(r_q, ins) {
-  
+// check fields are filled in or else add error class
+function isNotBlank(items) {
+    let result = true;
+    items.each(function(){
+        if($(this).val() === '') {
+            result = false;
+            $(this).addClass('error');
+        }
+    });
+    return result;
+}
+
+function check_validation() {
+  let ingAndQuan = isNotBlank($('.ing :input[type=text]'));
+  let instructions = isNotBlank($('.step'));
   let author =  $('.author-inp').val();
   let recipeName = $('.recipe-inp').val();
   let category =  $( ".category-option option:selected" ).text();
   let prep = $('.prep-inp').val();;
   let cook = $('.cook-inp').val();;
   
-  if(author === '' || recipeName === '' || category === '' || prep === '' || cook === '' || r_q.length < 1) {
+  
+  
+  if(author === '' || recipeName === '' || category === '' || prep === '' || cook === '' || ingAndQuan === false || instructions === false) {
     if(author === '') $('.author-inp').addClass('error');
     if(recipeName === '') $('.recipe-inp').addClass('error');
     if($( ".category-option option:selected" ).text() === '') $( ".category-option" ).addClass('error');
@@ -115,6 +120,7 @@ function check_validation(r_q, ins) {
        //$('.recipe-inp').removeClass('error');
        $( ".category-option" ).removeClass('error');
        $('input[type="text"]').removeClass('error');
+       $('.step').removeClass('error');
     },2500);
     return false;
   } else {
@@ -124,8 +130,20 @@ function check_validation(r_q, ins) {
 
 $('.sub-btn').click(function(event){
     event.preventDefault();
-    let ing_and_quan = pair_ing_quan($('.ing :input[type=text]'));
-    console.log(ing_and_quan);
-    let instructions ='';
-    let validated = check_validation(ing_and_quan, instructions);
+    // check all fields are filled in
+    let validated = check_validation();
+    
+    if (validated) {
+        let ing_and_quan = pair_ing_quan($('.ing :input[type=text]'));
+        console.log(ing_and_quan);
+    
+        // add instructions to an array
+        let instructions = [];
+         $('.step').each(function() {
+            instructions.push($(this).val());
+         });
+      
+        console.log(instructions);
+      
+    }
 });
