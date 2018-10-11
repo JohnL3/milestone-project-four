@@ -29,7 +29,9 @@ def user(username):
     
 @app.route('/newrecipe', methods=['POST'])
 def newrecipe():
-    return 'New Recipe'
+    data = request.get_json()
+       
+    return jsonify({'data':data})
 
 @app.route('/login', methods=['GET','POST'])
 def login():
