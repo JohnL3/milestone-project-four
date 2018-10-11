@@ -1087,7 +1087,7 @@ form {
     margin: 0 auto;
   }
   
-  .recipe-allergens {
+  .recipe-allergens.create {
     max-width: 65%;
     margin: 20px auto;
     padding: 0;
