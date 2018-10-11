@@ -57,3 +57,75 @@ function addTextarea() {
     var option = `<textarea rows="3" class='step' placeholder='Step 3 ' ></textarea>`;
     $('.instructions-con').append(option);
 }
+
+// function doing two jobs: 1st combining a ingredient and a quantity into an arry to keep them in pairs
+// 2nd to add error if only an ingredient or quantity is added and set return array to [] so user can fill in missing one
+function pair_ing_quan(ing_quan){
+  let ing_and_quan = [];
+  let inner = [];
+  let count = 0;
+  let r_len =  $('.ing :input[type=text]').length;
+  let b_count = 0;
+  let all_ok = true;
+  
+  ing_quan.each(function(){
+    if(all_ok === true) {
+        if($(this).val() != ''){ 
+          count++;
+          b_count++;
+          if(count === 3 ) {
+            ing_and_quan.push([...inner]);
+            inner=[];
+            count=1;
+          }
+          inner.push($(this).val());
+       } else{
+         //count++;
+         //b_count++;
+         all_ok = false;
+         $(this).addClass('error');
+       }
+      if (b_count === r_len && inner.length != 0) ing_and_quan.push(inner);
+      
+    }
+    
+  });
+  
+  return (all_ok)? ing_and_quan: [];
+}
+
+function check_validation(r_q, ins) {
+  
+  let author =  $('.author-inp').val();
+  let recipeName = $('.recipe-inp').val();
+  let category =  $( ".category-option option:selected" ).text();
+  let prep = $('.prep-inp').val();;
+  let cook = $('.cook-inp').val();;
+  
+  if(author === '' || recipeName === '' || category === '' || prep === '' || cook === '' || r_q.length < 1) {
+    if(author === '') $('.author-inp').addClass('error');
+    if(recipeName === '') $('.recipe-inp').addClass('error');
+    if($( ".category-option option:selected" ).text() === '') $( ".category-option" ).addClass('error');
+    if(prep === '') $('.prep-inp').addClass('error');
+    if(cook === '') $('.cook-inp').addClass('error');
+    $('html, body').animate({scrollTop: $("form").offset().top}, 500);
+    
+    setTimeout(function(){
+       //$('.author-inp').removeClass('error');
+       //$('.recipe-inp').removeClass('error');
+       $( ".category-option" ).removeClass('error');
+       $('input[type="text"]').removeClass('error');
+    },2500);
+    return false;
+  } else {
+    return true;
+  }
+}
+
+$('.sub-btn').click(function(event){
+    event.preventDefault();
+    let ing_and_quan = pair_ing_quan($('.ing :input[type=text]'));
+    console.log(ing_and_quan);
+    let instructions ='';
+    let validated = check_validation(ing_and_quan, instructions);
+});
