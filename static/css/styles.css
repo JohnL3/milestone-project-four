@@ -62,6 +62,11 @@ select:focus {
     border: 1px solid gray !important;
 }
 
+.inner-menu-c.menu-item:hover {
+    color: white;
+    background-color: #84c7dc;
+}
+
 /***************shared between pages ************************************/
 .my-img,
 .my-img-card {
