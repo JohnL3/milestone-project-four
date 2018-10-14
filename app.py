@@ -5,15 +5,31 @@ from database.DB_functions import DB_configuration
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
+app.permanent_session_lifetime = datetime.timedelta(days=5)
+app.secret_key = os.urandom(24)
 
 mysql = DB_configuration(app)
 
-
+@app.before_request
+def before_request():
+    g.user = None
+    if 'username' in session:
+        g.user = session.get('username')
 
 
 @app.route('/', methods=['GET','POST'])
 def index():
-    return render_template('index.html')
+    if request.method == 'GET':
+        if g.user:
+            username = g.user
+        else:
+            username = None
+            
+            return render_template('index.html', username=username)
+    if request.method == 'POST':
+       data = request.get_json()
+           
+       return jsonify({'data':data})
 
 @app.route('/recipe', methods=['GET','POST'])
 def recipe():
@@ -23,8 +39,12 @@ def recipe():
 def viewrecipe(recipeid):
     return render_template('viewrecipe.html',id=recipeid)
     
-@app.route('/user/<username>')
-def user(username):
+@app.route('/user')
+def user():
+    username = ''
+    if(g.user):
+        username= g.user
+        
     return render_template('user.html', username=username)
     
 @app.route('/newrecipe', methods=['POST'])
@@ -35,7 +55,15 @@ def newrecipe():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-    return render_template('signuplogin.html')
+    if request.method == 'GET':
+        return render_template('signuplogin.html')
+    
+    if request.method == 'POST':
+        
+        username = request.form['username']
+        session['username'] = username
+        return redirect(url_for('index'))
+    
     
 @app.route('/signup', methods=['GET','POST'])
 def signup():
@@ -43,7 +71,8 @@ def signup():
 
 @app.route('/logout', methods=['GET','POST'])
 def logout():
-    return 'logout'
+    session.pop('username', None)
+    return redirect(url_for('index'))
 
 if __name__ == '__main__':
     app.run(host=os.getenv('IP'), port=int(os.getenv('PORT')))
