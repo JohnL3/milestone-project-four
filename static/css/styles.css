@@ -793,7 +793,7 @@ textarea {
 }*/
 form {
   margin-bottom: 40px;
-  display: none;
+  display: block;
 }
 
 .form-title {

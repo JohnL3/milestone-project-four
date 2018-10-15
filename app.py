@@ -4,7 +4,7 @@ from flask import Flask, redirect, url_for, render_template, jsonify, request, m
 from database.DB_functions import DB_configuration
 
 app = Flask(__name__)
-app.config['DEBUG'] = False
+app.config['DEBUG'] = True
 app.permanent_session_lifetime = datetime.timedelta(days=5)
 app.secret_key = os.urandom(24)
 
