@@ -10,8 +10,15 @@
 
 {% block section %}
     <ul>
-      <li><a href="{{ url_for('login') }}">Login</a></li>
+      {% if username %}
+       <li><a href="{{ url_for('user') }}">{{username}}</a></li>
+       <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('logout') }}">Logout</a></li>
+      {% else %}
       <li><a href="{{ url_for('index') }}">Home</a></li>
+      <li><a href="{{ url_for('signup_login') }}">Signup/Login</a></li>
+      {% endif %}
+  
     </ul>
 {% endblock %}
 

@@ -11,11 +11,13 @@
   {% block section %}
     <ul>
       {% if username %}
+      <li><a href="{{ url_for('user') }}">{{username}}</a></li>
+      <li><a href="{{ url_for('recipe') }}">Recipes</a></li>
       <li><a href="{{ url_for('logout') }}">Logout</a></li>
       {% else %}
+      <li><a href="{{ url_for('recipe') }}">Recipes</a></li>
       <li><a href="{{ url_for('signup_login') }}">Sign Up/Login</a></li>
       {% endif %}
-      <li><a href="{{ url_for('recipe') }}">Recipes</a></li>
     </ul>
     {% endblock %}
     
