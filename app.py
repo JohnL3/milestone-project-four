@@ -50,7 +50,7 @@ def viewrecipe(recipeid):
     
 @app.route('/user')
 def user():
-    if(g.user):
+    if g.user:
         username= g.user
         return render_template('user.html', username=username)
     else:
