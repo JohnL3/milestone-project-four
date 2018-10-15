@@ -171,7 +171,8 @@ $('.sub-btn').click(function(event){
       data.serves = $('.serves-inp').val();
           
       console.log(data);
-      let url = 'http://our-cookbook-johnl3.c9users.io:8080/newrecipe';
+      //let url = 'http://our-cookbook-johnl3.c9users.io:8080/newrecipe';
+      let url = 'https://our-cookbook-jl.herokuapp.com/newrecipe'
       $.ajax({
         type : 'POST',
         url : url,

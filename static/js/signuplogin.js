@@ -22,7 +22,7 @@ $('.login-tab').click(function(){
     $('.signup-tab').css('background', '#f7bfbf');
     $('.signup-tab').css('color', 'darkslategray');
     $('button').text('LOGIN');
-    $('form').attr('action', 'http://our-cookbook-johnl3.c9users.io:8080/login');
+    $('form').attr('action', 'https://our-cookbook-jl.herokuapp.com/login');
 });
 
 $('.signup-tab').click(function(){
@@ -31,5 +31,7 @@ $('.signup-tab').click(function(){
     $('.login-tab').css('background', '#f7bfbf');
     $('.login-tab').css('color', 'darkslategray');
     $('button').text('SIGN UP');
-    $('form').attr('action', 'http://our-cookbook-johnl3.c9users.io:8080/signup');
+     //'https://our-cookbook-jl.herokuapp.com/signup'
+     //'http://our-cookbook-johnl3.c9users.io:8080'
+    $('form').attr('action', 'https://our-cookbook-jl.herokuapp.com/signup');
 });
