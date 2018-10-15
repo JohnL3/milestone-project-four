@@ -5,7 +5,7 @@ from database.DB_functions import DB_configuration, signup_new_user, validate_us
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.permanent_session_lifetime = datetime.timedelta(days=5)
+app.permanent_session_lifetime = datetime.timedelta(minutes=1)
 app.secret_key = os.urandom(24)
 
 mysql = DB_configuration(app)
