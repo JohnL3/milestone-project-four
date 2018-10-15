@@ -10,7 +10,7 @@ app.permanent_session_lifetime = datetime.timedelta(minutes=10)
 
 
 mysql = DB_configuration(app)
-
+'''
 @app.before_request
 def before_request():
     g.user = None
@@ -19,13 +19,13 @@ def before_request():
         print('before_request', g.user)
     else:
         print('session',session)
-
+'''
 
 @app.route('/', methods=['GET','POST'])
 def index():
     if request.method == 'GET':
-        if g.user:
-            username = g.user
+        if 'username' in session:
+            username = session['username']
         else:
             
             return render_template('index.html')
@@ -37,8 +37,8 @@ def index():
 
 @app.route('/recipe', methods=['GET','POST'])
 def recipe():
-    if g.user:
-        username = g.user
+    if 'username' in session:
+        username = session['username']
     else:
         username = None
         
@@ -47,15 +47,16 @@ def recipe():
 @app.route('/viewrecipe/<recipeid>')
 def viewrecipe(recipeid):
     return render_template('viewrecipe.html',id=recipeid)
-    
+ 
+ 
 @app.route('/user')
 def user():
-    if g.user:
-        username= g.user
+    if 'username' in session:
+        username= session['username']
         return render_template('user.html', username=username)
     else:
         return redirect(url_for('index'))
-    
+
 @app.route('/newrecipe', methods=['POST'])
 def newrecipe():
     data = request.get_json()
@@ -81,8 +82,9 @@ def login():
         else:
             return redirect(url_for('signup_login'))
     else:
-        username = g.user
-        return redirect(url_for('user'))
+        if 'username' in session:
+            username = session['username']
+            return redirect(url_for('user'))
     
     
 @app.route('/signup', methods=['POST'])
