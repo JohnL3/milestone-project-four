@@ -15,7 +15,7 @@ mysql = DB_configuration(app)
 def before_request():
     g.user = None
     if 'username' in session:
-        g.user = session.get('username')
+        g.user = session['username']
         print('before_request', g.user)
     else:
         print('session',session)
