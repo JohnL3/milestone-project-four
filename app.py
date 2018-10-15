@@ -53,21 +53,24 @@ def newrecipe():
        
     return jsonify({'data':data})
 
-@app.route('/login', methods=['GET','POST'])
+
+@app.route('/signup_login')
+def signup_login():
+     return render_template('signuplogin.html')
+     
+    
+@app.route('/login', methods=['POST'])
 def login():
-    if request.method == 'GET':
-        return render_template('signuplogin.html')
-    
-    if request.method == 'POST':
-        
-        username = request.form['username']
-        session['username'] = username
-        return redirect(url_for('index'))
+    username = request.form['username']
+    session['username'] = username
+    return redirect(url_for('index'))
     
     
-@app.route('/signup', methods=['GET','POST'])
+@app.route('/signup', methods=['POST'])
 def signup():
-    return 'signup'
+    username = request.form['username']
+    session['username'] = username
+    return redirect(url_for('index'))
 
 @app.route('/logout', methods=['GET','POST'])
 def logout():
