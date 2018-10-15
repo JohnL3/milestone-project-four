@@ -1,7 +1,7 @@
 import os
 import datetime
 from flask import Flask, redirect, url_for, render_template, jsonify, request, make_response, g, session
-from database.DB_functions import DB_configuration
+from database.DB_functions import DB_configuration, signup_new_user, validate_user
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
@@ -24,8 +24,14 @@ def index():
             username = g.user
         else:
             username = None
-            
+            '''
+            if 'username' in request.args:
+                username = request.args['username']
+                return render_template('index.html', username=username)
+            else:
+            '''
             return render_template('index.html', username=username)
+        return render_template('index.html', username=username)
     if request.method == 'POST':
        data = request.get_json()
            
@@ -33,7 +39,12 @@ def index():
 
 @app.route('/recipe', methods=['GET','POST'])
 def recipe():
-    return render_template('recipe.html')
+    if g.user:
+        username = g.user
+    else:
+        username = None
+        
+    return render_template('recipe.html', username=username)
     
 @app.route('/viewrecipe/<recipeid>')
 def viewrecipe(recipeid):
@@ -41,11 +52,11 @@ def viewrecipe(recipeid):
     
 @app.route('/user')
 def user():
-    username = ''
     if(g.user):
         username= g.user
-        
-    return render_template('user.html', username=username)
+        return render_template('user.html', username=username)
+    else:
+        return redirect(url_for('index'))
     
 @app.route('/newrecipe', methods=['POST'])
 def newrecipe():
@@ -59,18 +70,33 @@ def signup_login():
      return render_template('signuplogin.html')
      
     
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET','POST'])
 def login():
-    username = request.form['username']
-    session['username'] = username
-    return redirect(url_for('index'))
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        result = validate_user(mysql, username, password)
+        if result == True:
+            username = request.form['username']
+            session['username'] = username
+            return redirect(url_for('user'))
+        else:
+            return redirect(url_for('signup_login'))
+    else:
+        username = g.user
+        return redirect(url_for('user'))
     
     
 @app.route('/signup', methods=['POST'])
 def signup():
     username = request.form['username']
-    session['username'] = username
-    return redirect(url_for('index'))
+    password = request.form['password']
+    result = signup_new_user(mysql, username, password)
+    if result:
+        session['username']= username
+        return redirect(url_for('login'))
+    else:
+        return redirect(url_for('signup_login'))
 
 @app.route('/logout', methods=['GET','POST'])
 def logout():
