@@ -17,6 +17,8 @@ def before_request():
     if 'username' in session:
         g.user = session.get('username')
         print('before_request', g.user)
+    else:
+        print('session',session)
 
 
 @app.route('/', methods=['GET','POST'])
