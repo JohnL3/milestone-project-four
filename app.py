@@ -18,7 +18,7 @@ def before_request():
         g.user = session['username']
         print('before_request', g.user)
     else:
-        print('session',session['username'])
+        print('session',session)
 
 
 @app.route('/', methods=['GET','POST'])
@@ -27,14 +27,8 @@ def index():
         if g.user:
             username = g.user
         else:
-            username = None
-            '''
-            if 'username' in request.args:
-                username = request.args['username']
-                return render_template('index.html', username=username)
-            else:
-            '''
-            return render_template('index.html', username=username)
+            
+            return render_template('index.html')
         return render_template('index.html', username=username)
     if request.method == 'POST':
        data = request.get_json()
