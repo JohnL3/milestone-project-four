@@ -22,3 +22,40 @@ def DB_configuration(app):
     mysql = MySQL(cursorclass=DictCursor)
     mysql.init_app(app)
     return mysql
+    
+def signup_new_user(mysql, user, pw):
+    con = mysql.connect()
+    curs = con.cursor()
+    query = "SELECT user_name FROM user_table WHERE user_name ='" +user+ "'"
+    
+    curs.execute(query)
+    result = curs.fetchall()
+    
+    if result:
+        return False
+    else:
+        try:
+            row = (user, pw)
+            curs.execute('''INSERT INTO user_table(user_id, user_name, password) VALUES(NULL, %s ,%s)''',row)
+            con.commit()
+            return True
+        except Exception as e:
+            return 'Error saving data: '+str(e)
+
+def validate_user(mysql, username, password):
+    con = mysql.connect()
+    curs = con.cursor()
+    query = "SELECT user_name, password FROM user_table WHERE user_name ='" +username+ "'"
+
+    curs.execute(query)
+    result = curs.fetchall()
+    
+    if  len(result) != 0:
+        if username == result[0]['user_name'] and password == result[0]['password']:
+            return True
+        else:
+            return False
+    else:
+        return False
+        
+    
