@@ -19,12 +19,12 @@ $( window ).resize(function() {
 // show and hide users recipes / create recipe
 $('.inner-menu-c').click(function(){
     $('.grids').css('display', 'none');
-    $('form').css('display', 'block');
+    $('form.user-page').css('display', 'block');
 });
 
 $('.inner-menu-a').click(function(){
     $('.grids').css('display', 'grid');
-    $('form').css('display', 'none');
+    $('form.user-page').css('display', 'none');
 });
 
 // Used to add extra lines of ingredients and quanties

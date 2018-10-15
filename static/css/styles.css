@@ -638,6 +638,9 @@ i {
   height: 200px;
   background: lightblue;
 }
+form.user-page {
+  display: none;
+}
 .user-inner-menu {
   box-sizing: border-box;
   padding: 0 5px;
