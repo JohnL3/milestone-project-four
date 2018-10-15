@@ -5,8 +5,9 @@ from database.DB_functions import DB_configuration, signup_new_user, validate_us
 
 app = Flask(__name__)
 app.config['DEBUG'] = False
-app.permanent_session_lifetime = datetime.timedelta(minutes=10)
 app.secret_key = os.urandom(24)
+app.permanent_session_lifetime = datetime.timedelta(minutes=10)
+
 
 mysql = DB_configuration(app)
 
@@ -15,6 +16,7 @@ def before_request():
     g.user = None
     if 'username' in session:
         g.user = session.get('username')
+        print('before_request', g.user)
 
 
 @app.route('/', methods=['GET','POST'])
