@@ -2,7 +2,7 @@ import os
 import datetime
 from flask import Flask, redirect, url_for, render_template, jsonify, request, make_response, g, session
 from database.DB_functions import DB_configuration, signup_new_user, validate_user
-import config
+
 
 app = Flask(__name__)
 app.config['DEBUG'] = False
@@ -10,6 +10,7 @@ app.config['DEBUG'] = False
 if app.config['DEBUG'] == False:
    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 else:
+    import config
     app.config['SECRET_KEY'] = config.SECRET_KEY
     
 app.permanent_session_lifetime = datetime.timedelta(minutes=10)
