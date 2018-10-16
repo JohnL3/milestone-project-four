@@ -33,5 +33,5 @@ $('.signup-tab').click(function(){
     $('button').text('SIGN UP');
      //'https://our-cookbook-jl.herokuapp.com/signup'
      //'http://our-cookbook-johnl3.c9users.io:8080'
-    $('form').attr('action', 'https://our-cookbook-jl.herokuapp.com/signup');
+    $('form').attr('action', 'http://our-cookbook-johnl3.c9users.io:8080');
 });

@@ -5,7 +5,7 @@ from database.DB_functions import DB_configuration, signup_new_user, validate_us
 
 
 app = Flask(__name__)
-app.config['DEBUG'] = False
+app.config['DEBUG'] = True
 
 if app.config['DEBUG'] == False:
    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
