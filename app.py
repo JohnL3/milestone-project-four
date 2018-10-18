@@ -1,7 +1,7 @@
 import os
 import datetime
 from flask import Flask, redirect, url_for, render_template, jsonify, request, make_response, g, session
-from database.DB_functions import DB_configuration, signup_new_user, validate_user
+from database.DB_functions import DB_configuration, signup_new_user, validate_user, create_new_recipe
 
 
 app = Flask(__name__)
@@ -13,7 +13,7 @@ else:
     import config
     app.config['SECRET_KEY'] = config.SECRET_KEY
     
-app.permanent_session_lifetime = datetime.timedelta(minutes=10)
+app.permanent_session_lifetime = datetime.timedelta(hours=1)
 
 
 mysql = DB_configuration(app)
@@ -60,6 +60,8 @@ def viewrecipe(recipeid):
 def user():
     if 'username' in session:
         username= session['username']
+        
+        
         return render_template('user.html', username=username)
     else:
         return redirect(url_for('index'))
@@ -67,7 +69,9 @@ def user():
 @app.route('/newrecipe', methods=['POST'])
 def newrecipe():
     data = request.get_json()
-       
+    
+    msg = create_new_recipe(mysql, data)
+    data['msg'] = msg
     return jsonify({'data':data})
 
 
