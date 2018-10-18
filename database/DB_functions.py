@@ -144,9 +144,25 @@ def create_new_recipe(mysql, data):
     except Exception as e:
         return ' Ing sect Error saving data: '+str(e)
             
-
-def get_all_recipes():
-    return True
+def get_query_string():
+    part_a = "SELECT user_name, recipe_name, recipe_id, category_name, author_name, collected, likes, url "
+    part_b = "Nuts, Egg, Milk, Pnuts, Celery, Mustard, SSeeds, Fish, Moll, SBeans, Lupin, SDioxide, Cerals, Crust "
+    part_c = "FROM user_table "
+    part_d = "JOIN recipe_table ON user_table.user_id = recipe_table.user_id "
+    part_e = "JOIN category_table ON category_table.cat_id = recipe_table.cat_id "
+    part_f = "JOIN author_table ON author_table.author_id = recipe_table.author_id "
+    
+    full_string = part_a + part_b +part_c + part_d + part_e + part_f
+    
+    return full_string
+    
+def get_all_recipes(mysql):
+    con = mysql.connect()
+    curs = con.cursor()
+    
+    query = get_query_string()
+    curs.execute(query)
+    return curs.fetchall()
         
   
     
