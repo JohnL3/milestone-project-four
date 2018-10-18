@@ -144,7 +144,9 @@ def create_new_recipe(mysql, data):
     except Exception as e:
         return ' Ing sect Error saving data: '+str(e)
             
-           
+
+def get_all_recipes():
+    return True
         
   
     
