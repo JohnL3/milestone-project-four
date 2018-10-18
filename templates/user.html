@@ -29,9 +29,10 @@
    </div>
    
    <div class='grids'>
-      <div id='1' class='recipe'>
+      {% for r in recipe %}
+      <div id='{{r.recipe_id}}' class='recipe'>
         <div class="recipe-header">
-          <span>Ice Cream Sunday</span>
+          <span>{{ r.recipe_name }}</span>
         </div>
         <div class="my-img-card">
           <img src='/static/assets/images/alldessert.jpg'>
@@ -39,27 +40,66 @@
         <div class="recipe-box">
           <div class="recipe-details">
             <div class="recipe-category">
-              <span>CATEGORY</span><span>DESSERT</span>
+              <span>CATEGORY</span><span>{{ r.category_name}}</span>
             </div>
             <div class="recipe-author">
-              <span>AUTHOR</span><span>Mary Berry</span>
+              <span>AUTHOR</span><span>{{ r.author_name}}</span>
             </div>
           </div>
           <span>ALLERGENS</span>
           <div class="recipe-allergens">
+            {% if r.Nuts == 'T' %}
             <span class="allergen">Nuts</span>
+            {% endif %}
+            {% if r.Egg == 'T' %}
+            <span class="allergen">Egg</span>
+            {% endif %}
+            {% if r.Milk =='T' %}
             <span class="allergen">Milk</span>
-            <span class="allergen">Peanut</span>
+            {% endif %}
+            {% if r.Pnuts =='T' %}
+            <span class="allergen">Peanuts</span>
+            {% endif %}
+            {% if r.Celery =='T' %}
+            <span class="allergen">Celery</span>
+            {% endif %}
+            {% if r.Mustard =='T' %}
+            <span class="allergen">Mustard</span>
+            {% endif %}
+            {% if r.SSeeds =='T' %}
+            <span class="allergen">Sesame Seeds</span>
+            {% endif %}
+            {% if r.Fish =='T' %}
+            <span class="allergen">Fish</span>
+            {% endif %}
+            {% if r.Moll =='T' %}
+            <span class="allergen">Molluscs</span>
+            {% endif %}
+            {% if r.SBeans =='T' %}
+            <span class="allergen">Soyabeans</span>
+            {% endif %}
+            {% if r.Lupin =='T' %}
+            <span class="allergen">Lupin</span>
+            {% endif %}
+            {% if r.SDioxide =='T' %}
+            <span class="allergen">Sulpher Dioxide</span>
+            {% endif %}
+            {% if r.Cerals =='T' %}
+            <span class="allergen">Cerals</span>
+            {% endif %}
+            {% if r.Crust =='T' %}
+            <span class="allergen">Crustaceans</span>
+            {% endif %}
           </div>
           <div class='section-con'>
             <div class="icons">
               <div class="likes">
                 <i class="far fa-heart"></i>
-                <span>10</span>
+                <span>{{r.likes}}</span>
               </div>
               <div class="collect">
                 <i class="far fa-folder-open"></i>
-                <span>30</span>
+                <span>{{ r.collected}}</span>
               </div>
             </div>
             <div class='visit'>
@@ -71,90 +111,9 @@
           
         </div>
       </div>
+    {% endfor %}
 
-      <div id='2' class='recipe'>
-        <div class="recipe-header">
-          <span>Ice Cream Sunday</span>
-        </div>
-        <div class="my-img-card">
-          <img src='/static/assets/images/alldessert.jpg'>
-        </div>
-        <div class="recipe-box">
-          <div class="recipe-details">
-            <div class="recipe-category">
-              <span>CATEGORY</span><span>DESSERT</span>
-            </div>
-            <div class="recipe-author">
-              <span>AUTHOR</span><span>Mary Berry</span>
-            </div>
-          </div>
-          <span>ALLERGENS</span>
-          <div class="recipe-allergens">
-            <span class="allergen">Nuts</span>
-            <span class="allergen">Milk</span>
-            <span class="allergen">Peanut</span>
-          </div>
-          <div class='section-con'>
-            <div class="icons">
-              <div class="likes">
-                <i class="far fa-heart"></i>
-                <span>10</span>
-              </div>
-              <div class="collect">
-                <i class="far fa-folder-open"></i>
-                <span>30</span>
-              </div>
-            </div>
-            <div class='visit'>
-              <div>
-                <span class='view-span'>view recipe</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       
-      <div class='recipe'>
-        <div class="recipe-header">
-          <span>Ice Cream Sunday</span>
-        </div>
-        <div class="my-img-card">
-          <img src='/static/assets/images/alldessert.jpg'>
-        </div>
-        <div class="recipe-box">
-          <div class="recipe-details">
-            <div class="recipe-category">
-              <span>CATEGORY</span><span>DESSERT</span>
-            </div>
-            <div class="recipe-author">
-              <span>AUTHOR</span><span>Mary Berry</span>
-            </div>
-          </div>
-          <span>ALLERGENS</span>
-          <div class="recipe-allergens">
-            <span class="allergen">Nuts</span>
-            <span class="allergen">Milk</span>
-            <span class="allergen">Peanut</span>
-          </div>
-          <div class='section-con'>
-            <div class="icons">
-              <div class="likes">
-                <i class="far fa-heart"></i>
-                <span>10</span>
-              </div>
-              <div class="collect">
-                <i class="far fa-folder-open"></i>
-                <span>30</span>
-              </div>
-            </div>
-            <div class='visit'>
-              <div>
-                <span class='view-span'>view recipe</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     <form class='user-page'>
       <div class='form-title'>
