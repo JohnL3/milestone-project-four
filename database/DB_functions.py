@@ -146,10 +146,10 @@ def create_new_recipe(mysql, data):
             
 def get_query_string(user):
     part_g = "user_name, "
-    part_h = "JOIN user_table ON recipe_table.user_id = user_table.user_id"
+    part_h = "JOIN user_table ON recipe_table.user_id = user_table.user_id "
     
     part_a = "SELECT "
-    part_b = "recipe_name, recipe_id, category_name, author_name, collected, likes, url "
+    part_b = "recipe_name, recipe_id, category_name, author_name, collected, likes, url, "
     part_c = "Nuts, Egg, Milk, Pnuts, Celery, Mustard, SSeeds, Fish, Moll, SBeans, Lupin, SDioxide, Cerals, Crust "
     part_d = "FROM recipe_table "
     part_e = "JOIN author_table ON recipe_table.author_id = author_table.author_id "
@@ -175,7 +175,7 @@ def get_all_user_recipes(mysql, username):
     curs = con.cursor()
 
     query_a = get_query_string('True')
-    query_b = " Where user_name ='"+ username+"'"
+    query_b = "Where user_name ='"+ username+"'"
     query = query_a + query_b
     
     curs.execute(query)
