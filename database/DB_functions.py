@@ -163,6 +163,18 @@ def get_all_recipes(mysql):
     query = get_query_string()
     curs.execute(query)
     return curs.fetchall()
+    
+def get_all_user_recipes(mysql, username):
+    con = mysql.connect()
+    curs = con.cursor()
+
+    query_a = get_query_string()
+    query_b = "WHERE user_name = '"+username+"'"
+    query = query_a + query_b
+    
+    curs.execute(query)
+    return curs.fetchall()
+    
         
   
     
