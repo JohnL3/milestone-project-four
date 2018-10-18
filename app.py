@@ -1,7 +1,7 @@
 import os
 import datetime
 from flask import Flask, redirect, url_for, render_template, jsonify, request, make_response, g, session
-from database.DB_functions import DB_configuration, signup_new_user, validate_user, create_new_recipe, get_all_recipes
+from database.DB_functions import DB_configuration, signup_new_user, validate_user, create_new_recipe, get_all_recipes, get_all_user_recipes
 
 
 app = Flask(__name__)
@@ -61,8 +61,8 @@ def user():
     if 'username' in session:
         username= session['username']
         
-        
-        return render_template('user.html', username=username)
+        recipe = get_all_user_recipes(mysql, username)
+        return render_template('user.html', recipe=recipe, username=username)
     else:
         return redirect(url_for('index'))
 
