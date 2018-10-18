@@ -140,14 +140,16 @@ $('.sub-btn').click(function(event){
       
       // add pairs of ingredient and a quantity to  arrys
       let ing_and_quan = pair_ing_quan($('.ing :input[type=text]'));
-            console.log(ing_and_quan);
+            
         
       // add instructions to an array
       let instructions = [];
       $('.step').each(function() {
         instructions.push($(this).val());
       });
+      instructions = instructions.join('_');
          
+    
       // add allergens to an array
       let allergens=[];
       $('input[type=checkbox]').each(function () {
@@ -162,13 +164,15 @@ $('.sub-btn').click(function(event){
       let data = {};
       data.author_name = $('.author-inp').val();
       data.recipe_name = $('.recipe-inp').val();
-      data.category = $( ".category-option option:selected" ).text();
+      data.category_name = $( ".category-option option:selected" ).text();
       data.allergens = allergens;
       data.instructions = instructions;
       data.ing_and_quan = ing_and_quan;
       data.prep = $('.prep-inp').val();
       data.cook = $('.cook-inp').val();
       data.serves = $('.serves-inp').val();
+      data.username = $('.page-title').text();
+      data.url ='/static/assets/images/dessert.jpg';
           
       console.log(data);
       let url = 'http://our-cookbook-johnl3.c9users.io:8080/newrecipe';
