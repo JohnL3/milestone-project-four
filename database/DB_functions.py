@@ -145,15 +145,15 @@ def create_new_recipe(mysql, data):
         return ' Ing sect Error saving data: '+str(e)
             
 def get_query_string(user):
-    part_g = "user_name "
-    part_h = "JOIN user_table ON user_table.user_id = recipe_table.user_id"
+    part_g = "user_name, "
+    part_h = "JOIN user_table ON recipe_table.user_id = user_table.user_id"
     
     part_a = "SELECT "
     part_b = "recipe_name, recipe_id, category_name, author_name, collected, likes, url "
     part_c = "Nuts, Egg, Milk, Pnuts, Celery, Mustard, SSeeds, Fish, Moll, SBeans, Lupin, SDioxide, Cerals, Crust "
-    part_d = "FROM author_table "
-    part_e = "JOIN recipe_table ON author_table.author_id = recipe_table.author_id "
-    part_f = "JOIN category_table ON category_table.cat_id = recipe_table.cat_id "
+    part_d = "FROM recipe_table "
+    part_e = "JOIN author_table ON recipe_table.author_id = author_table.author_id "
+    part_f = "JOIN category_table ON recipe_table.cat_id = category_table.cat_id "
     
     if user == 'True':
         full_string = part_a + part_g + part_b +part_c + part_d + part_e + part_f + part_h
@@ -174,10 +174,13 @@ def get_all_user_recipes(mysql, username):
     con = mysql.connect()
     curs = con.cursor()
 
-    query = get_query_string('True')
+    query_a = get_query_string('True')
+    query_b = " Where user_name ='"+ username+"'"
+    query = query_a + query_b
     
     curs.execute(query)
     return curs.fetchall()
+  
     
         
   

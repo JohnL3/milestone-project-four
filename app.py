@@ -48,7 +48,8 @@ def recipe():
         username = session['username']
     else:
         username = None
-    recipe = get_all_recipes(mysql)  
+    recipe = get_all_recipes(mysql)
+    
     return render_template('recipe.html', recipe = recipe, username=username)
     
 @app.route('/viewrecipe/<recipeid>')
@@ -62,6 +63,7 @@ def user():
         username= session['username']
         
         recipe = get_all_user_recipes(mysql, username)
+        
         return render_template('user.html', recipe=recipe, username=username)
     else:
         return redirect(url_for('index'))
