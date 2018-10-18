@@ -467,17 +467,17 @@ i {
 
 .visit div {
   box-sizing: border-box;
-  padding: 10px 5px;
+  display: flex;
   height: 50px;
   border: 1px solid lightslategray;
   margin-left: auto;
-  padding-top: 15px;
   margin-right: 10px;
 }
 
 .view-span {
   color: darkslategray;
   cursor: pointer;
+  padding: 15px 10px;
 }
 
 /************************veiw recipe page ******************************/
