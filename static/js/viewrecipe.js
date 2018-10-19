@@ -37,6 +37,7 @@ $('.li-first').click(function(){
    }
 });
 
+//used for the clicking on recipe and method page secion on viewrecipe page on mobile views
 $('.li-second').click(function(){
    
     if($(this).css('background-color') === 'rgb(247, 191, 191)' && $(window).width() < 768) {
@@ -54,4 +55,27 @@ $('.li-second').click(function(){
          $('.display-method').css('display', 'none');
          $('.display-ing').css('display', 'block');
    }
+});
+
+// if a logged in user clicks on collect icon this function sends a post to backend
+// and if they havent allready collected the recipe it adds it to their collected list
+$('.collect-r').click(function(){
+    let username = $('.online-user').text();
+    if(username) {
+        let recipe_id = $('.recipe-title').attr('id');
+        let data = {recipe_id: +recipe_id, user_name: username};
+        let url ='/collect';
+        
+        $.ajax({
+            type : 'POST',
+            url : url,
+            contentType: 'application/json;charset=UTF-8',
+            dataType: 'json',
+            data : JSON.stringify(data),
+            success: function(data){
+               console.log(data);
+            }
+          });
+    }
+    
 });

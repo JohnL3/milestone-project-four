@@ -81,6 +81,15 @@ def newrecipe():
     msg = create_new_recipe(mysql, data)
     data['msg'] = msg
     return jsonify({'data':data})
+    
+@app.route('/collect', methods=['POST'])
+def collect():
+    data = request.get_json()
+    if 'username' in session:
+        username = session['username']
+        
+        return jsonify(data)
+    
 
 
 @app.route('/signup_login')
