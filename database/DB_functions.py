@@ -147,6 +147,7 @@ def create_new_recipe(mysql, data):
 def get_query_string(user):
     part_g = "user_name, "
     part_h = "JOIN user_table ON recipe_table.user_id = user_table.user_id "
+    single_recipe = ',prep, cook, serves, instructions '
     
     part_a = "SELECT "
     part_b = "recipe_name, recipe_id, category_name, author_name, collected, likes, url, "
@@ -155,10 +156,12 @@ def get_query_string(user):
     part_e = "JOIN author_table ON recipe_table.author_id = author_table.author_id "
     part_f = "JOIN category_table ON recipe_table.cat_id = category_table.cat_id "
     
-    if user == 'True':
+    if user == 'user':
         full_string = part_a + part_g + part_b +part_c + part_d + part_e + part_f + part_h
-    else:
+    elif user == 'all':
         full_string = part_a + part_b +part_c + part_d + part_e + part_f
+    else:
+        full_string = part_a + part_b +part_c + single_recipe + part_d + part_e + part_f
     
     return full_string
     
@@ -166,7 +169,7 @@ def get_all_recipes(mysql):
     con = mysql.connect()
     curs = con.cursor()
     
-    query = get_query_string('False')
+    query = get_query_string('all')
     curs.execute(query)
     return curs.fetchall()
     
@@ -174,12 +177,34 @@ def get_all_user_recipes(mysql, username):
     con = mysql.connect()
     curs = con.cursor()
 
-    query_a = get_query_string('True')
+    query_a = get_query_string('user')
     query_b = "Where user_name ='"+ username+"'"
     query = query_a + query_b
     
     curs.execute(query)
     return curs.fetchall()
+    
+def get_single_recipe(mysql, recipe_name):
+    con = mysql.connect()
+    curs = con.cursor()
+    recipe = []
+    
+    query_a = get_query_string('single')
+    query_b = "WHERE recipe_name ='"+ recipe_name +"'"
+    query = query_a + query_b
+    
+    curs.execute(query)
+    recipe_details = curs.fetchall()
+    
+    recipe_id = recipe_details[0]['recipe_id']
+    
+    ing_query = "SELECT ing_name, ing_quantity FROM ingredients_table WHERE recipe_id = " + str(recipe_id) 
+    
+    curs.execute(ing_query)
+    recipe_ing = curs.fetchall()
+    
+    recipe =[recipe_details, recipe_ing]
+    return recipe
   
     
         
