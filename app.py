@@ -54,9 +54,13 @@ def recipe():
     
 @app.route('/viewrecipe/<string:recipe_name>')
 def viewrecipe(recipe_name):
+    if 'username' in session:
+        username = session['username']
+    else:
+        username = None
     recipe = get_single_recipe(mysql, recipe_name)
     
-    return render_template('viewrecipe.html', recipe=recipe[0], recipe_ing=recipe[1])
+    return render_template('viewrecipe.html', recipe=recipe[0], recipe_ing=recipe[1], username=username)
     #return jsonify(recipe[0])
  
 @app.route('/user')
