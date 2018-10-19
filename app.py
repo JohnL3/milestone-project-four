@@ -52,9 +52,10 @@ def recipe():
     
     return render_template('recipe.html', recipe = recipe, username=username)
     
-@app.route('/viewrecipe/<recipeid>')
-def viewrecipe(recipeid):
-    return render_template('viewrecipe.html',id=recipeid)
+@app.route('/viewrecipe/<string:recipe_name>')
+def viewrecipe(recipe_name):
+    
+    return render_template('viewrecipe.html')
  
  
 @app.route('/user')
