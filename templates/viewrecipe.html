@@ -11,7 +11,7 @@
  {% block section %}
     <ul>
       {% if username %}
-      <li><a href="{{ url_for('user') }}">{{username}}</a></li>
+      <li><a class='online-user' href="{{ url_for('user') }}">{{username}}</a></li>
       <li><a href="{{ url_for('index') }}">Home</a></li>
       <li><a href="{{ url_for('recipe') }}">Recipes</a></li>
       <li><a href="{{ url_for('logout') }}">Logout</a></li>
@@ -29,7 +29,7 @@
     </div>
     <div class='recipe-container'>
         {% for r in recipe %}
-        <div class='recipe-title'>
+        <div id='{{r.recipe_id}}' class='recipe-title'>
             <span>{{ r.recipe_name}}</span>
         </div>
        <div class="my-img">
@@ -37,11 +37,11 @@
         </div>
         
         <div class='recipe-page-icon'>
-            <div>
+            <div class='collect-r'>
                 <i class="far fa-folder-open"></i>
                 <span>collect</span>
             </div>
-           <div>
+           <div class='like-r'>
                 <i class="far fa-heart"></i>
                 <span>likes</span>
             </div>
