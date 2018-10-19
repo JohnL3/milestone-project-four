@@ -31,7 +31,5 @@ $('.signup-tab').click(function(){
     $('.login-tab').css('background', '#f7bfbf');
     $('.login-tab').css('color', 'darkslategray');
     $('button').text('SIGN UP');
-     //'https://our-cookbook-jl.herokuapp.com/signup'
-     //'http://our-cookbook-johnl3.c9users.io:8080'
     $('form').attr('action', '/signup');
 });
