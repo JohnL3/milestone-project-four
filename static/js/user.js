@@ -175,8 +175,7 @@ $('.sub-btn').click(function(event){
       data.url ='/static/assets/images/dessert.jpg';
           
       console.log(data);
-      let url = 'http://our-cookbook-johnl3.c9users.io:8080/newrecipe';
-      //let url = 'https://our-cookbook-jl.herokuapp.com/newrecipe';
+      let url = '/newrecipe';
       $.ajax({
         type : 'POST',
         url : url,
