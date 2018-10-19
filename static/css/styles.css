@@ -455,7 +455,7 @@ i {
 
 .section-con {
   display: grid;
-  grid-template-columns: 55% 45%;
+  grid-template-columns: 45% 55%;
 }
 
 .visit {
@@ -547,8 +547,12 @@ i {
     padding: 5px 10px;
   }
   .display-ing span {
-    display: block;
     line-height: 1.6;
+  }
+  
+  .inner-ing {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
   
   .display-method {
