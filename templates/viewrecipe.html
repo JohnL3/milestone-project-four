@@ -22,11 +22,12 @@
         
     </div>
     <div class='recipe-container'>
+        {% for r in recipe %}
         <div class='recipe-title'>
-            <span>Ice Cream Sunday</span>
+            <span>{{ r.recipe_name}}</span>
         </div>
        <div class="my-img">
-          <img src='https://github.com/JohnL3/Photos/blob/master/alldesert.jpg?raw=true'>
+          <img src='{{ r.url }}'>
         </div>
         
         <div class='recipe-page-icon'>
@@ -37,24 +38,24 @@
         </div>
         <div class='prep'>
             <div class='prep-inner'>
-                <span>PREP</span><span>10 MINUTES</span>
+                <span>PREP</span><span>{{ r.prep }}</span>
             </div>
             <div class='prep-inner'>
                 <div>
                     
                     <span>COOK</span>
                 </div>
-                <span>10 MINUTES</span>
+                <span>{{ r.cook }}</span>
             </div>
             <div class='prep-inner'>
-                <span>SERVES</span><span>4</span>
+                <span>SERVES</span><span>{{ r.serves}}</span>
             </div>
             <div class='prep-inner'>
                 <div>
                     <i class="far fa-folder-open"></i>
                     <span>COLLECTED BY</span>
                 </div>
-                <span>30</span>
+                <span>{{ r.collected}}</span>
             </div>
         </div>
         
@@ -66,18 +67,17 @@
             </ul>
         </div>
         <div class='display-ing'>
-            <span>Eggs 5 medium</span>
-            <span>Milk 750 ml</span>
-            <span>Nuts 50g</span>
-            <span>Strawberry Sauce 20ml</span>
+            {% for ing in recipe_ing %}
+            <div class='inner-ing'>
+                <span>{{ ing.ing_name }}</span> <span>{{ ing.ing_quantity }}</span>
+            </div>
+            {% endfor %}
         </div>
         <div class='display-method'>
-            <p>Remove yolk from 3 eggs and beat until fluffy.</p>
-            <p>Add milk gradually and mix well.</p>
-            <p>Freeze for one hour.</p>
-            <p>When serving sprinkle with nuts and cover in strawberry sauce.</p>
+            <p>{{ r.instructions}}</p>
+            
         </div>
-        
+        {% endfor %}
     </div>
   
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
