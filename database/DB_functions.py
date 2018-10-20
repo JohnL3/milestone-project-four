@@ -205,6 +205,49 @@ def get_single_recipe(mysql, recipe_name):
     
     recipe =[recipe_details, recipe_ing]
     return recipe
+    
+def user_collects_recipe(mysql, data):
+    '''
+    add user_id and recipe_id to the user_collects_recipe table in database
+    and also updates the value of collected in the recipe_table whre the collected column is
+    '''
+    
+    con = mysql.connect()
+    curs = con.cursor()
+    
+    username = data['user_name']
+    recipe_id = data['recipe_id']
+    
+    # need to get the users user_id 
+    curs.execute('''SELECT user_id FROM user_table WHERE user_name = %s''', (username))
+    user_id = curs.fetchall()
+    user_id = user_id[0]['user_id']
+    
+    #check if user has allready collected the recipe
+    curs.execute('''SELECT user_table_user_id FROM user_collects_recipes WHERE recipe_table_recipe_id = %s and user_table_user_id = %s''', (recipe_id, user_id))
+    id_ = curs.fetchall()
+    if len(id_) == 0:
+        # If the havent then go ahead and insert into table
+        try:
+            curs.execute('''INSERT INTO user_collects_recipes (user_table_user_id, recipe_table_recipe_id) VALUES(%s, %s)''',(user_id, recipe_id))
+            con.commit()
+        except Exception as e:
+            return ' Insert into user_collects_recipe: '+str(e)
+        '''
+        Now update collected by 1 in recipe_table collected
+        '''
+        try:
+            curs.execute('''UPDATE recipe_table SET collected = collected +1 WHERE recipe_id = %s''', recipe_id )
+            con.commit()
+        except Exception as e:
+            return ' Updating collected;: '+str(e)
+            
+        curs.execute('''SELECT collected FROM recipe_table WHERE recipe_id = %s''', recipe_id)
+        collected = curs.fetchall()
+        collected = collected[0]['collected']
+        return collected
+    else:
+        return 'user allready collected recipe'
   
     
         
