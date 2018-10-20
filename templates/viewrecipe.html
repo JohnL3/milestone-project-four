@@ -16,6 +16,7 @@
       <li><a href="{{ url_for('recipe') }}">Recipes</a></li>
       <li><a href="{{ url_for('logout') }}">Logout</a></li>
       {% else %}
+      <li><a href="{{ url_for('index') }}">Home</a></li>
       <li><a href="{{ url_for('recipe') }}">Recipes</a></li>
       <li><a href="{{ url_for('signup_login') }}">Sign Up/Login</a></li>
       {% endif %}
