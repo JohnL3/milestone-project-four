@@ -412,10 +412,15 @@ nav span:first-of-type {
   margin: 10px 0;
 }
 
+.all-collected,
 .grids {
   /*height: 100vh;*/
   max-width: 500px;
   margin: 0 auto;
+}
+
+.all-collected {
+  display: none;
 }
 
 img {
@@ -975,6 +980,7 @@ form {
     padding-top: 90px;
   }
   /**************************veiw recipe page***********************/
+  .all-collected,
   .grids {
     display: grid;
     grid-template-columns: 50% 50%;
@@ -985,6 +991,10 @@ form {
     padding-right: 15px;
     height: auto;
     margin: 0 auto;
+  }
+  
+  .all-collected{
+    display: none;
   }
   
   .recipe-container {
