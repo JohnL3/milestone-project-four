@@ -74,6 +74,8 @@ $('.collect-r').click(function(){
             data : JSON.stringify(data),
             success: function(data){
                console.log(data);
+               //update the value showing for collect to new value
+               if(typeof data === 'number') $('.collect-val').text(data);
             }
           });
     }
