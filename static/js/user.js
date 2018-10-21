@@ -16,7 +16,7 @@ $( window ).resize(function() {
   }
 });
 
-// show and hide users recipes / create recipe
+// show and hide users recipes / collected/ create recipe
 $('.inner-menu-c').click(function(){
     $('.grids').css('display', 'none');
     $('.all-collected').css('display', 'none');
@@ -30,10 +30,23 @@ $('.inner-menu-a').click(function(){
 });
 
 $('.inner-menu-b').click(function(){
+    getCollectedRecipes();
     $('.grids').css('display', 'none');
     $('.all-collected').css('display', 'grid');
     $('form.user-page').css('display', 'none');
 });
+
+function getCollectedRecipes() {
+    
+    let url = '/collect';
+      $.ajax({
+        type : 'GET',
+        url : url,
+        success: function(data){
+           console.log(data);
+        }
+      });
+}
 
 
 // Used to add extra lines of ingredients and quanties
