@@ -81,3 +81,26 @@ $('.collect-r').click(function(){
     }
     
 });
+
+$('.like-r').click(function(){
+    let username = $('.online-user').text();
+    if(username) {
+        let recipe_id = $('.recipe-title').attr('id');
+        let url ='/likes';
+        let username = username;
+        let data = {recipe_id: +recipe_id, user_name: username};
+        
+        $.ajax({
+            type : 'POST',
+            url : url,
+            contentType: 'application/json;charset=UTF-8',
+            dataType: 'json',
+            data : JSON.stringify(data),
+            success: function(data){
+               console.log(data);
+               //update the value showing for like to new value
+               if(typeof data === 'number') $('.like-val').text(data);
+            }
+          });
+    }
+});
