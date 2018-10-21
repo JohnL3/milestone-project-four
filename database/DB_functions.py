@@ -250,8 +250,19 @@ def user_collects_recipe(mysql, data):
         return 'user allready collected recipe'
   
     
-        
-  
+def get_collected_recipes(mysql, username):
+    con = mysql.connect()
+    curs = con.cursor()
+    
+    part_a = "SELECT recipe_name, recipe_id, category_name, author_name, collected, likes, url, "
+    part_b = "Nuts, Egg, Milk, Pnuts, Celery, Mustard, SSeeds, Fish, Moll, SBeans, Lupin, SDioxide, Cerals, Crust FROM user_collects_recipes "
+    part_c = "JOIN user_table ON user_collects_recipes.user_table_user_id = user_table.user_id JOIN recipe_table ON user_collects_recipes.recipe_table_recipe_id = recipe_table.recipe_id "
+    part_d = "JOIN category_table ON recipe_table.cat_id = category_table.cat_id JOIN author_table ON recipe_table.author_id = author_table.author_id "
+    part_e = " where user_name ='"+ username +"'"
+    
+    query = part_a + part_b + part_c + part_d + part_e
+    curs.execute(query)
+    return curs.fetchall()
     
     
     

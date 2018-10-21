@@ -1,7 +1,7 @@
 import os
 import datetime
 from flask import Flask, redirect, url_for, render_template, jsonify, request, make_response, g, session
-from database.DB_functions import DB_configuration, signup_new_user, validate_user, create_new_recipe, get_all_recipes, get_all_user_recipes, get_single_recipe, user_collects_recipe
+from database.DB_functions import DB_configuration, signup_new_user, validate_user, create_new_recipe, get_all_recipes, get_all_user_recipes, get_single_recipe, user_collects_recipe, get_collected_recipes
 
 
 app = Flask(__name__)
@@ -82,14 +82,19 @@ def newrecipe():
     data['msg'] = msg
     return jsonify({'data':data})
     
-@app.route('/collect', methods=['POST'])
+@app.route('/collect', methods=['GET','POST'])
 def collect():
     data = request.get_json()
     if 'username' in session:
         username = session['username']
         
-        collected = user_collects_recipe(mysql, data)
-        return jsonify(collected)
+        if request.method == 'GET':
+            recipes = get_collected_recipes(mysql, username)
+           
+            return jsonify(recipes)
+        else:
+            collected = user_collects_recipe(mysql, data)
+            return jsonify(collected)
     
 
 
