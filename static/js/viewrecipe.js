@@ -87,7 +87,7 @@ $('.like-r').click(function(){
     if(username) {
         let recipe_id = $('.recipe-title').attr('id');
         let url ='/likes';
-        let username = username;
+        username = username;
         let data = {recipe_id: +recipe_id, user_name: username};
         
         $.ajax({
