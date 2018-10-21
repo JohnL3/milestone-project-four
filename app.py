@@ -95,6 +95,14 @@ def collect():
         else:
             collected = user_collects_recipe(mysql, data)
             return jsonify(collected)
+            
+@app.route('/likes', methods=['POST'])
+def likes():
+    if 'username' in session:
+        data = request.get_json()
+        username = session['username']
+        
+        return jsonify(data)
     
 
 
