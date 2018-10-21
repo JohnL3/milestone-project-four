@@ -47,7 +47,57 @@
                 <span>likes</span>
             </div>
         </div>
+       
+       <div class='the-allergens'>
+                <span>Allergens</span>
+                <div class="recipe-allergens single">
+                    {% if r.Nuts == 'T' %}
+                    <span class="allergen">Nuts</span>
+                    {% endif %}
+                    {% if r.Egg == 'T' %}
+                    <span class="allergen">Egg</span>
+                    {% endif %}
+                    {% if r.Milk =='T' %}
+                    <span class="allergen">Milk</span>
+                    {% endif %}
+                    {% if r.Pnuts =='T' %}
+                    <span class="allergen">Peanuts</span>
+                    {% endif %}
+                    {% if r.Celery =='T' %}
+                    <span class="allergen">Celery</span>
+                    {% endif %}
+                    {% if r.Mustard =='T' %}
+                    <span class="allergen">Mustard</span>
+                    {% endif %}
+                    {% if r.SSeeds =='T' %}
+                    <span class="allergen">Sesame Seeds</span>
+                    {% endif %}
+                    {% if r.Fish =='T' %}
+                    <span class="allergen">Fish</span>
+                    {% endif %}
+                    {% if r.Moll =='T' %}
+                    <span class="allergen">Molluscs</span>
+                    {% endif %}
+                    {% if r.SBeans =='T' %}
+                    <span class="allergen">Soyabeans</span>
+                    {% endif %}
+                    {% if r.Lupin =='T' %}
+                    <span class="allergen">Lupin</span>
+                    {% endif %}
+                    {% if r.SDioxide =='T' %}
+                    <span class="allergen">Sulpher Dioxide</span>
+                    {% endif %}
+                    {% if r.Cerals =='T' %}
+                    <span class="allergen">Cerals</span>
+                    {% endif %}
+                    {% if r.Crust =='T' %}
+                    <span class="allergen">Crustaceans</span>
+                    {% endif %}
+              </div>
+        </div>
+       
         <div class='prep'>
+            
             <div class='prep-inner'>
                 <span>PREP</span><span>{{ r.prep }}</span>
             </div>

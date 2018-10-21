@@ -503,6 +503,15 @@ i {
     font-weight: 600;
   }
   
+  .the-allergens {
+    box-sizing: border-box;
+    padding: 0 5px;
+  }
+  
+  .the-allergens > span:first-child {
+    font-size: 20px;
+  }
+  
   .prep {
     box-sizing: border-box;
     padding: 5px;
@@ -886,6 +895,11 @@ form {
   box-sizing: border-box;
 }
 
+.recipe-allergens.single {
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
 .recipe-allergens > label {
   color: lightcoral;
   font-weight: 600;
@@ -1013,7 +1027,7 @@ form {
     grid-column: 1;
     grid-row: 1;
     position: relative;
-    top: -18px;
+    top: -15px;
     width: fit-content;
     left: 30px;
     height: 40px;
@@ -1028,7 +1042,7 @@ form {
 /*********************************************************************************/
 .prep {
     box-sizing: border-box;
-    padding: 20px 10px 10px 10px;
+    padding: 10px;
     border-top: 1px solid lightslategray;
     grid-column: 2;
     grid-row: 1;
