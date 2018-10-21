@@ -264,6 +264,25 @@ def get_collected_recipes(mysql, username):
     curs.execute(query)
     return curs.fetchall()
     
+def like_recipe(mysql, data):
+    con = mysql.connect()
+    curs = con.cursor()
+    
+    recipe_id = data['recipe_id']
+    #user_name = data['user_name']
+    
+    try:
+        curs.execute('''UPDATE recipe_table SET likes = likes +1 WHERE recipe_id = %s''', recipe_id )
+        con.commit()
+    except Exception as e:
+        return ' Updating likes;: '+str(e)
+    
+    curs.execute('''SELECT likes FROM recipe_table WHERE recipe_id = %s''', recipe_id)
+    likes = curs.fetchall()
+    likes = likes[0]['likes']
+    
+    return likes
+    
     
     
     
