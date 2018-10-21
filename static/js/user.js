@@ -44,6 +44,7 @@ function getCollectedRecipes() {
         url : url,
         success: function(data){
            console.log(data);
+           if (data.length > 0) recipeTemplate(data);
         }
       });
 }
@@ -211,3 +212,111 @@ $('.sub-btn').click(function(event){
       
    }
 });
+
+
+function recipeTemplate(data) {
+    $('.all-collected').empty();
+    let allergen_spans = '';
+    
+    for(let items in data) {
+        
+        if(data[items].Egg === 'T'){
+                allergen_spans += '<span class="allergen">Egg</span>';
+            }
+            if(data[items].Nuts === 'T'){
+                allergen_spans += '<span class="allergen">Nut</span>';
+                 
+            }
+            if(data[items].Moll === 'T'){
+                allergen_spans += '<span class="allergen">Molluscs</span>';
+            }
+            if(data[items].Pnuts === 'T'){
+                allergen_spans += '<span class="allergen">Peanuts</span>';
+            }
+            if(data[items].SBeans === 'T'){
+                allergen_spans += '<span class="allergen">Soyabeans</span>';
+            }
+            if(data[items].Milk === 'T'){
+                allergen_spans += '<span class="allergen">Milk</span>';
+            }
+            if(data[items].Celery === 'T'){
+                allergen_spans += '<span class="allergen">Celery</span>';
+            }
+            if(data[items].Mustard === 'T'){
+                allergen_spans += '<span class="allergen">Mustard</span>';
+            }
+            if(data[items].hasSSeeds === 'T'){
+                allergen_spans += '<span class="allergen">Sesame Seeds</span>';
+            }
+            if(data[items].Fish === 'T'){
+                allergen_spans += '<span class="allergen">Fish</span>';
+            }
+            if(data[items].Lupin === 'T'){
+                allergen_spans += '<span class="allergen">Lupin</span>';
+            }
+            if(data[items].SDioxide === 'T'){
+                allergen_spans += '<span class="allergen">Sulpher Dioxide</span>';
+            }
+            if(data[items].Cerals === 'T'){
+                allergen_spans += '<span class="allergen">Cereals</span>';
+            }
+            if(data[items].Crust === 'T'){
+                allergen_spans += '<span class="allergen">Crustaceans</span>';
+            }
+        
+        let rHeader = `<div class="recipe-header">
+                          <span>`+ data[items].recipe_name +`</span>
+                        </div>`;
+                        
+        let imgCard = `<div class="my-img-card">
+                          <img src='`+data[items].url+`'>
+                        </div>`;
+                        
+        let rDetails = `<div class="recipe-details">
+                            <div class="recipe-category">
+                              <span>CATEGORY</span><span>`+data[items].category_name+`</span>
+                            </div>
+                            <div class="recipe-author">
+                              <span>AUTHOR</span><span>`+data[items].author_name+`</span>
+                            </div>
+                          </div>`;
+        let allergens = `<div class="recipe-allergens">
+                            `+allergen_spans+`
+                            </div>`;
+                       
+         
+                            
+        let section = `<div class='section-con'>
+                        <div class="icons">
+                          <div class="likes">
+                            <i class="far fa-heart"></i>
+                            <span>`+data[items].likes+`</span>
+                          </div>
+                          <div class="collect">
+                            <i class="far fa-folder-open"></i>
+                            <span>`+data[items].collected+`</span>
+                          </div>
+                        </div>
+                        <div class='visit'>
+                          <div>
+                            <a class='view-span' href='/viewrecipe/`+data[items].recipe_name+`'>View Recipe</a>
+                          </div>
+                        </div>
+                      </div>`;
+                      
+        let recipeBox = `<div class="recipe-box">
+                            `+rDetails+`
+                            <span>ALLERGENS</span>
+                            `+allergens+`
+                            `+section+`
+                            </div>`; 
+                            
+        let outerDiv = `<div id="`+data[items].recipe_id+`" class="recipe">
+                        `+ rHeader+`
+                        `+imgCard+`
+                        `+ recipeBox +`
+                        </div>`;
+                        
+        $('.all-collected').append(outerDiv);
+    }
+}
