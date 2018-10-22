@@ -100,10 +100,11 @@ def collect():
 def likes():
     if 'username' in session:
         data = request.get_json()
-        username = session['username']
         likes = like_recipe(mysql, data)
         
         return jsonify(likes)
+    else:
+        return redirect(url_for('signuplogin'))
     
 
 
