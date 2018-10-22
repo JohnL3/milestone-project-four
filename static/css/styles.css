@@ -1020,7 +1020,7 @@ form {
     box-sizing: border-box;
     padding: 20px 0;
     overflow: hidden;
-    margin: 0 50px;
+    margin: 0 10px;
   }
   
   .recipe-title {
@@ -1034,19 +1034,28 @@ form {
   }
   
   .my-img {
-    height: auto;
+    height: 300px;
     grid-column: 1;
     grid-row: 1;
   }
   
+  .single-recipe {
+    width: auto;
+  }
+  
 /*********************************************************************************/
 .prep {
+    display: grid;
     box-sizing: border-box;
     padding: 10px;
     border-top: 1px solid lightslategray;
     grid-column: 2;
     grid-row: 1;
     font-size: 20px;
+  }
+  
+  .the-allergens {
+    padding: 0;
   }
   
   .instruct-method-header {
