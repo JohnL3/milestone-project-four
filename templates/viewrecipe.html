@@ -34,7 +34,7 @@
             <span>{{ r.recipe_name}}</span>
         </div>
        <div class="my-img">
-          <img src='{{ r.url }}'>
+          <img class='single-recipe' src='{{ r.url }}'>
         </div>
         
         <div class='recipe-page-icon'>
@@ -48,7 +48,37 @@
             </div>
         </div>
        
-       <div class='the-allergens'>
+        <div class='prep'>
+            
+            <div class='prep-inner'>
+                <span>PREP</span><span>{{ r.prep }}</span>
+            </div>
+            <div class='prep-inner'>
+                <div>
+                    
+                    <span>COOK</span>
+                </div>
+                <span>{{ r.cook }}</span>
+            </div>
+            <div class='prep-inner'>
+                <span>SERVES</span><span>{{ r.serves}}</span>
+            </div>
+            <div class='prep-inner'>
+                <div>
+                    <i class="far fa-folder-open"></i>
+                    <span>COLLECTED</span>
+                </div>
+                <span class='collect-val'>{{ r.collected}}</span>
+            </div>
+            <div class='prep-inner'>
+                <div>
+                    <i class="far fa-heart"></i>
+                    <span>LIKES</span>
+                </div>
+                <span class='like-val'>{{ r.likes}}</span>
+            </div>
+            
+            <div class='the-allergens'>
                 <span>Allergens</span>
                 <div class="recipe-allergens single">
                     {% if r.Nuts == 'T' %}
@@ -95,36 +125,7 @@
                     {% endif %}
               </div>
         </div>
-       
-        <div class='prep'>
             
-            <div class='prep-inner'>
-                <span>PREP</span><span>{{ r.prep }}</span>
-            </div>
-            <div class='prep-inner'>
-                <div>
-                    
-                    <span>COOK</span>
-                </div>
-                <span>{{ r.cook }}</span>
-            </div>
-            <div class='prep-inner'>
-                <span>SERVES</span><span>{{ r.serves}}</span>
-            </div>
-            <div class='prep-inner'>
-                <div>
-                    <i class="far fa-folder-open"></i>
-                    <span>COLLECTED</span>
-                </div>
-                <span class='collect-val'>{{ r.collected}}</span>
-            </div>
-            <div class='prep-inner'>
-                <div>
-                    <i class="far fa-heart"></i>
-                    <span>LIKES</span>
-                </div>
-                <span class='like-val'>{{ r.likes}}</span>
-            </div>
         </div>
         
         <div class='instruct-method-header'>
