@@ -82,6 +82,8 @@ $('.collect-r').click(function(){
     
 });
 
+// if a logged in user clicks on like icon this function sends a post to backend
+// and if they havent allready liked the recipe it increases the likes value shown
 $('.like-r').click(function(){
     let username = $('.online-user').text();
     if(username) {
@@ -104,3 +106,4 @@ $('.like-r').click(function(){
           });
     }
 });
+
