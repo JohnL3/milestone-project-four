@@ -269,20 +269,33 @@ def like_recipe(mysql, data):
     curs = con.cursor()
     
     recipe_id = data['recipe_id']
-    #user_name = data['user_name']
+    user_name = data['user_name']
     
-    try:
-        curs.execute('''UPDATE recipe_table SET likes = likes +1 WHERE recipe_id = %s''', recipe_id )
-        con.commit()
-    except Exception as e:
-        return ' Updating likes;: '+str(e)
-    
-    curs.execute('''SELECT likes FROM recipe_table WHERE recipe_id = %s''', recipe_id)
-    likes = curs.fetchall()
-    likes = likes[0]['likes']
-    
-    return likes
-    
+    curs.execute('''SELECT COUNT(*) AS count FROM likes WHERE recipe_id = %s AND user_name = %s''', (recipe_id, user_name))
+    count = curs.fetchall()
+    count = count[0]['count']
+    if count == 0:
+        try:
+            curs.execute('''INSERT INTO likes (user_name, recipe_id) VALUES (%s, %s)''',(user_name, recipe_id));
+            con.commit()
+        except Exception as e:
+            return ' Inserting Likes;: '+str(e)
+        
+        curs.execute('''SELECT COUNT(*) AS count FROM likes WHERE recipe_id = %s''', (recipe_id))
+        count = curs.fetchall()
+        qcount = count[0]['count']
+        
+        try:
+            curs.execute('UPDATE recipe_table SET likes = %s WHERE recipe_id = %s', (count, recipe_id) )
+            con.commit()
+        except Exception as e:
+            return ' Updating likes;: '+str(e)
+        
+        
+        return count
+    else:
+        return 'You allready Liked this '+str(count)
+   
     
     
     
