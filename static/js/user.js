@@ -19,18 +19,33 @@ $( window ).resize(function() {
 // show and hide users recipes / collected/ create recipe
 $('.inner-menu-c').click(function(){
     $('.grids').css('display', 'none');
+    $(this).addClass('active-c');
     $('.all-collected').css('display', 'none');
     $('form.user-page').css('display', 'block');
+    $('.inner-menu-a').removeClass('active-a');
+    $('.inner-menu-b').removeClass('active-b');
+    $('.inner-menu-c').removeClass('active-a');
+    
 });
 
 $('.inner-menu-a').click(function(){
     $('.grids').css('display', 'grid');
     $('.all-collected').css('display', 'none');
     $('form.user-page').css('display', 'none');
+    $('.inner-menu-a').addClass('active-a');
+    $('.inner-menu-c').removeClass('active-c');
+    $('.inner-menu-b').removeClass('active-b');
 });
 
 $('.inner-menu-b').click(function(){
+    let allCollected = $('.all-collected');
+    console.log(allCollected[0].childNodes.length);
+    console.log(allCollected[0].childNodes);
+    //$('.all-collected').empty();
     getCollectedRecipes();
+    $('.inner-menu-c').removeClass('active-c');
+    $('.inner-menu-b').addClass('active-b');
+    $('.inner-menu-a').removeClass('active-a');
     $('.grids').css('display', 'none');
     $('.all-collected').css('display', 'grid');
     $('form.user-page').css('display', 'none');
@@ -45,6 +60,10 @@ function getCollectedRecipes() {
         success: function(data){
            console.log(data);
            if (data.length > 0) recipeTemplate(data);
+           
+           let allCollected = $('.all-collected');
+           console.log(allCollected[0].childNodes.length);
+           
         }
       });
 }
@@ -118,6 +137,7 @@ function isNotBlank(items) {
     });
     return result;
 }
+
 
 function check_validation() {
   let ingAndQuan = isNotBlank($('.ing :input[type=text]'));

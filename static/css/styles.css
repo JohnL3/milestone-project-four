@@ -62,9 +62,18 @@ select:focus {
     border: 1px solid gray !important;
 }
 
-.inner-menu-c.menu-item:hover {
+.inner-menu-c.menu-item:hover,
+.inner-menu-c.menu-item.active-c {
     color: white;
     background-color: #84c7dc;
+}
+
+.inner-menu-a.menu-item:hover,
+.inner-menu-a.menu-item.active-a,
+.inner-menu-b.menu-item:hover,
+.inner-menu-b.menu-item.active-b {
+    color: white;
+    background-color: lightcoral;
 }
 
 /***************shared between pages ************************************/
@@ -695,8 +704,10 @@ form.user-page {
   background-color: lightcoral;
 }
 
+.inner-menu-a,
 .inner-menu-b {
   background-color: #e6b9b9;
+  color: darkslategrey;
 }
 
 .inner-menu-c {
