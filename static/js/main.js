@@ -29,6 +29,12 @@ $('.filters-header').click(function(){
         $('header').css('display','none');
     }
   } else {
+      $('input:text').val('');
+      addNames(categorys,'B');
+      addNames(authors,'C');
+      $('.clear-btn').css('background','buttonface');
+      $('.sub-btn').prop("disabled", true);
+      oneChecked = false;
       if($(window).width() > 767){
         $('nav').css('display','inline-block');
         $('header').css('display','grid');
