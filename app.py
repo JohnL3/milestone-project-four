@@ -1,7 +1,7 @@
 import os
 import datetime
 from flask import Flask, redirect, url_for, render_template, jsonify, request, make_response, g, session
-from database.DB_functions import DB_configuration, signup_new_user, validate_user, create_new_recipe, get_all_recipes, get_all_user_recipes, get_single_recipe, user_collects_recipe, get_collected_recipes, like_recipe
+from database.DB_functions import DB_configuration, signup_new_user, validate_user, create_new_recipe, get_all_recipes, get_all_user_recipes, get_single_recipe, user_collects_recipe, get_collected_recipes, like_recipe, get_all_authors, get_all_categorys
 
 
 app = Flask(__name__)
@@ -49,8 +49,9 @@ def recipe():
     else:
         username = None
     recipe = get_all_recipes(mysql)
-    
-    return render_template('recipe.html', recipe = recipe, username=username)
+    categorys = get_all_categorys(mysql)
+    authors = get_all_authors(mysql)
+    return render_template('recipe.html', recipe = recipe, username=username, authors=authors, categorys=categorys)
     
 @app.route('/viewrecipe/<string:recipe_name>')
 def viewrecipe(recipe_name):
@@ -67,7 +68,6 @@ def viewrecipe(recipe_name):
 def user():
     if 'username' in session:
         username= session['username']
-        
         recipe = get_all_user_recipes(mysql, username)
         
         return render_template('user.html', recipe=recipe, username=username)
