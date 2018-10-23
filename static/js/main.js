@@ -17,6 +17,7 @@ $( window ).resize(function() {
 });
 
 /************************* Recipe Page Filter *********************************************/
+let oneChecked= false;
 
 $('.filters-header').click(function(){
   if($('.filter-items-con').css('display') === 'none') {
@@ -72,3 +73,35 @@ $('.allergen').click(function(){
   }
 });
 
+$('.clear-btn').click(function(){
+    
+     $('input:checkbox').prop('checked',false);
+     $('input:radio').prop('checked',false);
+     $(this).css('background','buttonface');
+     $('.sub-btn').prop("disabled", true);
+     oneChecked = false;
+});
+  
+$('input:radio').click(function(){
+    if($(this).prop('checked',true)){
+        $('.clear-btn').css('background','lightblue');
+        $('.sub-btn').prop("disabled", false);
+        oneChecked = true;
+    }
+});
+
+
+
+$('input:checkbox').click(function(){
+    
+    let ckboxIsCk = $('input[name="allergen"]:checked').length > 0
+    if(ckboxIsCk === true){
+        $('.clear-btn').css('background','lightblue');
+        $('.sub-btn').prop("disabled", false);
+    } else {
+       if(oneChecked === false) {
+           $('.clear-btn').css('background','buttonface');
+           $('.sub-btn').prop("disabled", true);
+       }
+    }
+});
