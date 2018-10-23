@@ -48,6 +48,7 @@ $('.author').click(function(){
     $('.author-input').css('display','block');
     $('.category-input').css('display','none');
     $('.allergen-con').css('display','none');
+    $('.author-sel').focus();
   } else {
     $('.author-input').css('display','none');
   }
@@ -58,6 +59,7 @@ $('.category').click(function(){
     $('.category-input').css('display','block');
     $('.author-input').css('display','none');
     $('.allergen-con').css('display','none');
+    $('.category-sel').focus();
   } else {
     $('.category-input').css('display','none');
   }
