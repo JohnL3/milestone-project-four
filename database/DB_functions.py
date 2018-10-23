@@ -283,7 +283,7 @@ def like_recipe(mysql, data):
         
         curs.execute('''SELECT COUNT(*) AS count FROM likes WHERE recipe_id = %s''', (recipe_id))
         count = curs.fetchall()
-        qcount = count[0]['count']
+        count = count[0]['count']
         
         try:
             curs.execute('UPDATE recipe_table SET likes = %s WHERE recipe_id = %s', (count, recipe_id) )
@@ -312,6 +312,24 @@ def get_all_categorys(mysql):
     curs.execute('''SELECT category_name FROM category_table''')
     categorys = curs.fetchall()
     return categorys
+    
+def check_what_to_filter_by(data):
+    if len(data) == 1:
+        filter_by = list(data)
+       
+        return filter_by
+    if len(data) == 2:
+        filter_by = list(data)
+        return filter_by
+    else:
+        filter_by = list(data)
+        return filter_by
+
+
+def filter_all_recipes(mysql,data):
+    items = check_what_to_filter_by(data)
+    
+    return items
     
     
     
