@@ -318,7 +318,7 @@ nav span:first-of-type {
 
 .filter-inner {
   display: grid;
-  grid-template-columns: 15px 1fr;
+  grid-template-columns: 25px 1fr;
   line-height: 1.7;
 }
 
@@ -329,7 +329,7 @@ nav span:first-of-type {
 }
 
 .filter-inner span {
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
 .inner-divs {
