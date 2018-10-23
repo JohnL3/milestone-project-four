@@ -36,7 +36,11 @@
             <button class="sub-btn" disabled="">SUBMIT</button>
             <button class="clear-btn">CLEAR</button>
         </div>
-
+        <div class='filtering-by'>
+          <div class='inner-filtering-by'>
+            
+          </div>
+        </div>
         <div class='filter-items'>
           <div class='filter-hdr' id='filter-A'>
               <div class="item allergen"><span>Allergens</span></div>
@@ -51,7 +55,7 @@
             <div class='inner-filter-C'>
               <ul class='the-authors'>
                {% for author in authors %}
-               <li><div class='filter-inner'><input type='radio' name='author'><span>{{ author.author_name }}</span></div></li>
+               <li><div class='filter-inner'><input type='radio' name='author'><span class='author-tx'>{{ author.author_name }}</span></div></li>
                {% endfor %}
              </ul>
             </div>
@@ -64,7 +68,7 @@
             <div class='inner-filter-B'>
               <ul class='the-categorys'>
               {% for category in categorys %}
-               <li><div class='filter-inner'><input type='radio' name='category'><span>{{ category.category_name }}</span></div></li>
+               <li><div class='filter-inner'><input type='radio' name='category'><span class='category-tx'>{{ category.category_name }}</span></div></li>
                {% endfor %}
               </ul>
                
