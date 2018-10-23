@@ -296,6 +296,22 @@ def like_recipe(mysql, data):
     else:
         return 'You allready Liked this '+str(count)
    
+
+def get_all_authors(mysql):
+    con = mysql.connect()
+    curs = con.cursor()
+    
+    curs.execute('''SELECT author_name FROM author_table''')
+    authors = curs.fetchall()
+    return authors
+    
+def get_all_categorys(mysql):
+    con = mysql.connect()
+    curs = con.cursor()
+    
+    curs.execute('''SELECT category_name FROM category_table''')
+    categorys = curs.fetchall()
+    return categorys
     
     
     
