@@ -106,7 +106,9 @@ def likes():
     else:
         return redirect(url_for('signuplogin'))
     
-
+app.route('filter_recipes', methods=['POST'])
+def filter_recipes():
+    return 'here'
 
 @app.route('/signup_login')
 def signup_login():
