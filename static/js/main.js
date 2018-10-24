@@ -283,11 +283,110 @@ $('.sub-btn').click(function(){
             dataType: 'json',
             data : JSON.stringify(data),
             success: function(d){
-               console.log(d);
-               let data = d.data;
-              // createRecipesDivs(data);
+               createRecipesDivs(d);
             }
         }); 
     }
 });
+
+
+function createRecipesDivs(data) {
+    $('.grids').empty();
+    let allergen_spans = '';
+    
+    for (let x=0; x<data.length;x++){
+        
+            if(data[x].Egg === 'T'){
+                allergen_spans += '<span class="allergen">Egg</span>';
+            }
+            if(data[x].Nuts === 'T'){
+                allergen_spans += '<span class="allergen">Nut</span>';
+                 
+            }
+            if(data[x].Moll === 'T'){
+                allergen_spans += '<span class="allergen">Molluscs</span>';
+            }
+            if(data[x].Pnuts === 'T'){
+                allergen_spans += '<span class="allergen">Peanuts</span>';
+            }
+            if(data[x].SBeans === 'T'){
+                allergen_spans += '<span class="allergen">Soyabeans</span>';
+            }
+            if(data[x].Milk === 'T'){
+                allergen_spans += '<span class="allergen">Milk</span>';
+            }
+            if(data[x].Celery === 'T'){
+                allergen_spans += '<span class="allergen">Celery</span>';
+            }
+            if(data[x].Mustard === 'T'){
+                allergen_spans += '<span class="allergen">Mustard</span>';
+            }
+            if(data[x].SSeeds === 'T'){
+                allergen_spans += '<span class="allergen">Sesame Seeds</span>';
+            }
+            if(data[x].Fish === 'T'){
+                allergen_spans += '<span class="allergen">Fish</span>';
+            }
+            if(data[x].Lupin === 'T'){
+                allergen_spans += '<span class="allergen">Lupin</span>';
+            }
+            if(data[x].SDioxide === 'T'){
+                allergen_spans += '<span class="allergen">Sulpher Dioxide</span>';
+            }
+            if(data[x].Cerals === 'T'){
+                allergen_spans += '<span class="allergen">Cereals</span>';
+            }
+            if(data[x].Crust === 'T'){
+                allergen_spans += '<span class="allergen">Crustaceans</span>';
+            }
+            
+            let recipeHeader =`<div class='recipe-header'><span>`+data[x].recipe_name+`</span></div>`;
+            let imgCard = `<div class='my-img-card'><img src='`+data[x].url+`'></div>`;
+            
+            
+            let recipeBox = `<div class='recipe-box'>
+                                <div class='recipe-deatils'>
+                                  <div class='recipe-category'>
+                                    <span>CATEGORY</span>
+                                    <span class='category-name'>`+data[x].category_name+`</span>
+                                  </div>
+                                  <div class='recipe-author'>
+                                    <span>AUTHOR</span>
+                                    <span class='author-name'>`+data[x].author_name+`</span>
+                                  </div>
+                                </div>
+                                <span>ALLERGENS</span>
+                                <div class='recipe-allergens'>
+                                  `+allergen_spans+`
+                                </div>
+                                <div class='section-con'>
+                                  <div class='icons'>
+                                   <div class='likes'>
+                                    <i class='far fa-heart'></i>
+                                    <span>`+data[x].likes+`</span>
+                                   </div>
+                                    <div class='collect'>
+                                      <i class='far fa-folder-open'></i>
+                                      <span>`+data[x].collected+`</span>
+                                    </div>
+                                  </div>
+                                  <div class='visit'>
+                                    <div>
+                                      <a class='view-span' href='/viewrecipe/`+data[x].recipe_name+`'>View Recipe</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>`;
+                              
+            let outerDiv = `<div id='`+data[x].recipe_id+`' class='recipe'>
+                              `+recipeHeader+`
+                               `+imgCard+`
+                               `+recipeBox+`
+                            </div>`;
+            
+            $('.grids').append(outerDiv);
+            
+            allergen_spans = '';
+    }
+}
 
