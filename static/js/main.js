@@ -200,25 +200,17 @@ let commonCode = function(e, t) {
 };
 
 let addNames = function(arr,ext) {
-  let type = '';
-  if(ext === 'B')  type = 'category';
-  if(ext === 'C')  type = 'author';
-  if(ext === 'A')  type = 'allergen';
-
+ 
   $('.inner-filter-'+ext).empty();
 
   for(let x=0; x< arr.length; x++) {
-    let res = createInner(arr[x],type);
+    let res = createInner(arr[x]);
     $('.inner-filter-'+ext).append(res);
   }
 };
 //create html that shows filterd lists
-let createInner = function(name, type) {
-  let inner = `<div class='inner-divs'>
-              <input type="radio" name='`+ type+`' value='' class=''><label>`+ name +`</label>
-            </div>`;
-            
-    inner =`<div class='filter-inner'><input type='radio' name='category'><span class='category-tx'>`+name+`</span></div>`;
+let createInner = function(name) {
+    let inner =`<div class='filter-inner'><input type='radio' name='category'><span class='category-tx'>`+name+`</span></div>`;
     return inner;
 };
 
@@ -236,5 +228,66 @@ function addFilteringItems(){
     let sp = '<span>'+allergens[itm]+'</span>';
     $('.inner-filtering-by').append(sp);
   }
-  
 }
+
+$('.sub-btn').click(function(){
+    let allergens = [];
+    let data = {};
+    
+    let ckboxIsCk = $('input[name="allergen"]:checked').length > 0;
+    let rdIsCkA = $('input[name="author"]:checked').length > 0;
+    let rdIsCkC = $('input[name="category"]:checked').length > 0;
+    
+     //$('.filter-select-A').css('display', 'none');
+     //$('.filter-select-B').css('display', 'none');
+     //$('.filter-select-C').css('display', 'none');
+     
+     $('.allergen-con').css('display','none');
+     $('.category-input').css('display','none');
+     $('.author-input').css('display','none');
+            
+    if(ckboxIsCk === true || rdIsCkA === true || rdIsCkC === true) {
+       
+       $('.clear-btn').css('background','buttonface');
+       
+       if (ckboxIsCk === true) {
+           $('input[type=checkbox]').each(function () {
+                  if ($(this).is(":checked")){
+                    allergens.push($(this).attr('class'));
+                  } 
+            });
+           data.allergens = allergens;
+       }
+       
+       if(rdIsCkC === true) {
+          let cat = $('input[name="category"]:checked').val();
+          data.category_name = cat;
+       }
+       
+       if(rdIsCkA === true) {
+          let aut = $('input[name="author"]:checked').val();
+          data.author_name = aut;
+         
+       }
+       $('input:checkbox').prop('checked',false);
+       $('input:radio').prop('checked',false);
+       $('.sub-btn').prop('disabled', true)
+       
+       console.log(data);
+       let url = '/filter_recipes';
+       
+        $.ajax({
+            type : 'POST',
+            url : url,
+            contentType: 'application/json;charset=UTF-8',
+            dataType: 'json',
+            data : JSON.stringify(data),
+            success: function(d){
+               console.log(d);
+               let data = d.data;
+              // createRecipesDivs(data);
+            }
+        }); 
+    }
+});
+
