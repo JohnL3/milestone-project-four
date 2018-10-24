@@ -55,7 +55,7 @@
             <div class='inner-filter-C'>
               <ul class='the-authors'>
                {% for author in authors %}
-               <li><div class='filter-inner'><input type='radio' name='author'><span class='author-tx'>{{ author.author_name }}</span></div></li>
+               <li><div class='filter-inner'><input type='radio' value='{{ author.author_name}}' name='author'><span class='author-tx'>{{ author.author_name }}</span></div></li>
                {% endfor %}
              </ul>
             </div>
@@ -68,7 +68,7 @@
             <div class='inner-filter-B'>
               <ul class='the-categorys'>
               {% for category in categorys %}
-               <li><div class='filter-inner'><input type='radio' name='category'><span class='category-tx'>{{ category.category_name }}</span></div></li>
+               <li><div class='filter-inner'><input type='radio' value='{{ category.category_name}}' name='category'><span class='category-tx'>{{ category.category_name }}</span></div></li>
                {% endfor %}
               </ul>
                
@@ -78,20 +78,21 @@
       <div class='allergen-con type'>
       <div class='filter-select-A'>
         <div class="inner-filter-A">
-          <div class='inner-divs'><input type="checkbox" name='allergen' class='hasEgg'><label>Egg</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='hasMolluscs'><label>Molluscs</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='hasPeanuts'><label>Peanuts</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='hasNuts'><label>Nuts</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='hasSoyabeans'><label>Soyabeans</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='hasMilk'><label>Milk</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='hasCelery'><label>Celery</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='hasMustard'><label>Mustard</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='hasSesameseeds'><label>Sesame Seeds</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='hasFish'><label>Fish</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='hasLupin'><label>Lupin</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='hasSulpherdioxide'><label>Sulpher Dioxide</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='hasCerals'><label>Cereals</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='hasCrustaceans'><label>Crustaceans </label></div>
+          
+          <div class='inner-divs'><input type="checkbox" name='allergen' class='Egg'><label>Egg</label></div>
+          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Moll'><label>Molluscs</label></div>
+          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Pnuts'><label>Peanuts</label></div>
+          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Nuts'><label>Nuts</label></div>
+          <div class='inner-divs'><input type="checkbox" name='allergen'  class='SBeans'><label>Soyabeans</label></div>
+          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Milk'><label>Milk</label></div>
+          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Celery'><label>Celery</label></div>
+          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Mustard'><label>Mustard</label></div>
+          <div class='inner-divs'><input type="checkbox" name='allergen'  class='SSeeds'><label>Sesame Seeds</label></div>
+          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Fish'><label>Fish</label></div>
+          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Lupin'><label>Lupin</label></div>
+          <div class='inner-divs'><input type="checkbox" name='allergen'  class='SDioxide'><label>Sulpher Dioxide</label></div>
+          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Cerals'><label>Cereals</label></div>
+          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Crust'><label>Crustaceans </label></div>
         </div>
       </div>
       </div>
