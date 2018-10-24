@@ -248,6 +248,7 @@ nav span:first-of-type {
   background: lightgray;
   padding: 3px;
   margin-top: 5px;
+  cursor: pointer;
 }
 .filter-items-con {
   display: none;
