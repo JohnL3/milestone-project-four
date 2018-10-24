@@ -325,7 +325,7 @@ def check_what_to_filter_by(data):
         filter_by = list(data)
         return filter_by
 
-def filter_by_category(mysql, filter_type, val):
+def filter_by_category_or_author(mysql, filter_type, val):
     con = mysql.connect()
     curs = con.cursor()
     
@@ -341,7 +341,7 @@ def filter_all_recipes(mysql,data):
     
     if len(items) == 1:
         if 'author_name' in items or 'category_name' in items:
-            result = filter_by_category(mysql, items[0], data[items[0]])
+            result = filter_by_category_or_author(mysql, items[0], data[items[0]])
             return result
     
    
