@@ -302,7 +302,7 @@ nav span:first-of-type {
     background: gainsboro;
     border: 1px solid gray;
     overflow: hidden scroll;
-    max-height: 350px;
+    max-height: 360px;
     min-height: 40px;
 }
 .the-categorys li,
@@ -337,6 +337,13 @@ nav span:first-of-type {
   padding: 2px 0;
   width: max-content;
   min-width: 145px;
+  display: flex;
+}
+
+.inner-divs input {
+  height: 17px;
+  width: 17px;
+  margin-top: 1px;
 }
 
 .inner-filter-B label,
