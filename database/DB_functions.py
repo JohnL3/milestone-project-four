@@ -367,9 +367,9 @@ def filter_recipes_by(mysql, data):
 # used to add a && between allergen options eg hasNuts !='T' && hasEgg !='T'    
 def get_end_str(allergens):
     count = len(allergens)
-    b_str = " Having "
+    b_str = " and "
     if len(allergens) == 1:
-        my_str = "Having " +allergens[0]+ " !='T'"
+        my_str = "and " +allergens[0]+ " !='T'"
         return my_str
     else:
         for a in allergens:
@@ -392,6 +392,30 @@ def filter_by_author_and_category(mysql, data):
     return curs.fetchall()
     
 
+def filter_by_allergens_and_author_or_category(mysql, data, item):
+    con = mysql.connect()
+    curs = con.cursor()
+    start_str = get_query_string('all')
+    mid_str = " WHERE "+ item +" ='"+data[item]+"' "
+    end_str = get_end_str(data['allergens'])
+    end_str += " ORDER BY author_name ASC"
+    sql = start_str+mid_str+end_str
+    
+    curs.execute(sql)
+    return curs.fetchall()
+
+
+def filter_by_all(mysql,data):
+    con = mysql.connect()
+    curs = con.cursor()
+    start_str = get_query_string('all')
+    mid_str = " WHERE author_name ='"+data['author_name']+"' AND category_name ='"+data['category_name']+"' "
+    end_str = get_end_str(data['allergens'])
+    end_str += " ORDER BY author_name asc"
+    sql = start_str+mid_str+end_str
+    
+    curs.execute(sql)
+    return curs.fetchall()
 
 def filter_all_recipes(mysql,data):
     items = check_what_to_filter_by(data)
@@ -408,6 +432,15 @@ def filter_all_recipes(mysql,data):
         if 'author_name' in items and 'category_name' in items:
             result = filter_by_author_and_category(mysql,data)
             return result
+        elif 'author_name' in items and 'allergens' in items:
+            result = filter_by_allergens_and_author_or_category(mysql,data, 'author_name')
+            return result
+        else:
+            result = filter_by_allergens_and_author_or_category(mysql,data, 'category_name')
+            return result
+    else:
+        result = filter_by_all(mysql, data)
+        return result
     
    
     
