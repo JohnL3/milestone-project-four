@@ -91,7 +91,7 @@
             <span class="allergen">Crustaceans</span>
             {% endif %}
           </div>
-          <div class='section-con'>
+          <div class='section-con user-page'>
             <div class="icons">
               <div class="likes">
                 <i class="far fa-heart"></i>
@@ -105,6 +105,9 @@
             <div class='visit'>
               <div>
                 <a class='view-span' href={{url_for('viewrecipe', recipe_name = r.recipe_name )}}>View Recipe</a>
+              </div>
+              <div>
+                <span>EDIT</span>
               </div>
             </div>
           </div>
