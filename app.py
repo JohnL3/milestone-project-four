@@ -88,6 +88,11 @@ def newrecipe():
     data['msg'] = msg
     return jsonify({'data':data})
     
+@app.route('/edit_recipe/<user_id>')
+def edit_recipe(user_id):
+    data = {'user_id': user_id}
+    return jsonify(data)
+    
 @app.route('/collect', methods=['GET','POST'])
 def collect():
     data = request.get_json()
