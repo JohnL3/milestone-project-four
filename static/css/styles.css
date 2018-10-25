@@ -725,6 +725,7 @@ i {
   height: 200px;
   background: lightblue;
 }
+form.edit-page,
 form.user-page {
   display: none;
 }
