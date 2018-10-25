@@ -52,7 +52,13 @@ def recipe():
     categorys = get_all_categorys(mysql)
     authors = get_all_authors(mysql)
     return render_template('recipe.html', recipe = recipe, username=username, authors=authors, categorys=categorys)
+
+@app.route('/get_all')
+def get_all():
+    recipe = get_all_recipes(mysql)
+    return jsonify(recipe)
     
+
 @app.route('/viewrecipe/<string:recipe_name>')
 def viewrecipe(recipe_name):
     if 'username' in session:
