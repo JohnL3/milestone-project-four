@@ -289,6 +289,20 @@ $('.sub-btn').click(function(){
     }
 });
 
+$('.all-recipe-btn').click(function(){
+    
+    let url = '/get_all';
+      $.ajax({
+        type : 'GET',
+        url : url,
+        success: function(data){
+           console.log(data);
+           createRecipesDivs(data);
+        }
+      });
+    
+});
+
 
 function createRecipesDivs(data) {
     $('.grids').empty();
