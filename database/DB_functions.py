@@ -336,12 +336,77 @@ def filter_by_category_or_author(mysql, filter_type, val):
     curs.execute(sql)
     return curs.fetchall()
 
+def filter_recipes_by(mysql, data):
+    '''
+    Get all recipies that dont contain the single allergen or multiple allergens supplied
+    '''
+    con = mysql.connect()
+    curs = con.cursor()
+    
+    if len(data['allergens']) == 1:
+        
+        my_list = data['allergens'][0]
+        
+        my_str = get_query_string('all')
+        full_string = my_str +" WHERE "+ my_list + ' !="T" ORDER BY author_name asc'
+       
+        curs.execute(full_string)
+        
+        return curs.fetchall()
+    else:
+        my_list = data['allergens']
+        my_str = get_query_string('all')
+        mid_str= get_end_str(my_list)
+        end_str = " ORDER BY author_name ASC"
+        full_string = my_str+mid_str+end_str
+        curs.execute(full_string)
+        
+        return curs.fetchall()
+        
+
+# used to add a && between allergen options eg hasNuts !='T' && hasEgg !='T'    
+def get_end_str(allergens):
+    count = len(allergens)
+    b_str = " Having "
+    if len(allergens) == 1:
+        my_str = "Having " +allergens[0]+ " !='T'"
+        return my_str
+    else:
+        for a in allergens:
+            b_str+= a+" !='T'"
+            if count > 1:
+                b_str+= "&& "
+                count-= 1
+    return b_str
+    
+
+def filter_by_author_and_category(mysql, data):
+    con = mysql.connect()
+    curs = con.cursor()
+    start_str = get_query_string('all')
+    
+    end_str = " WHERE author_name ='" + data['author_name']+ "' AND category_name ='" + data['category_name']+ "' ORDER BY author_name ASC"
+    sql = start_str+end_str
+    
+    curs.execute(sql)
+    return curs.fetchall()
+    
+
+
 def filter_all_recipes(mysql,data):
     items = check_what_to_filter_by(data)
     
     if len(items) == 1:
         if 'author_name' in items or 'category_name' in items:
             result = filter_by_category_or_author(mysql, items[0], data[items[0]])
+            return result
+        else:
+            result = filter_recipes_by(mysql,data)
+            return result
+        
+    if len(items) == 2:
+        if 'author_name' in items and 'category_name' in items:
+            result = filter_by_author_and_category(mysql,data)
             return result
     
    
