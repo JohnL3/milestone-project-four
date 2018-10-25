@@ -32,6 +32,9 @@ $('.inner-menu-a').click(function(){
     $('.grids').css('display', 'grid');
     $('.all-collected').css('display', 'none');
     $('form.user-page').css('display', 'none');
+    $('.user-inner-menu ul li').css('display', 'inline');
+    $('.inner-menu-d').css('display', 'none');
+    $('.edit-page').css('display', 'none');
     $('.inner-menu-a').addClass('active-a');
     $('.inner-menu-c').removeClass('active-c');
     $('.inner-menu-b').removeClass('active-b');
@@ -49,6 +52,16 @@ $('.inner-menu-b').click(function(){
     $('.grids').css('display', 'none');
     $('.all-collected').css('display', 'grid');
     $('form.user-page').css('display', 'none');
+});
+
+$('.edit-recipe').click(function(){
+    $('.user-inner-menu ul li').css('display', 'none');
+    $('.inner-menu-a').css('display', 'inline');
+    $('.inner-menu-d').css('display', 'inline');
+    $('.inner-menu-a').removeClass('active-a');
+    $('.inner-menu-d').addClass('active-c');
+    $('.grids').css('display', 'none');
+    $('.edit-page').css('display', 'block');
 });
 
 function getCollectedRecipes() {
@@ -232,6 +245,8 @@ $('.sub-btn').click(function(event){
       
    }
 });
+
+
 
 
 function recipeTemplate(data) {
