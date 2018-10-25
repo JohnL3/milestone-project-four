@@ -62,6 +62,19 @@ $('.edit-recipe').click(function(){
     $('.inner-menu-d').addClass('active-c');
     $('.grids').css('display', 'none');
     $('.edit-page').css('display', 'block');
+
+    let recipe_id = $(this).attr('id');
+     let url = '/edit_recipe/'+ recipe_id;
+     $.ajax({
+        type : 'GET',
+        url : url,
+        success: function(data){
+           console.log(data);
+           
+        }
+      });
+    
+    console.log(recipe_id);
 });
 
 function getCollectedRecipes() {
