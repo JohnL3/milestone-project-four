@@ -270,10 +270,11 @@ nav span:first-of-type {
 
 .btn-wrap {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 2fr;
   grid-column-gap: 10px;
-  width: 155px;
-  padding-left: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 5px;
 }
 
 .sub-btn:disabled {
@@ -281,9 +282,11 @@ nav span:first-of-type {
   border: 1px solid red;
 }
 
-.sub-btn, .clear-btn {
+.sub-btn, 
+.clear-btn,
+.all-recipe-btn{
   margin-bottom: 10px;
-  padding: 5px 10px;
+  padding: 8px 10px;
   color: darkslategray;
   font-weight: 600;
 }
