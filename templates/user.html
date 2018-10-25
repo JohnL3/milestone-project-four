@@ -34,7 +34,7 @@
    
    <div class='grids'>
       {% for r in recipe %}
-      <div id='{{r.recipe_id}}' class='recipe'>
+      <div class='recipe'>
         <div class="recipe-header">
           <span>{{ r.recipe_name }}</span>
         </div>
@@ -116,7 +116,7 @@
               <div>
                 <a class='view-span' href={{url_for('viewrecipe', recipe_name = r.recipe_name )}}>View Recipe</a>
               </div>
-              <div class='edit-recipe'>
+              <div id='{{r.recipe_id}}' class='edit-recipe'>
                 <span>EDIT</span>
               </div>
             </div>
@@ -233,7 +233,7 @@
     
     <form class='edit-page'>
       <div class='form-title'>
-        <h1 id='special-h1'>Please fill in the form below to create a new recipe</h1>
+        <h1 id='special-h1'>Edit Fields Below</h1>
       </div>
       <div class='create'>
           <ul class='create-recipe type-a'>
@@ -317,7 +317,7 @@
         </div>
         <div class='create'>
           <ul class='create-recipe type-a'>
-              <li><button class='sub-btn'>SUBMIT</button></li>
+              <li><button class='edit-sub-btn'>SUBMIT</button></li>
           </ul>
       </div>
         
