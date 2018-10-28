@@ -88,11 +88,18 @@ def newrecipe():
     data['msg'] = msg
     return jsonify({'data':data})
     
-@app.route('/edit_recipe/<recipe_name>')
+@app.route('/edit_recipe/<recipe_name>', methods=['GET','POST'])
 def edit_recipe(recipe_name):
-    data = get_single_recipe(mysql, recipe_name)
-    
-    return jsonify(data)
+    if 'username' in session:
+        if request.method == 'GET':
+            data = get_single_recipe(mysql, recipe_name)
+        
+            return jsonify(data)
+        else:
+            data = request.get_json()
+            return jsonify(data)
+    else:
+        return redirect(url_for('index'))
     
 @app.route('/collect', methods=['GET','POST'])
 def collect():
