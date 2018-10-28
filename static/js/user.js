@@ -1,3 +1,10 @@
+
+function storeInfo(d) {
+    return d;
+};
+
+let recipeTobeEdited;
+
 $('#burger').click(function(){
     if($('.nav-items').css('display') === 'none'){
         $('.nav-items').css('display','block');
@@ -63,19 +70,95 @@ $('.edit-recipe').click(function(){
     $('.grids').css('display', 'none');
     $('.edit-page').css('display', 'block');
 
-    let recipe_id = $(this).attr('id');
-     let url = '/edit_recipe/'+ recipe_id;
+    let recipe_name = $(this).attr('id');
+     let url = '/edit_recipe/'+ recipe_name;
      $.ajax({
         type : 'GET',
         url : url,
         success: function(data){
            console.log(data);
-           
+           fillInEditRecipeDetails(data);
+           recipeTobeEdited = storeInfo(data);
         }
       });
-    
-    console.log(recipe_id);
 });
+
+function fillInEditRecipeDetails(data) {
+    $('.edit-rem').remove();
+    $('.create-step').remove();
+    $('.create input').val('');
+    $('.edit-div').html('');
+    $('input[type=checkbox]').prop('checked', false);
+    
+    let d = data[0][0];
+    ({Celery, Cerals, Crust, Egg, Fish, Lupin, Milk, Moll, Mustard, Nuts, Pnuts, SBeans, SDioxide, SSeeds} = d)
+    //let allA = [Celery, Cerals, Crust, Egg, Fish, Lupin, Milk, Moll, Mustard, Nuts, Pnuts, SBeans, SDioxide, SSeeds];
+    
+    let recipeName = d.recipe_name;
+    let authorName = d.author_name;
+    let prep = d.prep;
+    let cook = d.cook;
+    let serves = d.serves;
+    let instructions = d.instructions;
+    
+    // show category that had been used
+    $(".edit-category option[value='"+d.category_name+"']").attr('selected',"selected");
+    
+    
+   // set checked any allergens that had been checked
+    $('input[type=checkbox]:visible').each(function(){
+        let name = $(this).attr('class');
+        if(d[name] === 'T') {
+            $("."+ name).prop('checked', true);
+        }
+    });
+    
+    // fill values into text inputs
+    $('.recipe-inp-edit').val(recipeName);
+    $('.author-inp-edit').val(authorName);
+    $('.prep-inp-edit').val(prep);
+    $('.serves-inp-edit').val(serves);
+    $('.cook-inp-edit').val(cook);
+    
+    // Add the Ingredients and Quantities
+    let ing = data[1];
+    
+    // destructure array
+    let first, rest;
+    [first, ...rest] = ing;
+    
+    // First ingredient and  quantity with the headers
+    let start = `<ul class='create-recipe type-b edit-b ing-edit'><li><label>INGREDIENTS</label><input type='text' value="`+first.ing_name+`"></li></div>
+                 <li><label>QUANTITY</label><input type='text' value="`+first.ing_quantity+`"></li></ul>`;
+                 
+     $('.edit-div').append(start);
+     
+    // rest of ingredients and quanties
+    for(let item in rest) {
+        let holder = `<div class="edit-rem">
+                          <li class="other-li">
+                            <input type='text' value="`+rest[item].ing_name+`">
+                          </li>
+                          <li class="special-li">
+                            <input type='text' value="`+rest[item].ing_quantity+`">
+                            
+                          </li>
+                      </div>`;
+                      
+                      
+        $('.edit-b').append(holder);
+    }
+    
+    // Add the Instructions 
+    instructions = instructions.split('_');
+    
+    for(let item in instructions) {
+        let instruct = `<textarea rows="3" class='create-step step-edit' placeholder='Pour into bowl' >`+instructions[item]+`</textarea>`;
+        $('.instructions-con-create').append(instruct);
+    }
+    
+    
+}
 
 function getCollectedRecipes() {
     
@@ -96,17 +179,36 @@ function getCollectedRecipes() {
 
 
 // Used to add extra lines of ingredients and quanties
+$('.adding-lines-edit').click(function(){
+  addOptions('-edit');
+});
+
 $('.adding-lines').click(function(){
   addOptions();
 });
 
-function addOptions() {
-    $('.ing span').css('display','none');
-    $('li').removeClass('special-li');
-		var option = '<li class="other-li"><input type="text" ></li><li class="special-li"><input type="text"><span class="remove-ing">X</span></li>';
-   $('.ing').append(option);
+function addOptions(opt='') {
+
+		var option = `<div class="edit-rem">
+                          <li class="other-li">
+                            <input type="text" >
+                          </li>
+                          <li class="special-li">
+                            <input type="text">
+                            <span class="remove-ing">X</span>
+                          </li>
+                      </div>`;
+   $('.ing'+opt).append(option);
 }
 
+
+$(function(){
+    $('.create').on('click', 'span.remove-ing', function(){
+       var rem = $(this).closest('div');
+    $(rem).remove();
+       });
+}); 
+/*
 $(function(){
     $('.ing').on('click', 'span.remove-ing', function(){
        var rem = $(this).closest('li');
@@ -114,7 +216,7 @@ $(function(){
     $('.ing li:last').remove();
        });
 });  
-
+*/
 // for adding extra textarea for instructions in create recipe section
 
 $('.add-textarea').click(function(){
@@ -131,7 +233,7 @@ function pair_ing_quan(ing_quan){
   let ing_and_quan = [];
   let inner = [];
   let count = 0;
-  let r_len =  $('.ing :input[type=text]').length;
+  let r_len = ing_quan.length; //$('.ing :input[type=text]').length;
   let b_count = 0;
   
   ing_quan.each(function(){
@@ -187,8 +289,6 @@ function check_validation() {
     $('html, body').animate({scrollTop: $("form").offset().top}, 500);
     
     setTimeout(function(){
-       //$('.author-inp').removeClass('error');
-       //$('.recipe-inp').removeClass('error');
        $( ".category-option" ).removeClass('error');
        $('input[type="text"]').removeClass('error');
        $('.step').removeClass('error');
@@ -198,6 +298,139 @@ function check_validation() {
     return true;
   }
 }
+
+
+function check_validation_edit() {
+    
+  let ingAndQuan = isNotBlank($('.ing-edit :input[type=text]'));
+  let instructions = isNotBlank($('.step-edit'));
+  let author =  $('.author-inp-edit').val();
+  let recipeName = $('.recipe-inp-edit').val();
+  let category =  $( ".category-option option:selected" ).text();
+  let prep = $('.prep-inp-edit').val();
+  let cook = $('.cook-inp-edit').val();
+  let serves = $('.serves-inp-edit').val();
+  
+  
+  
+  if(!author || !recipeName  || !category  || !prep  || !cook  || !serves || ingAndQuan === false || instructions === false) {
+    if(author === '') $('.author-inp-edit').addClass('error');
+    if(recipeName === '') $('.recipe-inp-edit').addClass('error');
+    if($( ".category-option option:selected" ).text() === '') $( ".category-option" ).addClass('error');
+    if(prep === '') $('.prep-inp-edit').addClass('error');
+    if(cook === '') $('.cook-inp-edit').addClass('error');
+    if(serves === '') $('.serves-inp-edit').addClass('error');
+    $('html, body').animate({scrollTop: $("form").offset().top}, 500);
+    
+    setTimeout(function(){
+       $( ".category-option" ).removeClass('error');
+       $('input[type="text"]').removeClass('error');
+       $('.step-edit').removeClass('error');
+    },2500);
+    return false;
+  } else {
+    return true;
+  }
+}
+
+$('.edit-sub-btn').click(function(){
+    event.preventDefault();
+    let validated = check_validation_edit();
+    
+    if(validated) {
+        console.log('recipeTobeEdited', recipeTobeEdited);
+        let g_edit, ing_edit;
+        [g_edit,ing_edit]=recipeTobeEdited;
+        g_edit = g_edit[0];
+        delete g_edit.likes;
+        delete g_edit.collected;
+        delete g_edit.url;
+        
+        console.log('general_edit', g_edit);
+        console.log('ing_edit', ing_edit);
+        let keys = Object.keys(g_edit);
+        console.log(keys);
+        
+        
+        let ing_and_quan = pair_ing_quan($('.ing-edit :input[type=text]'));
+         // add instructions to an array
+        let instructions = [];
+        
+        $('.step-edit').each(function() {
+            instructions.push($(this).val());
+        });
+        instructions = instructions.join('_');
+        
+    
+        let data = {};
+        $('.create-edit input[type=checkbox]').each(function () {
+            var cls =  $(this).attr('class');
+            
+            if ($(this).is(":checked")){
+              data[cls]='T';
+            } else {
+              data[cls]='F';
+            }
+        });
+          
+        //let data = {};
+        data.author_name = $('.author-inp-edit').val();
+        data.recipe_name = $('.recipe-inp-edit').val();
+        data.category_name = $( ".category-option option:selected" ).text();
+        //data.allergens = allergens;
+        data.instructions = instructions;
+        data.ing_and_quan = ing_and_quan;
+        data.prep = $('.prep-inp-edit').val();
+        data.cook = $('.cook-inp-edit').val();
+        data.serves = +$('.serves-inp-edit').val();
+        data.username = $('.page-title').text();
+        data.url ='/static/assets/images/dessert.jpg';
+       
+        let newData = getRequiredEdits(keys, data, g_edit);
+        let ing = compareIngredientLists(ing_edit, data.ing_and_quan);
+        
+        newData.ing_and_quan = ing;
+        console.log('newData',newData);
+    }
+});
+
+// check for change in edit recipe execpt for ingredients which is checked by another function
+function getRequiredEdits(k, d, db) {
+    let newData = {};
+    for(let key in k) {
+        if(k[key] in d){
+            console.log(d[k[key]]);
+            if(db[k[key]] === d[k[key]]) {
+                delete d[k[key]];
+            } else {
+                newData[k[key]] = d[k[key]];
+            }
+        }
+    }
+    
+    return newData;
+}
+
+// used to compare whether ingredients seciton of recipe has been edited and changed
+function compareIngredientLists(q, b) {
+let arr = [];
+// filter data from database
+q.filter((x,ind) => {
+  //destructure individual objects to qet name and quantity
+  ({ing_name, ing_quantity}=x);
+  // compare name and quantity against edited page ingredients section to see if any things changed ... push changed to array if changed
+   if(ing_name !== b[ind][0] || ing_quantity !== b[ind][1]) arr.push([ing_name, ...b[ind]]);
+  });
+
+  // if new ingredients and quantity added slice these and push them to array
+  if (q.length < b.length) {
+    let extra = b.slice(b.length - (b.length-q.length));
+    arr.push(extra);
+  }
+  return arr;
+}
+
+
 
 // post details of new recipe to server
 $('.sub-btn').click(function(event){
