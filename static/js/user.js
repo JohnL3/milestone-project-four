@@ -389,8 +389,22 @@ $('.edit-sub-btn').click(function(){
         let newData = getRequiredEdits(keys, data, g_edit);
         let ing = compareIngredientLists(ing_edit, data.ing_and_quan);
         
-        newData.ing_and_quan = ing;
-        console.log('newData',newData);
+        if(ing.length > 0) newData.ing_and_quan = ing;
+        console.log('before post',newData);
+        
+        if(!jQuery.isEmptyObject(newData)) {
+            let url = '/edit_recipe/recipe';
+              $.ajax({
+                type : 'POST',
+                url : url,
+                contentType: 'application/json;charset=UTF-8',
+                dataType: 'json',
+                data : JSON.stringify(newData),
+                success: function(data){
+                   console.log(data);
+                }
+              });
+        }
     }
 });
 
