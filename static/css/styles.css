@@ -947,16 +947,24 @@ form {
   background: #f1ececb3;
 }
 
+.add-lines-edit,
 .add-lines {
   margin-top: 15px;
   margin-bottom: 20px;
 }
 
+.add-lines-edit,
 .add-lines > span {
   cursor: pointer;
   padding: 5px;
   color: darkturquoise;
   font-weight: 600;
+}
+
+.edit-rem {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .recipe-allergens-con {
@@ -1225,6 +1233,8 @@ form {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
   }
+  
+  .recipe-allergens.create-edit,
   .recipe-allergens.create {
     max-width: 65%;
     margin: 20px auto;
@@ -1250,6 +1260,7 @@ form {
     box-sizing: border-box;
     padding: 0;
   }
+  
 }
 
 
