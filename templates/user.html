@@ -231,55 +231,53 @@
   
   <!-- Edit Recipe Section -->
     
-    <form class='edit-page'>
+    <form id='edit-page' class='edit-page'>
       <div class='form-title'>
         <h1 id='special-h1'>Edit Fields Below</h1>
       </div>
       <div class='create'>
-          <ul class='create-recipe type-a'>
-              <li><label>RECIPE NAME</label><input type='text' class='recipe-inp'></li>
-              <li><label>AUTHOR NAME</label><input type='text' class='author-inp'></li>
+          <ul class='create-recipe type-a edit-a'>
+              <li><label>RECIPE NAME</label><input type='text' class='recipe-inp-edit'></li>
+              <li><label>AUTHOR NAME</label><input type='text' class='author-inp-edit'></li>
           </ul>
         
       </div>
       
       <div class='create'>
-          <ul class='create-recipe type-b ing'>
-              <li><label>INGREDIENTS</label><input type='text'></li>
-              <li><label>QUANTITY</label><input type='text'></li>
-              <li class='less-padding'><input type='text'></li>
-              <li class='less-padding'><input type='text'></li>
-          </ul>
-          <div class='add-lines'>
-              <span class='adding-lines'>Add more lines</span>
+          <div class='edit-div'>
+            
+          </div>
+          
+          <div class='add-lines-edit'>
+              <span class='adding-lines-edit'>Add more lines</span>
           </div>
       </div>
       <div class='create'>
           <ul class='create-recipe type-d'>
-              <li><label>PREP TIME</label><input type='text' class='prep-inp'></li>
-              <li><label>COOK TIME</label><input type='text' class='cook-inp'></li>
-              <li><label>SERVES</label><input type='text' class='serves-inp'></li>
+              <li><label>PREP TIME</label><input type='text' class='prep-inp-edit'></li>
+              <li><label>COOK TIME</label><input type='text' class='cook-inp-edit'></li>
+              <li><label>SERVES</label><input type='text' class='serves-inp-edit'></li>
           </ul>
       </div>
       
       <div class='recipe-allergens-con'>
-        <div class='recipe-allergens create'>
+        <div class='recipe-allergens create-edit'>
             <label>Select all allergens used in recipe</label>
             <div class="allergens">
-            <div><input type="checkbox" class='hasEgg'><label>Egg</label></div>
-            <div><input type="checkbox" class='hasMolluscs'><label>Molluscs</label></div>
-            <div><input type="checkbox" class='hasPeanuts'><label>Peanuts</label></div>
-            <div><input type="checkbox" class='hasNuts'><label>Nuts</label></div>
-            <div><input type="checkbox" class='hasSoyabeans'><label>Soyabeans</label></div>
-            <div><input type="checkbox" class='hasMilk'><label>Milk</label></div>
-            <div><input type="checkbox" class='hasCelery'><label>Celery</label></div>
-            <div><input type="checkbox" class='hasMustard'><label>Mustard</label></div>
-            <div><input type="checkbox" class='hasSesameseds'><label>Sesame Seeds</label></div>
-            <div><input type="checkbox" class='hasFish'><label>Fish</label></div>
-            <div><input type="checkbox" class='hasLupin'><label>Lupin</label></div>
-            <div><input type="checkbox" class='hasSulpherdioxide'><label>Sulpher Dioxide</label></div>
-            <div><input type="checkbox" class='hasCerals'><label>Cereals</label></div>
-            <div><input type="checkbox" class='hasCrustaceans'><label>Crustaceans </label></div>
+            <div><input type="checkbox" class='Egg'><label>Egg</label></div>
+            <div><input type="checkbox" class='Moll'><label>Molluscs</label></div>
+            <div><input type="checkbox" class='Pnuts'><label>Peanuts</label></div>
+            <div><input type="checkbox" class='Nuts'><label>Nuts</label></div>
+            <div><input type="checkbox" class='SBeans'><label>Soyabeans</label></div>
+            <div><input type="checkbox" class='Milk'><label>Milk</label></div>
+            <div><input type="checkbox" class='Celery'><label>Celery</label></div>
+            <div><input type="checkbox" class='Mustard'><label>Mustard</label></div>
+            <div><input type="checkbox" class='SSeeds'><label>Sesame Seeds</label></div>
+            <div><input type="checkbox" class='Fish'><label>Fish</label></div>
+            <div><input type="checkbox" class='Lupin'><label>Lupin</label></div>
+            <div><input type="checkbox" class='SDioxide'><label>Sulpher Dioxide</label></div>
+            <div><input type="checkbox" class='Cerals'><label>Cereals</label></div>
+            <div><input type="checkbox" class='Crust'><label>Crustaceans </label></div>
             </div>
           </div>
         </div>
@@ -287,10 +285,10 @@
         <div class='create'>
           <ul class='create-recipe type-c'>
               <li><label>CATEGORY</label></li>
-              <select class='category-option'>
+              <select class='category-option edit-category'>
                 <option></option>
-                <option>Dessert</option>
-                <option>Cakes</option>
+                <option value='Dessert'>Dessert</option>
+                <option value='Cakes'>Cakes</option>
               </select>
             </ul>
         </div>
@@ -301,9 +299,8 @@
             </ul>
         </div>
         <div class='recipe-instructions'>
-          <div class='instructions-con'>
-            <textarea rows="3" class='step' placeholder='Pour into bowl' ></textarea>
-            <textarea rows="3" class='step' placeholder='Pour into bowl' ></textarea>
+          <div class='instructions-con instructions-con-create'>
+            
             
           </div>
            <div class='add-lines'>
