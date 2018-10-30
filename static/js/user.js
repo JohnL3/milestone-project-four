@@ -348,7 +348,9 @@ $('.edit-sub-btn').click(function(){
         
         console.log('general_edit', g_edit);
         console.log('ing_edit', ing_edit);
+        //let ng_edit = {...g_edit};
         let keys = Object.keys(g_edit);
+        //let k = [...keys];
         console.log(keys);
         
         
@@ -389,7 +391,9 @@ $('.edit-sub-btn').click(function(){
         let newData = getRequiredEdits(keys, data, g_edit);
         let ing = compareIngredientLists(ing_edit, data.ing_and_quan);
         
-        if(ing.length > 0) newData.ing_and_quan = ing;
+        //if(ing.length > 0) 
+        if(!jQuery.isEmptyObject(ing)) newData.ing_and_quan = ing;
+        newData.zrecipe_id =g_edit.recipe_id;
         console.log('before post',newData);
         
         if(!jQuery.isEmptyObject(newData)) {
@@ -413,11 +417,14 @@ function getRequiredEdits(k, d, db) {
     let newData = {};
     for(let key in k) {
         if(k[key] in d){
-            console.log(d[k[key]]);
             if(db[k[key]] === d[k[key]]) {
                 delete d[k[key]];
             } else {
-                newData[k[key]] = d[k[key]];
+                if( k[key] === 'author_name' || k[key] === 'category_name') {
+                    newData[k[key]] = [d[k[key]]];
+                } else {
+                    newData[k[key]] = d[k[key]];
+                }
             }
         }
     }
@@ -428,20 +435,27 @@ function getRequiredEdits(k, d, db) {
 // used to compare whether ingredients seciton of recipe has been edited and changed
 function compareIngredientLists(q, b) {
 let arr = [];
+let newArr= [];
+let newData = {};
+
 // filter data from database
 q.filter((x,ind) => {
   //destructure individual objects to qet name and quantity
   ({ing_name, ing_quantity}=x);
   // compare name and quantity against edited page ingredients section to see if any things changed ... push changed to array if changed
-   if(ing_name !== b[ind][0] || ing_quantity !== b[ind][1]) arr.push([ing_name, ...b[ind]]);
+   if(ing_name !== b[ind][0] || ing_quantity !== b[ind][1]) arr.push([ ...b[ind],ing_name]);
   });
 
   // if new ingredients and quantity added slice these and push them to array
   if (q.length < b.length) {
     let extra = b.slice(b.length - (b.length-q.length));
-    arr.push(extra);
+    newArr.push(...extra);
+    console.log('newarr',newArr);
+    console.log('extra',extra);
   }
-  return arr;
+  if(arr.length > 0) newData.old = arr;
+  if(newArr.length > 0) newData.new = newArr;
+  return newData;
 }
 
 
