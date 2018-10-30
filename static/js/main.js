@@ -168,8 +168,8 @@ $( "input[name='category']" ).keyup(function(event) {
       list.push(x);
     } 
 });
-addNames(list,'B');
-if(ind === -1) addNames(categorys,'B');
+addNames(list,'B', 'category');
+if(ind === -1) addNames(categorys,'B', 'category');
 });
 
 // for when typing in filter to filter authors by letter
@@ -183,8 +183,8 @@ $( "input[name='author']" ).keyup(function(event) {
       list.push(x);
     } 
 });
-addNames(list,'C');
-if(ind === -1) addNames(authors,'C');
+addNames(list,'C', 'author');
+if(ind === -1) addNames(authors,'C', 'author');
 });
 
 
@@ -199,18 +199,19 @@ let commonCode = function(e, t) {
   return [letter, word, list, ind];
 };
 
-let addNames = function(arr,ext) {
+let addNames = function(arr,ext, type) {
  
   $('.inner-filter-'+ext).empty();
 
   for(let x=0; x< arr.length; x++) {
-    let res = createInner(arr[x]);
+    let res = createInner(arr[x], type);
     $('.inner-filter-'+ext).append(res);
   }
 };
+
 //create html that shows filterd lists
-let createInner = function(name) {
-    let inner =`<div class='filter-inner'><input type='radio' name='category'><span class='category-tx'>`+name+`</span></div>`;
+let createInner = function(name, type) {
+    let inner =`<div class='filter-inner'><input type='radio' name='`+type+`'><span class='`+type+`-tx'>`+name+`</span></div>`;
     return inner;
 };
 
