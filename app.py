@@ -1,7 +1,7 @@
 import os
 import datetime
 from flask import Flask, redirect, url_for, render_template, jsonify, request, make_response, g, session
-from database.DB_functions import DB_configuration, signup_new_user, validate_user, create_new_recipe, get_all_recipes, get_all_user_recipes, get_single_recipe, user_collects_recipe, get_collected_recipes, like_recipe, get_all_authors, get_all_categorys, filter_all_recipes
+from database.DB_functions import DB_configuration, signup_new_user, validate_user, create_new_recipe, get_all_recipes, get_all_user_recipes, get_single_recipe, user_collects_recipe, get_collected_recipes, like_recipe, get_all_authors, get_all_categorys, filter_all_recipes, edit_single_recipe
 import base64
 
 app = Flask(__name__)
@@ -97,7 +97,8 @@ def edit_recipe(recipe_name):
             return jsonify(data)
         else:
             data = request.get_json()
-            return jsonify(data)
+            edited_recipe = edit_single_recipe(mysql, data)
+            return jsonify(edited_recipe)
     else:
         return redirect(url_for('index'))
     
