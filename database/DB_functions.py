@@ -58,6 +58,51 @@ def validate_user(mysql, username, password):
     else:
         return False
         
+def get_or_add_author_details(mysql, author_name):
+    con = mysql.connect()
+    curs = con.cursor()
+    
+    #query = "SELECT author_id FROM author_table WHERE author_name ='" +data['author_name']+ "'"
+    curs.execute('''SELECT author_id FROM author_table WHERE author_name = %s''', author_name)
+    author_id = curs.fetchall()
+    if len(author_id) == 0:
+        try:
+            curs.execute('''INSERT INTO author_table (author_id, author_name) VALUES (NULL, %s)''', author_name)
+            con.commit()
+        except Exception as e:
+            return 'Author section Error saving data: '+str(e)
+        
+        curs.execute('''SELECT LAST_INSERT_ID()''')
+        author_id = curs.fetchall()
+        author_id = author_id[0]['LAST_INSERT_ID()']
+        return author_id
+    else:
+        author_id = author_id[0]['author_id']
+        return author_id
+        
+def get_or_add_category_details(mysql, category_name):
+    con = mysql.connect()
+    curs = con.cursor()
+    
+    #query = "SELECT author_id FROM author_table WHERE author_name ='" +data['author_name']+ "'"
+    curs.execute('''SELECT cat_id FROM category_table WHERE category_name = %s''', category_name)
+    cat_id = curs.fetchall()
+    if len(cat_id) == 0:
+        try:
+            curs.execute('''INSERT INTO category_table (cat_id, category_name) VALUES (NULL, %s)''', category_name)
+            con.commit()
+        except Exception as e:
+            return 'Author section Error saving data: '+str(e)
+        
+        curs.execute('''SELECT LAST_INSERT_ID()''')
+        cat_id = curs.fetchall()
+        cat_id = cat_id[0]['LAST_INSERT_ID()']
+        return cat_id
+    else:
+        cat_id = cat_id[0]['cat_id']
+        return cat_id
+        
+        
 def create_new_recipe(mysql, data):
     con = mysql.connect()
     curs = con.cursor()
@@ -441,6 +486,190 @@ def filter_all_recipes(mysql,data):
     else:
         result = filter_by_all(mysql, data)
         return result
+        
+def set_edit_recipe_update_str(count):
+    
+    b_str = "UPDATE recipe_table SET"
+    
+    y = 1
+    for itm in range(count):
+        if y != count:
+            b_str += " {} = '{}', "
+        else: 
+            
+            b_str += " {} = '{}' WHERE recipe_id = {}"
+        y+=1
+    
+    return b_str
+    
+def update_all_except_ingredients(mysql, data):
+    '''
+    The non ingredients sections of recipe page are updated by this function
+    These are either stored on the recipe_table in database or are a foregin key on the recipe_table
+    '''
+    con = mysql.connect()
+    curs = con.cursor()
+    
+    update_str=''
+    recipe_id = data['zrecipe_id']
+    del data['zrecipe_id']
+    
+    # for author_name and category_name, which i need to update id on recipe_table
+    # I first need to check if they are stored in there tables or are new 
+    # if new i add them to there table and return id ... if not new i retrive id
+    if 'author_name' in data:
+            author_name = data['author_name']
+            del data['author_name']
+           
+            data['author_id'] = get_or_add_author_details(mysql, author_name)
+            
+    if 'category_name' in data:
+        category_name = data['category_name']
+        del data['category_name']
+        
+        data['cat_id'] = get_or_add_category_details(mysql, category_name)
+            
+    count = len(data.items())
+    
+    # I now have all the info i need and can update recipe_table
+    if count > 0:
+        update_str = set_edit_recipe_update_str(count)
+        
+        details =  [itm for sub in data.items() for itm in sub]
+        details.append(recipe_id)
+        '''
+        d_even = []
+        d_odd = []
+        for ind, i in enumerate(details):
+            if ind%2 == 0:
+                d_even.append(i)
+            else:
+                d_odd.append(i)
+        '''       
+        # update string look like UPDATE recipe_table SET {} = %s WHERE recipe_id = {}
+        # this line fill in the {} sections
+        #preview = update_str.format(*d_even)
+        
+        #The %s secitons are filled in by the preview,d_odd
+        try:
+            curs.execute(update_str.format(*details));
+            con.commit()
+            return update_str #'Every thing went fine'
+        except Exception as e:
+            return ' Editing recipe data: '+str(e)
+    
+
+def update_ingredients_edit(mysql, ing, r_id):
+    '''
+    Update ingredients table with edits or add new ingredients to table
+    '''
+    con = mysql.connect()
+    curs = con.cursor()
+    
+    recipe_id = r_id
+    
+    if 'old' in ing:
+        old_ing =ing['old']
+        for itm in old_ing:
+            itm.append(recipe_id)
+        
+        try:
+            query ='UPDATE ingredients_table SET ing_name = %s , ing_quantity = %s WHERE ing_name = %s and recipe_id = %s'
+            curs.executemany(query,old_ing)
+            con.commit()
+            return old_ing
+        except Exception as e:
+                return ' Editing old ingredients: '+str(e) 
+        
+    if 'new' in ing:
+        new_ing = ing['new']
+        for itm in new_ing:
+            itm.insert(0, recipe_id)
+        
+        try:
+            curs.executemany('''INSERT INTO ingredients_table(recipe_id, ing_name, ing_quantity) VALUES(%s, %s, %s)''', new_ing)
+            con.commit()
+            return new_ing
+        except Exception as e:
+            return 'Error saving new_ing: '+str(e)
+    
+    
+    
+def edit_single_recipe(mysql, data):
+    
+    '''
+    Edit a single recipe by applying changes to the database
+    '''
+    con = mysql.connect()
+    curs = con.cursor()
+    update_str=''
+    #recipe_id = data['zrecipe_id']
+    #del data['zrecipe_id']
+    
+    if 'ing_and_quan' in data:
+        ing = {}
+        ing = data['ing_and_quan']
+        del data['ing_and_quan']
+        result = update_ingredients_edit(mysql, ing, data['zrecipe_id'])
+        return result
+        
+        if len(data) > 0:
+            result = update_all_except_ingredients(mysql, data)
+            '''
+            details =  [itm for sub in data.items() for itm in sub]
+            query = 'UPDATE recipe_table SET {}= "{}" WHERE recipe_id = {}'
+            details.append(recipe_id)
+            try:
+                curs.execute(query.format(*details));
+                con.commit()
+            except Exception as e:
+                return ' Editing recipe data: '+str(e)
+            '''
+        return result
+        
+    else:
+        '''just update recipe with data'''
+        result = update_all_except_ingredients(mysql, data)
+        '''
+        if 'author_name' in data:
+            author_name = data['author_name']
+            del data['author_name']
+           
+            data['author_id'] = get_or_add_author_details(mysql, author_name)
+            
+        if 'category_name' in data:
+            category_name = data['category_name']
+            del data['category_name']
+            
+            data['cat_id'] = get_or_add_category_details(mysql, category_name)
+            
+        count = len(data.items())
+        
+        if count > 0:
+            update_str = set_edit_recipe_update_str(count)
+            
+            details =  [itm for sub in data.items() for itm in sub]
+            details.append(recipe_id)
+            d_even = []
+            d_odd = []
+            for ind, i in enumerate(details):
+                if ind%2 == 0:
+                    d_even.append(i)
+                else:
+                    d_odd.append(i)
+                    
+
+            preview = update_str.format(*d_even)
+            
+            try:
+                curs.execute(preview,d_odd);
+                con.commit()
+            except Exception as e:
+                return ' Editing recipe data: '+str(e)
+           ''' 
+            
+            
+    return result #{'update_str':update_str, 'details': details, 'preview': preview, 'data': data}
     
    
     
