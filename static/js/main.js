@@ -211,7 +211,7 @@ let addNames = function(arr,ext, type) {
 
 //create html that shows filterd lists
 let createInner = function(name, type) {
-    let inner =`<div class='filter-inner'><input type='radio' name='`+type+`'><span class='`+type+`-tx'>`+name+`</span></div>`;
+    let inner =`<div class='filter-inner'><input type='radio' value='`+name+`' name='`+type+`'><span class='`+type+`-tx'>`+name+`</span></div>`;
     return inner;
 };
 
