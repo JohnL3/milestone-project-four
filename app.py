@@ -75,8 +75,9 @@ def user():
     if 'username' in session:
         username= session['username']
         recipe = get_all_user_recipes(mysql, username)
-        
-        return render_template('user.html', recipe=recipe, username=username)
+        categorys = get_all_categorys(mysql)
+        print(categorys)
+        return render_template('user.html', recipe=recipe, username=username, categorys=categorys)
     else:
         return redirect(url_for('index'))
 
