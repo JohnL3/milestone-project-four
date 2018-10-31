@@ -195,8 +195,9 @@
               <li><label>CHOOSE CATEGORY</label></li>
               <select class='category-option'>
                 <option value='null'></option>
-                <option>Dessert</option>
-                <option>Cakes</option>
+                {% for category in categorys %}
+                  <option value='{{ category.category_name}}'>{{category.category_name}}</option>
+                {% endfor %}
               </select>
               <li><label>OR ADD YOUR OWN</label></li>
               <input type='text' class='category-option new-category'>
@@ -289,8 +290,9 @@
               <li><label>CATEGORY</label></li>
               <select class='category-option edit-category'>
                 <option></option>
-                <option value='Dessert'>Dessert</option>
-                <option value='Cakes'>Cakes</option>
+                {% for category in categorys %}
+                <option value='{{ category.category_name}}'>{{category.category_name}}</option>
+                {% endfor %}
               </select>
             </ul>
         </div>
