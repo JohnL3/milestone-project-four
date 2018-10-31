@@ -489,13 +489,18 @@ nav span:first-of-type {
 
 .all-collected,
 .grids {
-  /*height: 100vh;*/
   max-width: 500px;
   margin: 0 auto;
 }
 
 .all-collected {
   display: none;
+}
+
+.all-collected span {
+  grid-column: 1/-1;
+  font-size: 18px;
+  color: darkslategray;
 }
 
 img {
