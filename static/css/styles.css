@@ -8,6 +8,8 @@ body,html {
 /**************************************************/
 a {
     text-decoration: none;
+    color: darkslategray;
+    font-weight: 600;
 }
 a:hover {
     cursor: pointer;
@@ -1033,6 +1035,18 @@ form {
 }
 
 @media only screen and (min-width: 768px) {
+   a {
+     color: brown;
+   }
+   
+   a:hover {
+     color: white;
+   }
+   
+   .nav-items ul li:hover {
+     background: none;
+   }
+   
    header {
     display: grid;
     grid-template-columns: 270px 1fr;
