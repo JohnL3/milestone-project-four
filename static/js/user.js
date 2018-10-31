@@ -83,6 +83,14 @@ $('.edit-recipe').click(function(){
       });
 });
 
+$('.new-category').keydown(function(){
+    $('select').val('nul');
+});
+
+$('select').change(function(){
+    $('.new-category').val('');
+});
+
 function fillInEditRecipeDetails(data) {
     $('.edit-rem').remove();
     $('.create-step').remove();
@@ -273,13 +281,14 @@ function check_validation() {
   let author =  $('.author-inp').val();
   let recipeName = $('.recipe-inp').val();
   let category =  $( ".category-option option:selected" ).text();
+  let newCategory = $('.new-category').val();
   let prep = $('.prep-inp').val();
   let cook = $('.cook-inp').val();
   let serves = $('.serves-inp').val();
   
   
   
-  if(!author || !recipeName  || !category  || !prep  || !cook  || !serves || ingAndQuan === false || instructions === false) {
+  if(!author || !recipeName  || (!category && !newCategory)  || !prep  || !cook  || !serves || ingAndQuan === false || instructions === false) {
     if(author === '') $('.author-inp').addClass('error');
     if(recipeName === '') $('.recipe-inp').addClass('error');
     if($( ".category-option option:selected" ).text() === '') $( ".category-option" ).addClass('error');
@@ -489,12 +498,19 @@ $('.sub-btn').click(function(event){
             allergens.push('F');
           }
       });
-         
-      // create data being pushed to server
+      
       let data = {};
+      
+      if ($( ".category-option option:selected" ).text()) {
+          data.category_name = $( ".category-option option:selected" ).text();
+      } else {
+          data.catergory_name = $('.new-category').val();
+      }
+      // create data being pushed to server
+      //let data = {};
       data.author_name = $('.author-inp').val();
       data.recipe_name = $('.recipe-inp').val();
-      data.category_name = $( ".category-option option:selected" ).text();
+      //data.category_name = $( ".category-option option:selected" ).text();
       data.allergens = allergens;
       data.instructions = instructions;
       data.ing_and_quan = ing_and_quan;
