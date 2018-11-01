@@ -693,6 +693,12 @@ i {
     grid-column-gap: 10px;
   }
   
+  .display-ing,
+  .display-method {
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
   .display-method {
     box-sizing: border-box;
     padding: 5px 10px;
@@ -1229,7 +1235,7 @@ form {
     display: grid;
     box-sizing: border-box;
     padding: 10px;
-    border-top: 1px solid lightslategray;
+    border-top: 2px solid lightcoral;
     grid-column: 2;
     grid-row: 1;
     font-size: 20px;
@@ -1268,6 +1274,8 @@ form {
   .display-ing {
     grid-column: 1;
     display: block !important;
+    border-right: 2px solid lightcoral;
+    margin-top: 20px;
   }
   
   .display-method {
