@@ -66,9 +66,16 @@ def viewrecipe(recipe_name):
     else:
         username = None
     recipe = get_single_recipe(mysql, recipe_name)
+    instructions = recipe[0][0]['instructions']
+    instructions = instructions.split('_')
+    
+    ins = []
+    for i in instructions:
+        ins.append([i])
+    recipe[0][0]['instructions'] = ins
     
     return render_template('viewrecipe.html', recipe=recipe[0], recipe_ing=recipe[1], username=username)
-    #return jsonify(recipe[0])
+    
  
 @app.route('/user')
 def user():
