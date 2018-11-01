@@ -143,7 +143,9 @@
             {% endfor %}
         </div>
         <div class='display-method'>
-            <p>{{ r.instructions}}</p>
+            {% for ins in r.instructions %}
+            <p>{{ ins[0] }}</p>
+            {% endfor %}
             
         </div>
         {% endfor %}
