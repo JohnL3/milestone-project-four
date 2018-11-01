@@ -5,6 +5,7 @@ body,html {
   margin: 0;
   background: #f1ececb3;
 }
+
 /**************************************************/
 a {
     text-decoration: none;
@@ -152,6 +153,8 @@ select:focus {
 header {
   box-sizing: border-box;
   margin-bottom: 5px;
+  position: relative;
+  z-index: 10;
 }
 
 header i {
@@ -220,6 +223,7 @@ nav span:first-of-type {
   border: 1px solid lightgray;
   margin-bottom: 10px;
   display: none;
+  background: white;
 }
 
 .inner-nav {
@@ -258,7 +262,29 @@ nav span:first-of-type {
 #burger:hover span {
   border: 2px solid darkslategray;
 }
+/******************* welcome on index page ***********************/
+.welcome {
+  height: 100vh;
+  background: snow;
+  position: fixed;
+  top: 0;
+}
 
+.welcome-inner {
+  height: 100vh;
+  display: grid;
+  align-items: center;
+}
+
+.welcome-title {
+  position: relative;
+  top: 115px;
+  padding: 10px;
+  align-self: center;
+  text-align: center;
+  font-size: 2vh;
+  color: darkslategray;
+}
 /******************** Filter *************************************/
 
 .filters-header {
@@ -757,9 +783,10 @@ i {
   color: darkslategray;
 }
 
-section {
+.home-welcome {
   box-sizing: border-box;
   padding: 0 10px;
+  padding-top: 65px;
 }
 
 .welcome-user h1 {
@@ -1117,6 +1144,7 @@ form {
     display: flex !important;
     justify-content: flex-end;
     border: none;
+    background: none;
   }
   ul {
     margin-top: 30px;
@@ -1125,6 +1153,21 @@ form {
     display: inline;
   }
   
+  .home-img {
+    top: 0;
+  }
+  
+  .home-welcome {
+    padding-top: 100px;
+  }
+  
+  .welcome-title {
+    font-size: 3.5vh;
+  }
+  
+  .welcome-inner img {
+    align-self: end;
+  }
   /**********filter ********************************************/
   .filters {
     width: 80%;
