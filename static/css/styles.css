@@ -263,7 +263,7 @@ nav span:first-of-type {
   border: 2px solid darkslategray;
 }
 /******************* welcome on index page ***********************/
-.welcome {
+.welcome-index {
   height: 100vh;
   background: snow;
   position: fixed;
