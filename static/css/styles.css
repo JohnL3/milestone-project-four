@@ -5,7 +5,10 @@ body,html {
   margin: 0;
   background: #f1ececb3;
 }
-
+.max-width {
+  max-width: 1210px;
+  margin: 0 auto;
+}
 /**************************************************/
 a {
     text-decoration: none;
@@ -801,6 +804,10 @@ i {
   color: #576777;
 }
 
+.welcome {
+   padding: 0 5px;
+ }
+
 form.edit-page,
 form.user-page {
   display: none;
@@ -1299,7 +1306,9 @@ form {
  }
  /******************** User page ************************/
  .welcome-user {
-   margin-top: 110px;
+    max-width: 80%;
+    margin: 110px auto;
+    margin-bottom: 0;
  }
  
  section {
