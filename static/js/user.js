@@ -45,6 +45,7 @@ $('.inner-menu-a').click(function(){
     $('.inner-menu-a').addClass('active-a');
     $('.inner-menu-c').removeClass('active-c');
     $('.inner-menu-b').removeClass('active-b');
+    clearAll('-edt');
 });
 
 $('.inner-menu-b').click(function(){
@@ -165,6 +166,10 @@ function fillInEditRecipeDetails(data) {
         $('.instructions-con-create').append(instruct);
     }
     
+    // add recipe image 
+    $('.url-edt').val(d.url);
+    let img = '<img class="img-url-edt" src="'+d.url+'">';
+    $('.preview-edt').append(img);
     
 }
 
@@ -236,89 +241,100 @@ function addTextarea() {
     $('.instructions-con').append(option);
 }
 
-// A section for loading images by url and checking there width and height so as to limit the size of images user use for recipe image
+// A section for loading images by url and checking there width and height so as to limit the size of images user use for recipe image in create recipe
+// And for editing section if recipe image needs to be changed
 
-function getSize() {
-    $('.size').text('');
-    $('.size').css('color','black');
-    let hasSrc = $('.off-scr').attr('src');
+$('.url-btn-edt').click(function(e){
+    e.preventDefault();
+    fetchImage('-edt');
+});
+
+$('.url-btn').click(function(e){
+    e.preventDefault();
+    fetchImage();
+});
+
+function fetchImage(ext='') {
+   
+    $('.preview'+ext).empty();
+    $('.pre'+ext).empty();
+    
+    let img_url = $('.url'+ext).val();
+        
+    if(img_url !== '') {
+        createEl(img_url, ext);
+       
+    } else {
+        $('.size'+ext).text('');
+        $('.size'+ext).css('color','black');
+    }
+}
+
+function getSize(ext='') {
+    $('.size'+ext).text('');
+    $('.size'+ext).css('color','black');
+    let hasSrc = $('.off-scr'+ext).attr('src');
     if(hasSrc) {
-        let img_w = $('.off-scr')[0].clientWidth;
-        let img_h = $('.off-scr')[0].clientHeight;
-        let str = 'Width '+img_w+' Height '+img_h;
+        let img_w = $('.off-scr'+ext)[0].clientWidth;
+        let img_h = $('.off-scr'+ext)[0].clientHeight;
+        
+        let str = `Width ${img_w} Height ${img_h}`;
         //$('.pre').empty();
         
         if(((img_w < 701 || (img_w > 599 && img_w < 701)) && img_h >= 400 ) || ((img_h < 701 || (img_h > 599 && img_h < 701)) && img_w >= 400 ) ) {
-             $('.size').text(str);
+             $('.size'+ext).text(str);
              return true;
         } else {
-            $('.size').text(str);
-            $('.size').css('color', 'red');
-            $('.url').addClass('error');
+            $('.size'+ext).text(str);
+            $('.size'+ext).css('color', 'red');
+            $('.url'+ext).addClass('error');
             return false;
         }
     }
     return false;
-    
-   /* if (img_w > img_h && img_w > 500 ) {
-        $('.size').text(str);
-        $('.size').css('color', 'red');
-    } else if (img_h > img_w) {
-        $('.size').text(str);
-        $('.size').css('color', 'red');
-    } else if (img_h === img_w && img_w > 500) {
-        $('.size').text(str);
-        $('.size').css('color', 'red');
-    } else {
-        $('.size').text(str);
-    }*/
 }
 
-$('.url-btn').click(function(e){
-    e.preventDefault();
+function createEl(url, ext='') {
+    let el = `<img  class="img-url${ext}" src="${url}" alt="random food image">`;
+    let el_a = `<img class="off-scr${ext}" src="${url}" alt="random food image">`;
     
-    $('.preview').empty();
-    $('.pre').empty();
-    let img_url = $('.url').val();
+    $('.preview'+ext).append(el);
+    $('.pre'+ext).append(el_a);
     
-    if(img_url !== '') {
-        createEl(img_url,getSize);
-       
-    } else {
-        $('.size').text('');
-         $('.size').css('color','black');
-    }
-});
+    waitForImage(ext);
+}
 
-function createEl(url, fn) {
-    let el = '<img  class="img-url" src="'+url+'" alt="random food image">';
-    let el_a = '<img class="off-scr" src="'+url+'" alt="random food image">';
-   
-    $('.preview').append(el);
-    $('.pre').append(el_a);
-  
-  let waiting = setInterval(function() {
-        let img_w = $('.off-scr')[0].clientWidth;
-        let img_h = $('.off-scr')[0].clientHeight;
+function waitForImage(ext='') {
+    let waiting = setInterval(function() {
+        let img_w = $('.off-scr'+ext)[0].clientWidth;
+        let img_h = $('.off-scr'+ext)[0].clientHeight;
         if (img_w && img_h) {
             clearInterval(waiting);
-            getSize();
+            getSize(ext);
         }
     }, 10);
-  
 }
+
 
 $('.clear').click(function(e){
     e.preventDefault();
-    
-    $('.url').val('');
-    $('.pre').empty();
-    $('.preview').empty();
-    $('.size').text('');
-    $('.file-size').text('');
-    $('.file-name').text('');
-    $('.url').removeClass('error');
+    clearAll();
 });
+
+$('.clear-edt').click(function(e){
+    e.preventDefault();
+    clearAll('-edt');
+});
+
+function clearAll(ext='') {
+    $('.url'+ext).val('');
+    $('.pre'+ext).empty();
+    $('.preview'+ext).empty();
+    $('.size'+ext).text('');
+    $('.file-size'+ext).text('');
+    $('.file-name'+ext).text('');
+    $('.url'+ext).removeClass('error');
+}
 
 /*************************************************************************************************************/
 
@@ -409,22 +425,24 @@ function check_validation_edit() {
   let prep = $('.prep-inp-edit').val();
   let cook = $('.cook-inp-edit').val();
   let serves = $('.serves-inp-edit').val();
+  let image = getSize('-edt');
   
   
-  
-  if(!author || !recipeName  || !category  || !prep  || !cook  || !serves || ingAndQuan === false || instructions === false) {
+  if(!author || !recipeName  || !category  || !prep  || !cook  || !serves || !ingAndQuan || !instructions || !image) {
     if(author === '') $('.author-inp-edit').addClass('error');
     if(recipeName === '') $('.recipe-inp-edit').addClass('error');
     if($( ".category-option option:selected" ).text() === '' && $('.new-category').val() === '') $( ".category-option" ).addClass('error');
     if(prep === '') $('.prep-inp-edit').addClass('error');
     if(cook === '') $('.cook-inp-edit').addClass('error');
     if(serves === '') $('.serves-inp-edit').addClass('error');
+    if(image === false) $('.url-edt').addClass('error');
     $('html, body').animate({scrollTop: $("form").offset().top}, 500);
     
     setTimeout(function(){
        $( ".category-option" ).removeClass('error');
        $('input[type="text"]').removeClass('error');
        $('.step-edit').removeClass('error');
+       $('.url-edt').removeClass('error');
     },2500);
     return false;
   } else {
@@ -443,7 +461,7 @@ $('.edit-sub-btn').click(function(){
         g_edit = g_edit[0];
         delete g_edit.likes;
         delete g_edit.collected;
-        delete g_edit.url;
+        //delete g_edit.url;
         
         console.log('general_edit', g_edit);
         console.log('ing_edit', ing_edit);
@@ -485,7 +503,7 @@ $('.edit-sub-btn').click(function(){
         data.cook = $('.cook-inp-edit').val();
         data.serves = +$('.serves-inp-edit').val();
         data.username = $('.page-title').text();
-        data.url ='/static/assets/images/dessert.jpg';
+        data.url = $('.url-edt').val();'/static/assets/images/dessert.jpg';
        
         let newData = getRequiredEdits(keys, data, g_edit);
         let ing = compareIngredientLists(ing_edit, data.ing_and_quan);
@@ -495,7 +513,7 @@ $('.edit-sub-btn').click(function(){
         newData.zrecipe_id =g_edit.recipe_id;
         console.log('before post',newData);
         
-        if(!jQuery.isEmptyObject(newData)) {
+       /* if(!jQuery.isEmptyObject(newData)) {
             let url = '/edit_recipe/recipe';
               $.ajax({
                 type : 'POST',
@@ -507,7 +525,7 @@ $('.edit-sub-btn').click(function(){
                    console.log(data);
                 }
               });
-        }
+        }*/
     }
 });
 
