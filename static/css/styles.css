@@ -284,6 +284,10 @@ nav span:first-of-type {
   align-items: center;
 }
 
+.welcome-inner img {
+  width: 100%;
+}
+
 .welcome-title {
   position: relative;
   top: 115px;
