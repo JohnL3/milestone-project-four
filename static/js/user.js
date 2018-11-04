@@ -241,11 +241,26 @@ function addTextarea() {
 function getSize() {
     $('.size').text('');
     $('.size').css('color','black');
-    let img_w = $('.off-scr')[0].clientWidth;
-    let img_h = $('.off-scr')[0].clientHeight;
-    let str = 'Width '+img_w+' Height '+img_h;
-    $('.pre').empty();
-    if (img_w > img_h && img_w > 500) {
+    let hasSrc = $('.off-scr').attr('src');
+    if(hasSrc) {
+        let img_w = $('.off-scr')[0].clientWidth;
+        let img_h = $('.off-scr')[0].clientHeight;
+        let str = 'Width '+img_w+' Height '+img_h;
+        //$('.pre').empty();
+        
+        if(((img_w < 701 || (img_w > 599 && img_w < 701)) && img_h >= 400 ) || ((img_h < 701 || (img_h > 599 && img_h < 701)) && img_w >= 400 ) ) {
+             $('.size').text(str);
+             return true;
+        } else {
+            $('.size').text(str);
+            $('.size').css('color', 'red');
+            $('.url').addClass('error');
+            return false;
+        }
+    }
+    return false;
+    
+   /* if (img_w > img_h && img_w > 500 ) {
         $('.size').text(str);
         $('.size').css('color', 'red');
     } else if (img_h > img_w) {
@@ -256,9 +271,7 @@ function getSize() {
         $('.size').css('color', 'red');
     } else {
         $('.size').text(str);
-    }
-    
-    return img_w;
+    }*/
 }
 
 $('.url-btn').click(function(e){
@@ -304,6 +317,7 @@ $('.clear').click(function(e){
     $('.size').text('');
     $('.file-size').text('');
     $('.file-name').text('');
+    $('.url').removeClass('error');
 });
 
 /*************************************************************************************************************/
@@ -349,6 +363,7 @@ function isNotBlank(items) {
 
 
 function check_validation() {
+  let image = getSize();
   let ingAndQuan = isNotBlank($('.ing :input[type=text]'));
   let instructions = isNotBlank($('.step'));
   let author =  $('.author-inp').val();
@@ -361,19 +376,21 @@ function check_validation() {
   
   
   
-  if(!author || !recipeName  || (!category && !newCategory)  || !prep  || !cook  || !serves || ingAndQuan === false || instructions === false) {
+  if(!author || !recipeName  || (!category && !newCategory)  || !prep  || !cook  || !serves || !ingAndQuan || !instructions || !image) {
     if(author === '') $('.author-inp').addClass('error');
     if(recipeName === '') $('.recipe-inp').addClass('error');
-    if($( ".category-option option:selected" ).text() === '') $( ".category-option" ).addClass('error');
+    if($( ".category-option option:selected" ).text() === '' && $('.new-category').val() === '') $( ".category-option" ).addClass('error');
     if(prep === '') $('.prep-inp').addClass('error');
     if(cook === '') $('.cook-inp').addClass('error');
     if(serves === '') $('.serves-inp').addClass('error');
+    if(image === false) $('.url').addClass('error');
     $('html, body').animate({scrollTop: $("form").offset().top}, 500);
     
     setTimeout(function(){
        $( ".category-option" ).removeClass('error');
        $('input[type="text"]').removeClass('error');
        $('.step').removeClass('error');
+       $('.url').removeClass('error');
     },2500);
     return false;
   } else {
@@ -398,7 +415,7 @@ function check_validation_edit() {
   if(!author || !recipeName  || !category  || !prep  || !cook  || !serves || ingAndQuan === false || instructions === false) {
     if(author === '') $('.author-inp-edit').addClass('error');
     if(recipeName === '') $('.recipe-inp-edit').addClass('error');
-    if($( ".category-option option:selected" ).text() === '') $( ".category-option" ).addClass('error');
+    if($( ".category-option option:selected" ).text() === '' && $('.new-category').val() === '') $( ".category-option" ).addClass('error');
     if(prep === '') $('.prep-inp-edit').addClass('error');
     if(cook === '') $('.cook-inp-edit').addClass('error');
     if(serves === '') $('.serves-inp-edit').addClass('error');
@@ -591,11 +608,11 @@ $('.sub-btn').click(function(event){
       data.cook = $('.cook-inp').val();
       data.serves = $('.serves-inp').val();
       data.username = $('.page-title').text();
-      data.url ='/static/assets/images/dessert.jpg';
+      data.url = $('.url').val(); //'/static/assets/images/dessert.jpg';
           
       console.log(data);
       let url = '/newrecipe';
-      $.ajax({
+     /* $.ajax({
         type : 'POST',
         url : url,
         contentType: 'application/json;charset=UTF-8',
@@ -604,7 +621,7 @@ $('.sub-btn').click(function(event){
         success: function(data){
            console.log(data);
         }
-      });
+      });*/
       
    }
 });
