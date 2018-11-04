@@ -888,6 +888,7 @@ form.user-page {
   font-weight: 600;
 }
 
+.pre-edt,
 .pre {
   width: 25px;
   height: 12px;
@@ -903,6 +904,7 @@ form.user-page {
   height: 370px;
 }
 
+.preview-edt,
 .preview {
   max-height: 370px;
   border: 1px solid;
@@ -934,6 +936,7 @@ form.user-page {
   padding: 6px 10px;
 }
 
+.url-btn-edt,
 .url-btn {
   margin-top: 15px;
 }
