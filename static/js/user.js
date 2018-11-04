@@ -236,6 +236,79 @@ function addTextarea() {
     $('.instructions-con').append(option);
 }
 
+// A section for loading images by url and checking there width and height so as to limit the size of images user use for recipe image
+
+function getSize() {
+    $('.size').text('');
+    $('.size').css('color','black');
+    let img_w = $('.off-scr')[0].clientWidth;
+    let img_h = $('.off-scr')[0].clientHeight;
+    let str = 'Width '+img_w+' Height '+img_h;
+    $('.pre').empty();
+    if (img_w > img_h && img_w > 500) {
+        $('.size').text(str);
+        $('.size').css('color', 'red');
+    } else if (img_h > img_w) {
+        $('.size').text(str);
+        $('.size').css('color', 'red');
+    } else if (img_h === img_w && img_w > 500) {
+        $('.size').text(str);
+        $('.size').css('color', 'red');
+    } else {
+        $('.size').text(str);
+    }
+    
+    return img_w;
+}
+
+$('.url-btn').click(function(e){
+    e.preventDefault();
+    
+    $('.preview').empty();
+    $('.pre').empty();
+    let img_url = $('.url').val();
+    
+    if(img_url !== '') {
+        createEl(img_url,getSize);
+       
+    } else {
+        $('.size').text('');
+         $('.size').css('color','black');
+    }
+});
+
+function createEl(url, fn) {
+    let el = '<img  class="img-url" src="'+url+'" alt="random food image">';
+    let el_a = '<img class="off-scr" src="'+url+'" alt="random food image">';
+   
+    $('.preview').append(el);
+    $('.pre').append(el_a);
+  
+  let waiting = setInterval(function() {
+        let img_w = $('.off-scr')[0].clientWidth;
+        let img_h = $('.off-scr')[0].clientHeight;
+        if (img_w && img_h) {
+            clearInterval(waiting);
+            getSize();
+        }
+    }, 10);
+  
+}
+
+$('.clear').click(function(e){
+    e.preventDefault();
+    
+    $('.url').val('');
+    $('.pre').empty();
+    $('.preview').empty();
+    $('.size').text('');
+    $('.file-size').text('');
+    $('.file-name').text('');
+});
+
+/*************************************************************************************************************/
+
+
 // function combining a ingredient and a quantity into an arry to keep them in pairs
 function pair_ing_quan(ing_quan){
   let ing_and_quan = [];
