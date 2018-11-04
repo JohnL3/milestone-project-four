@@ -1,355 +1,336 @@
-{% extends "base.html" %}
-{% block head %}
-<link rel='stylesheet' href={{url_for('static',filename='css/styles.css')}}>
-{% endblock %}
+{% extends "base.html" %} {% block head %}
+<link rel='stylesheet' href={{url_for( 'static',filename='css/styles.css' )}}> {% endblock %} {% block header %}
+<span class='page-title'>{{username}}</span> {% endblock %} {% block section %}
+<ul>
+	<li><a href="{{ url_for('index') }}">Home</a></li>
+	<li><a href="{{ url_for('recipe') }}">Recipes</a></li>
+	<li><a href="{{ url_for('logout') }}">Logout</a></li>
+</ul>
+{% endblock %} {% block content %}
+<div class='max-width'>
+	<div class='welcome-user'>
+		<div class='welcome'>
+			<p>
+				<h1>Welcome {{ username }}</h1>
+			</p>
+			<p>Here you can create your recipes. Click on the tab below labelled create recipe, and fill in the form.</p>
+			<p>All recipes you create will show under the your recipes tab.</p>
+			<p>Should you feel the need to change something in a recipe after you have created it, click the edit button on the recipe card and you will be brought to an edit recipe form where you can make changes to the recipe.</p>
+			<p>To collect recipes that you like and want easy access to, visit the recipes page and click the collect button on the recipe you would like to collect. These will then show up on your page, and to see them click the collectd tab below.</p>
+		</div>
+	</div>
+	<!-- User Tabbed Section -->
+	<div class='user-inner-menu'>
+		<ul>
+			<li class='inner-menu-a menu-item active-a'>YOUR RECIPES</li>
+			<li class='inner-menu-b menu-item'>COLLECTED</li>
+			<li class='inner-menu-c menu-item'>CREATE RECIPE</li>
+			<li class='inner-menu-d menu-item'>Edit RECIPE</li>
+		</ul>
+	</div>
 
-{% block header %}
-<span class='page-title'>{{username}}</span>
-{% endblock %}
+	<!-- User Recipe Section -->
 
-  {% block section %}
-    <ul>
-      <li><a href="{{ url_for('index') }}">Home</a></li>
-      <li><a href="{{ url_for('recipe') }}">Recipes</a></li>
-      <li><a href="{{ url_for('logout') }}">Logout</a></li>
-    </ul>
-  {% endblock %}
-  
-  {% block content %}
-   <div class='max-width'>
-   <div class='welcome-user'>
-       <div class='welcome'>
-         <p><h1>Welcome {{ username }}</h1></p>
-         <p>Here you can create your recipes. Click on the tab below labelled create recipe, and fill in the form.</p>
-         <p>All recipes you create will show under the your recipes tab.</p>
-         <p>Should you feel the need to change something in a recipe after you have created it, click the edit button on the recipe card and you will be brought to an edit recipe form where you can make changes to the recipe.</p>
-         <p>To collect recipes that you like and want easy access to, visit the recipes page and click the collect button on the recipe you would like to collect. These will then show up on your page, and to see them click the collectd tab below.</p>
-       </div> 
-   </div>
-   <!-- User Tabbed Section -->
-   <div class='user-inner-menu'>
-       <ul>
-           <li class='inner-menu-a menu-item active-a'>YOUR RECIPES</li>
-           <li class='inner-menu-b menu-item'>COLLECTED</li>
-           <li class='inner-menu-c menu-item'>CREATE RECIPE</li>
-           <li class='inner-menu-d menu-item'>Edit RECIPE</li>
-       </ul>
-   </div>
-   
-   <!-- User Recipe Section -->
-   
-   <div class='grids'>
-      {% for r in recipe %}
-      <div class='recipe'>
-        <div class="recipe-header">
-          <span>{{ r.recipe_name }}</span>
-        </div>
-        
-        <div class="my-img-card">
-          <img src='{{r.url}}'>
-        </div>
-        
-        <div class="recipe-box">
-          
-          <div class="recipe-details">
-            <div class="recipe-category">
-              <span>CATEGORY</span><span>{{ r.category_name}}</span>
-            </div>
-            <div class="recipe-author">
-              <span>AUTHOR</span><span>{{ r.author_name}}</span>
-            </div>
-          </div>
-          
-          <span>ALLERGENS</span>
-          <div class="recipe-allergens">
-            {% if r.Nuts == 'T' %}
-            <span class="allergen">Nuts</span>
-            {% endif %}
-            {% if r.Egg == 'T' %}
-            <span class="allergen">Egg</span>
-            {% endif %}
-            {% if r.Milk =='T' %}
-            <span class="allergen">Milk</span>
-            {% endif %}
-            {% if r.Pnuts =='T' %}
-            <span class="allergen">Peanuts</span>
-            {% endif %}
-            {% if r.Celery =='T' %}
-            <span class="allergen">Celery</span>
-            {% endif %}
-            {% if r.Mustard =='T' %}
-            <span class="allergen">Mustard</span>
-            {% endif %}
-            {% if r.SSeeds =='T' %}
-            <span class="allergen">Sesame Seeds</span>
-            {% endif %}
-            {% if r.Fish =='T' %}
-            <span class="allergen">Fish</span>
-            {% endif %}
-            {% if r.Moll =='T' %}
-            <span class="allergen">Molluscs</span>
-            {% endif %}
-            {% if r.SBeans =='T' %}
-            <span class="allergen">Soyabeans</span>
-            {% endif %}
-            {% if r.Lupin =='T' %}
-            <span class="allergen">Lupin</span>
-            {% endif %}
-            {% if r.SDioxide =='T' %}
-            <span class="allergen">Sulpher Dioxide</span>
-            {% endif %}
-            {% if r.Cerals =='T' %}
-            <span class="allergen">Cerals</span>
-            {% endif %}
-            {% if r.Crust =='T' %}
-            <span class="allergen">Crustaceans</span>
-            {% endif %}
-          </div>
-          
-          <div class='section-con user-page'>
-            <div class="icons">
-              <div class="likes">
-                <i class="far fa-heart"></i>
-                <span>{{r.likes}}</span>
-              </div>
-              <div class="collect">
-                <i class="far fa-folder-open"></i>
-                <span>{{ r.collected}}</span>
-              </div>
-            </div>
-            
-            <div class='visit'>
-              <div>
-                <a class='view-span' href={{url_for('viewrecipe', recipe_name = r.recipe_name )}}>View Recipe</a>
-              </div>
-              <div id='{{ r.recipe_name }}' class='edit-recipe'>
-                <span>EDIT</span>
-              </div>
-            </div>
-            
-          </div>
-          
-        </div>
-      </div>
-    {% endfor %}
-    </div>
-    
-    <!-- Collected Recipe Section -->
-    
-    <div class='all-collected'>
-      <span class='empty'>Looks like you havent collected any Recipes yet.....</span>
-      
-    </div>
-      
-    <!-- Create New Recipe Section -->
-    
-    <form class='user-page'>
-      <div class='form-title'>
-        <h1 id='special-h1'>Please fill in the form below to create a new recipe</h1>
-      </div>
-      <div class='create'>
-          <ul class='create-recipe type-a'>
-              <li><label>RECIPE NAME</label><input type='text' class='recipe-inp'></li>
-              <li><label>AUTHOR NAME</label><input type='text' class='author-inp'></li>
-          </ul>
-        
-      </div>
-      
-      <div class='create'>
-          <ul class='create-recipe type-b ing'>
-              <li><label>INGREDIENTS</label><input type='text'></li>
-              <li><label>QUANTITY</label><input type='text'></li>
-              <li class='less-padding'><input type='text'></li>
-              <li class='less-padding'><input type='text'></li>
-          </ul>
-          <div class='add-lines'>
-              <span class='adding-lines'>Add more lines</span>
-          </div>
-      </div>
-      <div class='create'>
-          <ul class='create-recipe type-d'>
-              <li><label>PREP TIME</label><input type='text' class='prep-inp'></li>
-              <li><label>COOK TIME</label><input type='text' class='cook-inp'></li>
-              <li><label>SERVES</label><input type='text' class='serves-inp'></li>
-          </ul>
-      </div>
-      
-      <div class='recipe-allergens-con'>
-        <div class='recipe-allergens create'>
-            <label>Select all allergens used in recipe</label>
-            <div class="allergens">
-            <div><input type="checkbox" class='hasEgg'><label>Egg</label></div>
-            <div><input type="checkbox" class='hasMolluscs'><label>Molluscs</label></div>
-            <div><input type="checkbox" class='hasPeanuts'><label>Peanuts</label></div>
-            <div><input type="checkbox" class='hasNuts'><label>Nuts</label></div>
-            <div><input type="checkbox" class='hasSoyabeans'><label>Soyabeans</label></div>
-            <div><input type="checkbox" class='hasMilk'><label>Milk</label></div>
-            <div><input type="checkbox" class='hasCelery'><label>Celery</label></div>
-            <div><input type="checkbox" class='hasMustard'><label>Mustard</label></div>
-            <div><input type="checkbox" class='hasSesameseds'><label>Sesame Seeds</label></div>
-            <div><input type="checkbox" class='hasFish'><label>Fish</label></div>
-            <div><input type="checkbox" class='hasLupin'><label>Lupin</label></div>
-            <div><input type="checkbox" class='hasSulpherdioxide'><label>Sulpher Dioxide</label></div>
-            <div><input type="checkbox" class='hasCerals'><label>Cereals</label></div>
-            <div><input type="checkbox" class='hasCrustaceans'><label>Crustaceans </label></div>
-            </div>
-          </div>
-        </div>
-        
-        <div class='create'>
-          <ul class='create-recipe type-c'>
-              <li><label>CHOOSE CATEGORY</label></li>
-              <select class='category-option'>
-                <option value='null'></option>
-                {% for category in categorys %}
-                  <option value='{{ category.category_name}}'>{{category.category_name}}</option>
-                {% endfor %}
-              </select>
-              <li><label>OR ADD YOUR OWN</label></li>
-              <input type='text' class='category-option new-category'>
-            </ul>
-        </div>
-          
-        <div class='create'>
-            <ul class='create-recipe type-a'>
-                <li><label>INSTRUCTIONS</label></li>
-            </ul>
-        </div>
-        <div class='recipe-instructions'>
-          <div class='instructions-con'>
-            <textarea rows="3" class='step' placeholder='Pour into bowl' ></textarea>
-            <textarea rows="3" class='step' placeholder='Pour into bowl' ></textarea>
-            
-          </div>
-           <div class='add-lines'>
-              <span class='add-textarea'>Add more Instructions</span>
-          </div>
-        </div>
-        
-        <div class='choose-img'>
-          <div class='con-img'>
-            
-            <div class='pre'></div>
-            
-            <div class='outer-preview'>
-              <div class='preview'>
-                
-              </div>
-            </div>
-            <div class='url-img'>
-              <span>IMAGE SIZE : </span><span class='size'>W : 700px, H : 300px</span>
-              <label>Add image url</label>
-              <input type='text' class='url'><button class='clear'>CLEAR</button>
-              <button class='url-btn'>FETCH IMAGE</button>
-              
-              </div>
-          </div>
-        </div>
-        
-        <div class='create'>
-          <ul class='create-recipe type-a'>
-              <li><button class='sub-btn'>SUBMIT</button></li>
-          </ul>
-      </div>
-        
-  </form>
-  
-  <!-- Edit Recipe Section -->
-    
-    <form id='edit-page' class='edit-page'>
-      <div class='form-title'>
-        <h1 id='special-h1'>Edit Fields Below</h1>
-      </div>
-      <div class='create'>
-          <ul class='create-recipe type-a edit-a'>
-              <li><label>RECIPE NAME</label><input type='text' class='recipe-inp-edit'></li>
-              <li><label>AUTHOR NAME</label><input type='text' class='author-inp-edit'></li>
-          </ul>
-        
-      </div>
-      
-      <div class='create'>
-          <div class='edit-div'>
-            
-          </div>
-          
-          <div class='add-lines-edit'>
-              <span class='adding-lines-edit'>Add more lines</span>
-          </div>
-      </div>
-      <div class='create'>
-          <ul class='create-recipe type-d'>
-              <li><label>PREP TIME</label><input type='text' class='prep-inp-edit'></li>
-              <li><label>COOK TIME</label><input type='text' class='cook-inp-edit'></li>
-              <li><label>SERVES</label><input type='text' class='serves-inp-edit'></li>
-          </ul>
-      </div>
-      
-      <div class='recipe-allergens-con'>
-        <div class='recipe-allergens create-edit'>
-            <label>Select all allergens used in recipe</label>
-            <div class="allergens">
-            <div><input type="checkbox" class='Egg'><label>Egg</label></div>
-            <div><input type="checkbox" class='Moll'><label>Molluscs</label></div>
-            <div><input type="checkbox" class='Pnuts'><label>Peanuts</label></div>
-            <div><input type="checkbox" class='Nuts'><label>Nuts</label></div>
-            <div><input type="checkbox" class='SBeans'><label>Soyabeans</label></div>
-            <div><input type="checkbox" class='Milk'><label>Milk</label></div>
-            <div><input type="checkbox" class='Celery'><label>Celery</label></div>
-            <div><input type="checkbox" class='Mustard'><label>Mustard</label></div>
-            <div><input type="checkbox" class='SSeeds'><label>Sesame Seeds</label></div>
-            <div><input type="checkbox" class='Fish'><label>Fish</label></div>
-            <div><input type="checkbox" class='Lupin'><label>Lupin</label></div>
-            <div><input type="checkbox" class='SDioxide'><label>Sulpher Dioxide</label></div>
-            <div><input type="checkbox" class='Cerals'><label>Cereals</label></div>
-            <div><input type="checkbox" class='Crust'><label>Crustaceans </label></div>
-            </div>
-          </div>
-        </div>
-        
-        <div class='create'>
-          <ul class='create-recipe type-c'>
-              <li><label>CATEGORY</label></li>
-              <select class='category-option edit-category'>
-                <option></option>
-                {% for category in categorys %}
-                <option value='{{ category.category_name}}'>{{category.category_name}}</option>
-                {% endfor %}
-              </select>
-            </ul>
-        </div>
-          
-        <div class='create'>
-            <ul class='create-recipe type-a'>
-                <li><label>INSTRUCTIONS</label></li>
-            </ul>
-        </div>
-        <div class='recipe-instructions'>
-          <div class='instructions-con instructions-con-create'>
-            
-            
-          </div>
-           <div class='add-lines'>
-              <span class='add-textarea'>Add more Instructions</span>
-          </div>
-        </div>
-        <div class='choose-img'>
-          <div class='con-img'>
-            
-          </div>
-        </div>
-        <div class='create'>
-          <ul class='create-recipe type-a'>
-              <li><button class='edit-sub-btn'>SUBMIT</button></li>
-          </ul>
-      </div>
-  </form>
-  </div>
-  
-  
-   
-    
-    
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src={{url_for('static',filename='js/user.js')}}> </script>
+	<div class='grids'>
+		{% for r in recipe %}
+		<div class='recipe'>
+			<div class="recipe-header">
+				<span>{{ r.recipe_name }}</span>
+			</div>
+
+			<div class="my-img-card">
+				<img src='{{r.url}}'>
+			</div>
+
+			<div class="recipe-box">
+
+				<div class="recipe-details">
+					<div class="recipe-category">
+						<span>CATEGORY</span><span>{{ r.category_name}}</span>
+					</div>
+					<div class="recipe-author">
+						<span>AUTHOR</span><span>{{ r.author_name}}</span>
+					</div>
+				</div>
+
+				<span>ALLERGENS</span>
+				<div class="recipe-allergens">
+					{% if r.Nuts == 'T' %}
+					<span class="allergen">Nuts</span> {% endif %} {% if r.Egg == 'T' %}
+					<span class="allergen">Egg</span> {% endif %} {% if r.Milk =='T' %}
+					<span class="allergen">Milk</span> {% endif %} {% if r.Pnuts =='T' %}
+					<span class="allergen">Peanuts</span> {% endif %} {% if r.Celery =='T' %}
+					<span class="allergen">Celery</span> {% endif %} {% if r.Mustard =='T' %}
+					<span class="allergen">Mustard</span> {% endif %} {% if r.SSeeds =='T' %}
+					<span class="allergen">Sesame Seeds</span> {% endif %} {% if r.Fish =='T' %}
+					<span class="allergen">Fish</span> {% endif %} {% if r.Moll =='T' %}
+					<span class="allergen">Molluscs</span> {% endif %} {% if r.SBeans =='T' %}
+					<span class="allergen">Soyabeans</span> {% endif %} {% if r.Lupin =='T' %}
+					<span class="allergen">Lupin</span> {% endif %} {% if r.SDioxide =='T' %}
+					<span class="allergen">Sulpher Dioxide</span> {% endif %} {% if r.Cerals =='T' %}
+					<span class="allergen">Cerals</span> {% endif %} {% if r.Crust =='T' %}
+					<span class="allergen">Crustaceans</span> {% endif %}
+				</div>
+
+				<div class='section-con user-page'>
+					<div class="icons">
+						<div class="likes">
+							<i class="far fa-heart"></i>
+							<span>{{r.likes}}</span>
+						</div>
+						<div class="collect">
+							<i class="far fa-folder-open"></i>
+							<span>{{ r.collected}}</span>
+						</div>
+					</div>
+
+					<div class='visit'>
+						<div>
+							<a class='view-span' href={{url_for( 'viewrecipe', recipe_name=r .recipe_name )}}>View Recipe</a>
+						</div>
+						<div id='{{ r.recipe_name }}' class='edit-recipe'>
+							<span>EDIT</span>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+	<!-- Collected Recipe Section -->
+
+	<div class='all-collected'>
+		<span class='empty'>Looks like you havent collected any Recipes yet.....</span>
+
+	</div>
+
+	<!-- Create New Recipe Section -->
+
+	<form class='user-page'>
+		<div class='form-title'>
+			<h1 id='special-h1'>Please fill in the form below to create a new recipe</h1>
+		</div>
+		<div class='create'>
+			<ul class='create-recipe type-a'>
+				<li><label>RECIPE NAME</label><input type='text' class='recipe-inp'></li>
+				<li><label>AUTHOR NAME</label><input type='text' class='author-inp'></li>
+			</ul>
+
+		</div>
+
+		<div class='create'>
+			<ul class='create-recipe type-b ing'>
+				<li><label>INGREDIENTS</label><input type='text'></li>
+				<li><label>QUANTITY</label><input type='text'></li>
+				<li class='less-padding'><input type='text'></li>
+				<li class='less-padding'><input type='text'></li>
+			</ul>
+			<div class='add-lines'>
+				<span class='adding-lines'>Add more lines</span>
+			</div>
+		</div>
+		<div class='create'>
+			<ul class='create-recipe type-d'>
+				<li><label>PREP TIME</label><input type='text' class='prep-inp'></li>
+				<li><label>COOK TIME</label><input type='text' class='cook-inp'></li>
+				<li><label>SERVES</label><input type='text' class='serves-inp'></li>
+			</ul>
+		</div>
+
+		<div class='recipe-allergens-con'>
+			<div class='recipe-allergens create'>
+				<label>Select all allergens used in recipe</label>
+				<div class="allergens">
+					<div><input type="checkbox" class='hasEgg'><label>Egg</label></div>
+					<div><input type="checkbox" class='hasMolluscs'><label>Molluscs</label></div>
+					<div><input type="checkbox" class='hasPeanuts'><label>Peanuts</label></div>
+					<div><input type="checkbox" class='hasNuts'><label>Nuts</label></div>
+					<div><input type="checkbox" class='hasSoyabeans'><label>Soyabeans</label></div>
+					<div><input type="checkbox" class='hasMilk'><label>Milk</label></div>
+					<div><input type="checkbox" class='hasCelery'><label>Celery</label></div>
+					<div><input type="checkbox" class='hasMustard'><label>Mustard</label></div>
+					<div><input type="checkbox" class='hasSesameseds'><label>Sesame Seeds</label></div>
+					<div><input type="checkbox" class='hasFish'><label>Fish</label></div>
+					<div><input type="checkbox" class='hasLupin'><label>Lupin</label></div>
+					<div><input type="checkbox" class='hasSulpherdioxide'><label>Sulpher Dioxide</label></div>
+					<div><input type="checkbox" class='hasCerals'><label>Cereals</label></div>
+					<div><input type="checkbox" class='hasCrustaceans'><label>Crustaceans </label></div>
+				</div>
+			</div>
+		</div>
+
+		<div class='create'>
+			<ul class='create-recipe type-c'>
+				<li><label>CHOOSE CATEGORY</label></li>
+				<select class='category-option'>
+				<option value='null'></option>
+				{% for category in categorys %}
+				  <option value='{{ category.category_name}}'>{{category.category_name}}</option>
+				{% endfor %}
+			  </select>
+				<li><label>OR ADD YOUR OWN</label></li>
+				<input type='text' class='category-option new-category'>
+			</ul>
+		</div>
+
+		<div class='create'>
+			<ul class='create-recipe type-a'>
+				<li><label>INSTRUCTIONS</label></li>
+			</ul>
+		</div>
+		<div class='recipe-instructions'>
+			<div class='instructions-con'>
+				<textarea rows="3" class='step' placeholder='Pour into bowl'></textarea>
+				<textarea rows="3" class='step' placeholder='Pour into bowl'></textarea>
+
+			</div>
+			<div class='add-lines'>
+				<span class='add-textarea'>Add more Instructions</span>
+			</div>
+		</div>
+
+		<div class='choose-img'>
+			<div class='con-img'>
+
+				<div class='pre'></div>
+
+				<div class='outer-preview'>
+					<div class='preview'>
+
+					</div>
+				</div>
+				<div class='url-img'>
+					<span>IMAGE SIZE : </span><span class='size'>W : 700px, H : 300px</span>
+					<label>Add image url</label>
+					<input type='text' class='url'><button class='clear'>CLEAR</button>
+					<button class='url-btn'>FETCH IMAGE</button>
+
+				</div>
+			</div>
+		</div>
+
+		<div class='create'>
+			<ul class='create-recipe type-a'>
+				<li><button class='sub-btn'>SUBMIT</button></li>
+			</ul>
+		</div>
+
+	</form>
+
+	<!-- Edit Recipe Section -->
+
+	<form id='edit-page' class='edit-page'>
+		<div class='form-title'>
+			<h1 id='special-h1'>Edit Fields Below</h1>
+		</div>
+		<div class='create'>
+			<ul class='create-recipe type-a edit-a'>
+				<li><label>RECIPE NAME</label><input type='text' class='recipe-inp-edit'></li>
+				<li><label>AUTHOR NAME</label><input type='text' class='author-inp-edit'></li>
+			</ul>
+
+		</div>
+
+		<div class='create'>
+			<div class='edit-div'>
+
+			</div>
+
+			<div class='add-lines-edit'>
+				<span class='adding-lines-edit'>Add more lines</span>
+			</div>
+		</div>
+		<div class='create'>
+			<ul class='create-recipe type-d'>
+				<li><label>PREP TIME</label><input type='text' class='prep-inp-edit'></li>
+				<li><label>COOK TIME</label><input type='text' class='cook-inp-edit'></li>
+				<li><label>SERVES</label><input type='text' class='serves-inp-edit'></li>
+			</ul>
+		</div>
+
+		<div class='recipe-allergens-con'>
+			<div class='recipe-allergens create-edit'>
+				<label>Select all allergens used in recipe</label>
+				<div class="allergens">
+					<div><input type="checkbox" class='Egg'><label>Egg</label></div>
+					<div><input type="checkbox" class='Moll'><label>Molluscs</label></div>
+					<div><input type="checkbox" class='Pnuts'><label>Peanuts</label></div>
+					<div><input type="checkbox" class='Nuts'><label>Nuts</label></div>
+					<div><input type="checkbox" class='SBeans'><label>Soyabeans</label></div>
+					<div><input type="checkbox" class='Milk'><label>Milk</label></div>
+					<div><input type="checkbox" class='Celery'><label>Celery</label></div>
+					<div><input type="checkbox" class='Mustard'><label>Mustard</label></div>
+					<div><input type="checkbox" class='SSeeds'><label>Sesame Seeds</label></div>
+					<div><input type="checkbox" class='Fish'><label>Fish</label></div>
+					<div><input type="checkbox" class='Lupin'><label>Lupin</label></div>
+					<div><input type="checkbox" class='SDioxide'><label>Sulpher Dioxide</label></div>
+					<div><input type="checkbox" class='Cerals'><label>Cereals</label></div>
+					<div><input type="checkbox" class='Crust'><label>Crustaceans </label></div>
+				</div>
+			</div>
+		</div>
+
+		<div class='create'>
+			<ul class='create-recipe type-c'>
+				<li><label>CATEGORY</label></li>
+				<select class='category-option edit-category'>
+				<option></option>
+				{% for category in categorys %}
+				<option value='{{ category.category_name}}'>{{category.category_name}}</option>
+				{% endfor %}
+			  </select>
+			</ul>
+		</div>
+
+		<div class='create'>
+			<ul class='create-recipe type-a'>
+				<li><label>INSTRUCTIONS</label></li>
+			</ul>
+		</div>
+		<div class='recipe-instructions'>
+			<div class='instructions-con instructions-con-create'>
+
+
+			</div>
+			<div class='add-lines'>
+				<span class='add-textarea'>Add more Instructions</span>
+			</div>
+		</div>
+		<div class='choose-img'>
+			<div class='con-img'>
+				<div class='pre-edt'></div>
+
+				<div class='outer-preview'>
+					<div class='preview-edt'>
+
+					</div>
+				</div>
+				<div class='url-img'>
+					<span>IMAGE SIZE : </span><span class='size-edt'>W : 700px, H : 300px</span>
+					<label>Add image url</label>
+					<input type='text' class='url-edt'><button class='clear-edt'>CLEAR</button>
+					<button class='url-btn-edt'>FETCH IMAGE</button>
+
+				</div>
+
+			</div>
+		</div>
+		<div class='create'>
+			<ul class='create-recipe type-a'>
+				<li><button class='edit-sub-btn'>SUBMIT</button></li>
+			</ul>
+		</div>
+	</form>
+</div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src={{url_for( 'static',filename='js/user.js' )}}>
+</script>
 {% endblock %}
