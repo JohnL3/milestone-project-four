@@ -241,6 +241,21 @@ function addTextarea() {
     $('.instructions-con').append(option);
 }
 
+$('input:radio').click(function(){
+    /*let cls = $(this).attr('class');
+    //let st ='img'+'[name="'+cls+'"]'
+    let imgAttr = `img[name='${cls}']`;
+    let val = $(imgAttr).attr('src');*/
+    $('.url').val('');
+    $('.size').text('');
+    $('.preview').empty();
+});
+
+$('.gen-btn').click(function(e) {
+    e.preventDefault();
+    $('input:radio').prop('checked',false);
+});
+
 // A section for loading images by url and checking there width and height so as to limit the size of images user use for recipe image in create recipe
 // And for editing section if recipe image needs to be changed
 
@@ -252,6 +267,7 @@ $('.url-btn-edt').click(function(e){
 $('.url-btn').click(function(e){
     e.preventDefault();
     fetchImage();
+    $('input:radio').prop('checked',false);
 });
 
 function fetchImage(ext='') {
@@ -379,7 +395,13 @@ function isNotBlank(items) {
 
 
 function check_validation() {
-  let image = getSize();
+    let image = '';//getSize();
+  if ($("input[name='choice']:checked").is(':checked')){
+      image = true;
+  } else {
+      image = getSize();
+  }
+  //let image = getSize();
   let ingAndQuan = isNotBlank($('.ing :input[type=text]'));
   let instructions = isNotBlank($('.step'));
   let author =  $('.author-inp').val();
@@ -626,7 +648,15 @@ $('.sub-btn').click(function(event){
       data.cook = $('.cook-inp').val();
       data.serves = $('.serves-inp').val();
       data.username = $('.page-title').text();
-      data.url = $('.url').val(); //'/static/assets/images/dessert.jpg';
+      if($("input[name='choice']:checked").is(':checked')){
+          let img = $('input[name=choice]:checked', '#create-form').val(); 
+          if(img === 'img-a') data.url = '/static/assets/images/allcakes.jpg';
+          if(img === 'img-b') data.url = '/static/assets/images/dessert.jpg';
+          if(img === 'img-c') data.url = '/static/assets/images/dessert.jpg';
+      } else {
+          data.url = $('.url').val(); //'/static/assets/images/dessert.jpg';
+      }
+     
           
       console.log(data);
       let url = '/newrecipe';
