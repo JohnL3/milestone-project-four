@@ -30,8 +30,8 @@ $('.filters-header').click(function(){
     }
   } else {
       $('input:text').val('');
-      addNames(categorys,'B');
-      addNames(authors,'C');
+      addNames(categorys,'B', 'category');
+      addNames(authors,'C', 'author');
       $('.clear-btn').css('background','buttonface');
       $('.sub-btn').prop("disabled", true);
       oneChecked = false;
@@ -86,8 +86,8 @@ $('.clear-btn').click(function(){
      $('input:checkbox').prop('checked',false);
      $('input:radio').prop('checked',false);
      $('input:text').val('');
-     addNames(categorys,'B');
-     addNames(authors,'C');
+     addNames(categorys,'B', 'category');
+     addNames(authors,'C', 'author');
      $(this).css('background','buttonface');
      $('.sub-btn').prop("disabled", true);
      oneChecked = false;
@@ -168,7 +168,7 @@ $( "input[name='category']" ).keyup(function(event) {
       list.push(x);
     } 
 });
-addNames(list,'B', 'category');
+addNames(list,'B', 'category', 'category');
 if(ind === -1) addNames(categorys,'B', 'category');
 });
 
@@ -183,7 +183,7 @@ $( "input[name='author']" ).keyup(function(event) {
       list.push(x);
     } 
 });
-addNames(list,'C', 'author');
+addNames(list,'C', 'author', 'author');
 if(ind === -1) addNames(authors,'C', 'author');
 });
 
