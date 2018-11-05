@@ -662,7 +662,7 @@ i {
   
   .recipe-page-icon {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 85px);
     box-sizing: border-box;
     padding: 5px;
     text-align: center;
@@ -952,6 +952,48 @@ form.user-page {
 
 .off-scr {
   width: auto;
+}
+
+.generic-img {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  margin-bottom: 15px;
+}
+
+.generic-img img {
+  width: 100%;
+}
+
+.generic-choice {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 25px;
+  align-items: center;
+  justify-items: center;
+}
+
+.generic-choice input {
+    height: 20px;
+    width: 20px;
+}
+
+.this-img {
+  grid-column: 1/-1;
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.this-img button {
+  padding: 6px 15px;
+}
+
+.this-img span {
+  padding-left: 10px;
 }
 /********************* Create-recipe *******************************/
 
