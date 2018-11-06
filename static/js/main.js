@@ -22,32 +22,23 @@ let oneChecked= false;
 // Opens and closes the filter and clears filters
 $('.filters-header').click(function(){
   if($('.filter-items-con').css('display') === 'none') {
-  
+
     $('.filter-items-con').css('display','block');
-    
-    if($(window).width() < 768) {
-        $('nav').css('display','none');
-        $('header').css('display','none');
-    }
   } else {
       $('input:text').val('');
+      
       addNames(categorys,'B', 'category');
       addNames(authors,'C', 'author');
+      
       $('.clear-btn').css('background','buttonface');
       $('.sub-btn').prop("disabled", true);
       oneChecked = false;
-      if($(window).width() > 767){
-        $('nav').css('display','inline-block');
-        $('header').css('display','grid');
-      } else {
-        $('nav').css('display','block');
-        $('header').css('display','block');
-      }
-    $('.filter-items').css('display','block');
+     
+     $('.filter-items').css('display','block');
 
-    $('.filter-items-con').css('display','none');
-    $('.type').css('display','none');
-  }
+     $('.filter-items-con').css('display','none');
+     $('.type').css('display','none');
+   }
 });
 
 // opens and closes author section of filter and closes others sections if opened
