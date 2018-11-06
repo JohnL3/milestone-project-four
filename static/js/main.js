@@ -89,16 +89,6 @@ $('.clear-btn').click(function(){
      oneChecked = false;
 });
 
-/*
-$('input:radio').click(function(){
-    if($(this).prop('checked',true)){
-        $('.clear-btn').css('background','lightblue');
-        $('.sub-btn').prop("disabled", false);
-        oneChecked = true;
-    }
-});
-*/
-
 // if a category radio button is clicked sets clear button background to blue and enables submit button
 $('.filter-select-B').on('click', 'input:radio',function(){
    if($(this).prop('checked',true)){
@@ -161,16 +151,16 @@ let categorys = getCategorys();
 // for when typing in filter to filter categorys by letter
 $( "input[name='category']" ).keyup(function(event) {
   
-  let letter, list, word, ind;
-  [letter, word, list, ind] = commonCode(event,this);
-  console.log(ind);
-  categorys.filter(function(x){
+    let letter, list, word, ind;
+    [letter, word, list, ind] = commonCode(event,this);
+    console.log(ind);
+    categorys.filter(function(x){
     if( letter === x.charAt(ind).toLocaleLowerCase() &&     x.toLocaleLowerCase().includes(word) && word !=''){
-      list.push(x);
-    } 
-});
-addNames(list,'B', 'category', 'category');
-if(ind === -1) addNames(categorys,'B', 'category');
+          list.push(x);
+        } 
+    });
+    addNames(list,'B', 'category', 'category');
+    if(ind === -1) addNames(categorys,'B', 'category');
 });
 
 // for when typing in filter to filter authors by letter
@@ -179,13 +169,15 @@ $( "input[name='author']" ).keyup(function(event) {
   let letter, list, word, ind;
   [letter, word, list, ind] = commonCode(event,this);
   console.log(ind);
+  
   authors.filter(function(x){
-    if( letter === x.charAt(ind).toLocaleLowerCase() &&     x.toLocaleLowerCase().includes(word) && word !=''){
-      list.push(x);
-    } 
-});
-addNames(list,'C', 'author', 'author');
-if(ind === -1) addNames(authors,'C', 'author');
+        if( letter === x.charAt(ind).toLocaleLowerCase() &&     x.toLocaleLowerCase().includes(word) && word !=''){
+             list.push(x);
+        } 
+    });
+    
+    addNames(list,'C', 'author', 'author');
+    if(ind === -1) addNames(authors,'C', 'author');
 });
 
 // helper function to save rewriting the same code more than once
