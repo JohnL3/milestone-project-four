@@ -19,6 +19,7 @@ $( window ).resize(function() {
 /************************* Recipe Page Filter *********************************************/
 let oneChecked= false;
 
+// Opens and closes the filter and clears filters
 $('.filters-header').click(function(){
   if($('.filter-items-con').css('display') === 'none') {
   
@@ -49,6 +50,7 @@ $('.filters-header').click(function(){
   }
 });
 
+// opens and closes author section of filter and closes others sections if opened
 $('.author').click(function(){
   if($('.author-input').css('display') === 'none') {
     $('.author-input').css('display','block');
@@ -60,6 +62,7 @@ $('.author').click(function(){
   }
 });
 
+//open and closes category section of filter and closes other sections if open
 $('.category').click(function(){
   if($('.category-input').css('display') === 'none') {
     $('.category-input').css('display','block');
@@ -71,6 +74,7 @@ $('.category').click(function(){
   }
 });
 
+// open and closes allergen section of filter and closes other sections if opened
 $('.allergen').click(function(){
   if($('.allergen-con').css('display') === 'none') {
     $('.allergen-con').css('display','block');
@@ -81,6 +85,7 @@ $('.allergen').click(function(){
   }
 });
 
+// clears all filters and disables subit button
 $('.clear-btn').click(function(){
     
      $('input:checkbox').prop('checked',false);
@@ -92,7 +97,8 @@ $('.clear-btn').click(function(){
      $('.sub-btn').prop("disabled", true);
      oneChecked = false;
 });
-  
+
+/*
 $('input:radio').click(function(){
     if($(this).prop('checked',true)){
         $('.clear-btn').css('background','lightblue');
@@ -100,6 +106,9 @@ $('input:radio').click(function(){
         oneChecked = true;
     }
 });
+*/
+
+// if a category radio button is clicked sets clear button background to blue and enables submit button
 $('.filter-select-B').on('click', 'input:radio',function(){
    if($(this).prop('checked',true)){
         $('.clear-btn').css('background','lightblue');
@@ -108,6 +117,7 @@ $('.filter-select-B').on('click', 'input:radio',function(){
     }
 });
 
+// if a author radio button is clicked sets clear button background to blue and enables submit button
 $('.filter-select-C').on('click', 'input:radio',function(){
    if($(this).prop('checked',true)){
         $('.clear-btn').css('background','lightblue');
@@ -117,7 +127,7 @@ $('.filter-select-C').on('click', 'input:radio',function(){
 });
 
 
-
+// if a allergen checkbox is clicked it sets clear button to blue and enables submit button
 $('input:checkbox').click(function(){
     
     let ckboxIsCk = $('input[name="allergen"]:checked').length > 0
@@ -187,7 +197,7 @@ addNames(list,'C', 'author', 'author');
 if(ind === -1) addNames(authors,'C', 'author');
 });
 
-
+// helper function to save rewriting the same code more than once
 let commonCode = function(e, t) {
   let letter = e.which;
   let word = $(t).val().toLocaleLowerCase();
@@ -199,6 +209,7 @@ let commonCode = function(e, t) {
   return [letter, word, list, ind];
 };
 
+// helper function to used in various functions to save rewriting the same code more than onec
 let addNames = function(arr,ext, type) {
  
   $('.inner-filter-'+ext).empty();
@@ -215,7 +226,7 @@ let createInner = function(name, type) {
     return inner;
 };
 
-////
+// helper function for when allergen checkboses are clicked
 function addFilteringItems(){
   let allergens = [];
   $('.inner-filtering-by').empty();
@@ -238,10 +249,6 @@ $('.sub-btn').click(function(){
     let ckboxIsCk = $('input[name="allergen"]:checked').length > 0;
     let rdIsCkA = $('input[name="author"]:checked').length > 0;
     let rdIsCkC = $('input[name="category"]:checked').length > 0;
-    
-     //$('.filter-select-A').css('display', 'none');
-     //$('.filter-select-B').css('display', 'none');
-     //$('.filter-select-C').css('display', 'none');
      
      $('.allergen-con').css('display','none');
      $('.category-input').css('display','none');
@@ -290,6 +297,7 @@ $('.sub-btn').click(function(){
     }
 });
 
+// gets all recipes ... after filtering this can be used to restore all recipes
 $('.all-recipe-btn').click(function(){
     
     let url = '/get_all';
@@ -304,7 +312,7 @@ $('.all-recipe-btn').click(function(){
     
 });
 
-
+// used to display recipes when filtering or when getting all recipes
 function createRecipesDivs(data) {
     $('.grids').empty();
     let allergen_spans = '';
