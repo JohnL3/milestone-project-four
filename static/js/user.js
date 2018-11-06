@@ -1,9 +1,15 @@
-
+/*
+When i click edit recipe i use function to return all the details of the recipe and store it in 
+recipeTobeEdited.
+Then when im checking to see if anything is changed in recipe being edited i compare this data to the new data
+and if different i know i need to sumbit data to backend.
+*/
 function storeInfo(d) {
     return d;
-};
+}
 
 let recipeTobeEdited;
+
 
 $('#burger').click(function(){
     if($('.nav-items').css('display') === 'none'){
@@ -23,7 +29,7 @@ $( window ).resize(function() {
   }
 });
 
-// show and hide users recipes / collected/ create recipe
+// show and hide create new recipe form ... hides collected and user recipes and edit recipe if open
 $('.inner-menu-c').click(function(){
     $('.grids').css('display', 'none');
     $(this).addClass('active-c');
@@ -35,6 +41,7 @@ $('.inner-menu-c').click(function(){
     
 });
 
+//shows user recipes ... hides collected and create recipe and edit recipe if open
 $('.inner-menu-a').click(function(){
     $('.grids').css('display', 'grid');
     $('.all-collected').css('display', 'none');
@@ -48,6 +55,7 @@ $('.inner-menu-a').click(function(){
     clearAll('-edt');
 });
 
+// shows users collected recipes ... hides user recipes edit recipe and create recipe if open 
 $('.inner-menu-b').click(function(){
     let allCollected = $('.all-collected');
     console.log(allCollected[0].childNodes.length);
@@ -62,6 +70,7 @@ $('.inner-menu-b').click(function(){
     $('form.user-page').css('display', 'none');
 });
 
+// opens edit recipe form and hides user recipes collected recipe and create recipe if open
 $('.edit-recipe').click(function(){
     $('.user-inner-menu ul li').css('display', 'none');
     $('.inner-menu-a').css('display', 'inline');
@@ -84,14 +93,23 @@ $('.edit-recipe').click(function(){
       });
 });
 
+/***************************************************************************************/
+/*
+This small section is used to make sure only one category section is used eg user cant select category from select AND add there own category
+*/
+// used to clear select for category option if user decides to enter there own category name in input
 $('.new-category').keydown(function(){
     $('select').val('nul');
 });
 
+// used to cear input where user added there choice of category and the decide to go with one from select dropdown instead
 $('select').change(function(){
     $('.new-category').val('');
 });
 
+/********************************************************************************/
+
+// This helper function is used in the edit recipe click function above .. it adds all the data sent back from server about recipe to the page
 function fillInEditRecipeDetails(data) {
     $('.edit-rem').remove();
     $('.create-step').remove();
@@ -173,6 +191,7 @@ function fillInEditRecipeDetails(data) {
     
 }
 
+// This helper function is used in a click function above and feteches all collected recipes from backend
 function getCollectedRecipes() {
     
     let url = '/collect';
@@ -200,6 +219,7 @@ $('.adding-lines').click(function(){
   addOptions();
 });
 
+// helper function for click functions above
 function addOptions(opt='') {
 
 		var option = `<div class="edit-rem">
@@ -214,7 +234,7 @@ function addOptions(opt='') {
    $('.ing'+opt).append(option);
 }
 
-
+// used to remove ingredients lines added in create recipe that user decides he dosen need.
 $(function(){
     $('.create').on('click', 'span.remove-ing', function(){
        var rem = $(this).closest('div');
@@ -230,8 +250,8 @@ $(function(){
        });
 });  
 */
-// for adding extra textarea for instructions in create recipe section
 
+// for adding extra textarea for instructions in create recipe section
 $('.add-textarea').click(function(){
     addTextarea();
 });
@@ -241,6 +261,8 @@ function addTextarea() {
     $('.instructions-con').append(option);
 }
 
+//used id user decides to use a generic image for recipe rather than supply there own and makes sure if the have allready added a url
+//clears it out and clears preview of url image and span with width and heigt
 $('input:radio').click(function(){
     /*let cls = $(this).attr('class');
     //let st ='img'+'[name="'+cls+'"]'
@@ -251,10 +273,13 @@ $('input:radio').click(function(){
     $('.preview').empty();
 });
 
+//clears radio buttons on generic image choices
 $('.gen-btn').click(function(e) {
     e.preventDefault();
     $('input:radio').prop('checked',false);
 });
+
+/**********************************************************************************************************/
 
 // A section for loading images by url and checking there width and height so as to limit the size of images user use for recipe image in create recipe
 // And for editing section if recipe image needs to be changed
@@ -393,7 +418,7 @@ function isNotBlank(items) {
     return result;
 }
 
-
+// validates data being supplied for create a recipe form
 function check_validation() {
     let image = '';//getSize();
   if ($("input[name='choice']:checked").is(':checked')){
@@ -436,7 +461,7 @@ function check_validation() {
   }
 }
 
-
+// validation for checking data for edit form
 function check_validation_edit() {
     
   let ingAndQuan = isNotBlank($('.ing-edit :input[type=text]'));
@@ -472,6 +497,7 @@ function check_validation_edit() {
   }
 }
 
+// gets the data from edit form and sends to backen
 $('.edit-sub-btn').click(function(){
     event.preventDefault();
     let validated = check_validation_edit();
