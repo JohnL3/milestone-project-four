@@ -181,7 +181,7 @@ function fillInEditRecipeDetails(data) {
     
     for(let item in instructions) {
         let instruct = `<textarea rows="3" class='create-step step-edit' placeholder='Pour into bowl' >`+instructions[item]+`</textarea>`;
-        $('.instructions-con-create').append(instruct);
+        $('.instructions-con-edt').append(instruct);
     }
     
     // add recipe image 
@@ -256,9 +256,14 @@ $('.add-textarea').click(function(){
     addTextarea();
 });
 
-function addTextarea() {
-    var option = `<textarea rows="3" class='step' placeholder='Step 3 ' ></textarea>`;
-    $('.instructions-con').append(option);
+// for adding extra textarea for instructions in edit recipe section
+$('.add-textarea-edt').click(function(){
+    addTextarea('-edt');
+});
+
+function addTextarea(ext='') {
+    var option = `<textarea rows="3" class='step${ext}' placeholder='Step 3 ' ></textarea>`;
+    $('.instructions-con'+ext).append(option);
 }
 
 //used id user decides to use a generic image for recipe rather than supply there own and makes sure if the have allready added a url
@@ -375,6 +380,7 @@ function clearAll(ext='') {
     $('.file-size'+ext).text('');
     $('.file-name'+ext).text('');
     $('.url'+ext).removeClass('error');
+    $('.instructions-con-edt').empty();
 }
 
 /*************************************************************************************************************/
@@ -561,7 +567,7 @@ $('.edit-sub-btn').click(function(){
         newData.zrecipe_id =g_edit.recipe_id;
         console.log('before post',newData);
         
-       /* if(!jQuery.isEmptyObject(newData)) {
+        if(!jQuery.isEmptyObject(newData)) {
             let url = '/edit_recipe/recipe';
               $.ajax({
                 type : 'POST',
@@ -573,7 +579,7 @@ $('.edit-sub-btn').click(function(){
                    console.log(data);
                 }
               });
-        }*/
+        }
     }
 });
 
@@ -660,7 +666,7 @@ $('.sub-btn').click(function(event){
       if ($( ".category-option option:selected" ).text()) {
           data.category_name = $( ".category-option option:selected" ).text();
       } else {
-          data.catergory_name = $('.new-category').val();
+          data.category_name = $('.new-category').val();
       }
       // create data being pushed to server
       //let data = {};
@@ -677,8 +683,8 @@ $('.sub-btn').click(function(event){
       if($("input[name='choice']:checked").is(':checked')){
           let img = $('input[name=choice]:checked', '#create-form').val(); 
           if(img === 'img-a') data.url = '/static/assets/images/allcakes.jpg';
-          if(img === 'img-b') data.url = '/static/assets/images/dessert.jpg';
-          if(img === 'img-c') data.url = '/static/assets/images/dessert.jpg';
+          if(img === 'img-b') data.url = '/static/assets/images/alldessert.jpg';
+          if(img === 'img-c') data.url = '/static/assets/images/food.jpg';
       } else {
           data.url = $('.url').val(); //'/static/assets/images/dessert.jpg';
       }
@@ -686,7 +692,7 @@ $('.sub-btn').click(function(event){
           
       console.log(data);
       let url = '/newrecipe';
-     /* $.ajax({
+      $.ajax({
         type : 'POST',
         url : url,
         contentType: 'application/json;charset=UTF-8',
@@ -695,7 +701,7 @@ $('.sub-btn').click(function(event){
         success: function(data){
            console.log(data);
         }
-      });*/
+      });
       
    }
 });
