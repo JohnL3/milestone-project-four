@@ -115,12 +115,10 @@ $('input:checkbox').click(function(){
     if(ckboxIsCk === true){
         $('.clear-btn').css('background','lightblue');
         $('.sub-btn').prop("disabled", false);
-        addFilteringItems();
     } else {
        if(oneChecked === false) {
            $('.clear-btn').css('background','buttonface');
            $('.sub-btn').prop("disabled", true);
-           addFilteringItems();
        }
     }
 });
@@ -208,22 +206,6 @@ let createInner = function(name, type) {
     let inner =`<div class='filter-inner'><input type='radio' value='`+name+`' name='`+type+`'><span class='`+type+`-tx'>`+name+`</span></div>`;
     return inner;
 };
-
-// helper function for when allergen checkboses are clicked
-function addFilteringItems(){
-  let allergens = [];
-  $('.inner-filtering-by').empty();
-  $('input[type=checkbox]').each(function () {
-        if ($(this).is(":checked")){
-          allergens.push($(this).attr('class'));
-        } 
-  });
-  console.log(allergens);
-  for (let itm in allergens) {
-    let sp = '<span>'+allergens[itm]+'</span>';
-    $('.inner-filtering-by').append(sp);
-  }
-}
 
 $('.sub-btn').click(function(){
     let allergens = [];
