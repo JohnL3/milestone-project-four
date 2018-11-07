@@ -23,65 +23,50 @@
     </ul>
     {% endblock %}
     
-    
-  {% block content %}
-  <div class='stuff'>
+    {% block content%}
+    <div class='stuff'>
         
     </div>
     <div class='recipe-container'>
         {% for r in recipe %}
-        <div id='{{r.recipe_id}}' class='recipe-title'>
+        <div id='{{r.recipe_id}}' class="recipe-title">
             <span>{{ r.recipe_name}}</span>
         </div>
-       <div class="my-img">
-          <img class='single-recipe' src='{{ r.url }}'>
+        <div class='my-img'>
+            <img class='single-recipe' src='{{ r.url }}'>
         </div>
         
-        <div class='recipe-page-icon'>
-            <div class='collect-r'>
-                <i class="far fa-folder-open"></i>
-                <span>collect</span>
-            </div>
-           <div class='like-r'>
-                <i class="far fa-heart"></i>
-                <span>likes</span>
-            </div>
-        </div>
-       
-        <div class='prep'>
-            
-            <div class='prep-inner'>
-                <span>PREP</span><span>{{ r.prep }}</span>
-            </div>
-            <div class='prep-inner'>
-                <div>
-                    
-                    <span>COOK</span>
-                </div>
-                <span>{{ r.cook }}</span>
-            </div>
-            <div class='prep-inner'>
-                <span>SERVES</span><span>{{ r.serves}}</span>
-            </div>
-            <div class='prep-inner'>
-                <div>
-                    <i class="far fa-folder-open"></i>
-                    <span>COLLECTED</span>
-                </div>
-                <span class='collect-val'>{{ r.collected}}</span>
-            </div>
-            <div class='prep-inner'>
-                <div>
-                    <i class="far fa-heart"></i>
-                    <span>LIKES</span>
-                </div>
-                <span class='like-val'>{{ r.likes}}</span>
+        <div class='second'>
+            <div class='recipe-banner'>
+              <span>OUR COOKBOOK</span>
+              <img src='/static/assets/images/homeimageC.jpg'>
             </div>
             
-            <div class='the-allergens'>
-                <span>Allergens</span>
-                <div class="recipe-allergens single">
-                    {% if r.Nuts == 'T' %}
+            <div class='surround'>
+                <div class='recipe-page-icon'>
+                    <div class='collect-r'>
+                        <i class="far fa-folder-open"></i>
+                        <span>collect</span>
+                    </div>
+                    <div class='filler'></div>
+                    <div class='like-r'>
+                        <i class="far fa-heart"></i>
+                        <span>like</span>
+                    </div>
+                </div>
+                
+                <div class='prep'>
+                  <span><strong>PREP :</strong>  {{ r.prep}}</span>
+                  <span><strong>COOK :</strong> {{ r.cook }}</span>
+                  <span><strong>SERVES :</strong> {{ r.serves }}</span>
+                  <span><strong>COLLECTED :</strong>   {{ r.collected }}</span>
+                  <span><strong>LIKES :</strong>  {{ r.likes }}</span>
+                </div>
+                
+                <div class="the-allergens">
+                    <span>Allergens</span>
+                    <div class="recipe-allergens single">
+                        {% if r.Nuts == 'T' %}
                     <span class="allergen">Nuts</span>
                     {% endif %}
                     {% if r.Egg == 'T' %}
@@ -122,12 +107,13 @@
                     {% endif %}
                     {% if r.Crust =='T' %}
                     <span class="allergen">Crustaceans</span>
-                    {% endif %}
-              </div>
-        </div>
+                    {% endif %}    
+                    </div>
+                </div>
+                
+            </div>
             
         </div>
-        
         <div class='instruct-method-header'>
             <ul>
                 <li class='li-first sm'>INGREDIENTS</li>
@@ -148,9 +134,9 @@
             {% endfor %}
             
         </div>
-        {% endfor %}
+      {% endfor %}
     </div>
-  
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src={{url_for('static',filename='js/viewrecipe.js')}}> </script>
-{% endblock %}
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src={{url_for('static',filename='js/viewrecipe.js')}}> </script>
+    {% endblock %}
