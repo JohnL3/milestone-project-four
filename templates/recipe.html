@@ -1,189 +1,158 @@
-{% extends "base.html" %}
-{% block head %}
+{% extends "base.html" %} {% block head %}
 
-<link rel='stylesheet' href={{url_for('static',filename='css/styles.css')}}>
-{% endblock %}
+<link rel='stylesheet' href={{url_for( 'static',filename='css/styles.css' )}}> {% endblock %} {% block header %}
+<span class='page-title'>Recipes Page</span> {% endblock %} {% block section %}
+<ul>
+	{% if username %}
+	<li><a href="{{ url_for('user') }}">{{username}}</a></li>
+	<li><a href="{{ url_for('index') }}">Home</a></li>
+	<li><a href="{{ url_for('logout') }}">Logout</a></li>
+	{% else %}
+	<li><a href="{{ url_for('index') }}">Home</a></li>
+	<li><a href="{{ url_for('signup_login') }}">Signup/Login</a></li>
+	{% endif %}
 
-{% block header %}
-<span class='page-title'>Recipes Page</span>
-{% endblock %}
+</ul>
+{% endblock %} {% block content %}
+<div class='filters'>
+	<div class='filters-header'>
+		<div class='filter-con'>
+			<span>FILTERS</span>
+		</div>
+		<i class="fas fa-angle-down"></i>
+	</div>
 
-{% block section %}
-    <ul>
-      {% if username %}
-       <li><a href="{{ url_for('user') }}">{{username}}</a></li>
-       <li><a href="{{ url_for('index') }}">Home</a></li>
-      <li><a href="{{ url_for('logout') }}">Logout</a></li>
-      {% else %}
-      <li><a href="{{ url_for('index') }}">Home</a></li>
-      <li><a href="{{ url_for('signup_login') }}">Signup/Login</a></li>
-      {% endif %}
-  
-    </ul>
-{% endblock %}
+	<div class=filter-items-con>
+		<div class="btn-wrap">
+			<button class="sub-btn" disabled="">SUBMIT</button>
+			<button class="clear-btn">CLEAR</button>
+			<button class="all-recipe-btn ">SHOW ALL RECIPES</button>
+		</div>
+		<div class='filtering-by'>
 
-{% block content %}
-    <div class='filters'>
-      <div class='filters-header'>
-        <div class='filter-con'>
-          <span>FILTERS</span>
-        </div>
-        <i class="fas fa-angle-down"></i>
-      </div>
-      
-      <div class=filter-items-con>
-        <div class="btn-wrap">
-            <button class="sub-btn" disabled="">SUBMIT</button>
-            <button class="clear-btn">CLEAR</button>
-            <button class="all-recipe-btn ">SHOW ALL RECIPES</button>
-        </div>
-        <div class='filtering-by'>
-          
-        </div>
-        <div class='filter-items'>
-          <div class='filter-hdr' id='filter-A'>
-              <div class="item allergen"><span>Allergens</span></div>
-              <div class="item category"><span>Category</span></div>
-              <div class="item author"><span>Authors</span></div>
-          </div>
-        </div>
+		</div>
+		<div class='filter-items'>
+			<div class='filter-hdr' id='filter-A'>
+				<div class="item allergen"><span>Allergens</span></div>
+				<div class="item category"><span>Category</span></div>
+				<div class="item author"><span>Authors</span></div>
+			</div>
+		</div>
 
-      <div class='author-input type'>
-        <input class='author-sel' type='text' name='author' placeholder='start typing to filter options'>
-        <div class='filter-select-C'>
-            <div class='inner-filter-C'>
-              <ul class='the-authors'>
-               {% for author in authors %}
-               <li><div class='filter-inner'><input type='radio' value='{{ author.author_name}}' name='author'><span class='author-tx'>{{ author.author_name }}</span></div></li>
-               {% endfor %}
-             </ul>
-            </div>
-        </div>
-      </div>
+		<div class='author-input type'>
+			<input class='author-sel' type='text' name='author' placeholder='start typing to filter options'>
+			<div class='filter-select-C'>
+				<div class='inner-filter-C'>
+					<ul class='the-authors'>
+						{% for author in authors %}
+						<li>
+							<div class='filter-inner'><input type='radio' value='{{ author.author_name}}' name='author'><span class='author-tx'>{{ author.author_name }}</span></div>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
 
-      <div class='category-input type'>
-        <input class='category-sel' type='text' name='category' placeholder='start typing to filter options'>
-        <div class='filter-select-B'>
-            <div class='inner-filter-B'>
-              <ul class='the-categorys'>
-              {% for category in categorys %}
-               <li><div class='filter-inner'><input type='radio' value='{{ category.category_name}}' name='category'><span class='category-tx'>{{ category.category_name }}</span></div></li>
-               {% endfor %}
-              </ul>
-               
-            </div>
-        </div>
-      </div>
-      <div class='allergen-con type'>
-      <div class='filter-select-A'>
-        <div class="inner-filter-A">
-          
-          <div class='inner-divs'><input type="checkbox" name='allergen' class='Egg'><label>Egg</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Moll'><label>Molluscs</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Pnuts'><label>Peanuts</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Nuts'><label>Nuts</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='SBeans'><label>Soyabeans</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Milk'><label>Milk</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Celery'><label>Celery</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Mustard'><label>Mustard</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='SSeeds'><label>Sesame Seeds</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Fish'><label>Fish</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Lupin'><label>Lupin</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='SDioxide'><label>Sulpher Dioxide</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Cerals'><label>Cereals</label></div>
-          <div class='inner-divs'><input type="checkbox" name='allergen'  class='Crust'><label>Crustaceans </label></div>
-        </div>
-      </div>
-      </div>
-    </div>
-    </div>
-    
-    <div class='grids'>
-      {% for r in recipe %}
-      <div id='{{r.recipe_id}}' class='recipe'>
-        <div class="recipe-header">
-          <span>{{ r.recipe_name }}</span>
-        </div>
-        <div class="my-img-card">
-          <img src='{{r.url}}'>
-        </div>
-        <div class="recipe-box">
-          <div class="recipe-details">
-            <div class="recipe-category">
-              <span>CATEGORY</span><span class='category-name'>{{ r.category_name}}</span>
-            </div>
-            <div class="recipe-author">
-              <span>AUTHOR</span><span class='author-name'>{{ r.author_name}}</span>
-            </div>
-          </div>
-          <span>ALLERGENS</span>
-          <div class="recipe-allergens">
-            {% if r.Nuts == 'T' %}
-            <span class="allergen">Nuts</span>
-            {% endif %}
-            {% if r.Egg == 'T' %}
-            <span class="allergen">Egg</span>
-            {% endif %}
-            {% if r.Milk =='T' %}
-            <span class="allergen">Milk</span>
-            {% endif %}
-            {% if r.Pnuts =='T' %}
-            <span class="allergen">Peanuts</span>
-            {% endif %}
-            {% if r.Celery =='T' %}
-            <span class="allergen">Celery</span>
-            {% endif %}
-            {% if r.Mustard =='T' %}
-            <span class="allergen">Mustard</span>
-            {% endif %}
-            {% if r.SSeeds =='T' %}
-            <span class="allergen">Sesame Seeds</span>
-            {% endif %}
-            {% if r.Fish =='T' %}
-            <span class="allergen">Fish</span>
-            {% endif %}
-            {% if r.Moll =='T' %}
-            <span class="allergen">Molluscs</span>
-            {% endif %}
-            {% if r.SBeans =='T' %}
-            <span class="allergen">Soyabeans</span>
-            {% endif %}
-            {% if r.Lupin =='T' %}
-            <span class="allergen">Lupin</span>
-            {% endif %}
-            {% if r.SDioxide =='T' %}
-            <span class="allergen">Sulpher Dioxide</span>
-            {% endif %}
-            {% if r.Cerals =='T' %}
-            <span class="allergen">Cerals</span>
-            {% endif %}
-            {% if r.Crust =='T' %}
-            <span class="allergen">Crustaceans</span>
-            {% endif %}
-          </div>
-          <div class='section-con'>
-            <div class="icons">
-              <div class="likes">
-                <i class="far fa-heart"></i>
-                <span>{{r.likes}}</span>
-              </div>
-              <div class="collect">
-                <i class="far fa-folder-open"></i>
-                <span>{{ r.collected}}</span>
-              </div>
-            </div>
-            <div class='visit'>
-              <div>
-                <a class='view-span' href={{url_for('viewrecipe', recipe_name = r.recipe_name )}}>View Recipe</a>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    {% endfor %}
-    </div>
-   
+		<div class='category-input type'>
+			<input class='category-sel' type='text' name='category' placeholder='start typing to filter options'>
+			<div class='filter-select-B'>
+				<div class='inner-filter-B'>
+					<ul class='the-categorys'>
+						{% for category in categorys %}
+						<li>
+							<div class='filter-inner'><input type='radio' value='{{ category.category_name}}' name='category'><span class='category-tx'>{{ category.category_name }}</span></div>
+						</li>
+						{% endfor %}
+					</ul>
+
+				</div>
+			</div>
+		</div>
+		<div class='allergen-con type'>
+			<div class='filter-select-A'>
+				<div class="inner-filter-A">
+
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='Egg'><label>Egg</label></div>
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='Moll'><label>Molluscs</label></div>
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='Pnuts'><label>Peanuts</label></div>
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='Nuts'><label>Nuts</label></div>
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='SBeans'><label>Soyabeans</label></div>
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='Milk'><label>Milk</label></div>
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='Celery'><label>Celery</label></div>
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='Mustard'><label>Mustard</label></div>
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='SSeeds'><label>Sesame Seeds</label></div>
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='Fish'><label>Fish</label></div>
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='Lupin'><label>Lupin</label></div>
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='SDioxide'><label>Sulpher Dioxide</label></div>
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='Cerals'><label>Cereals</label></div>
+					<div class='inner-divs'><input type="checkbox" name='allergen' class='Crust'><label>Crustaceans </label></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class='grids'>
+	{% for r in recipe %}
+	<div id='{{r.recipe_id}}' class='recipe'>
+		<div class="recipe-header">
+			<span>{{ r.recipe_name }}</span>
+		</div>
+		<div class="my-img-card">
+			<img src='{{r.url}}'>
+		</div>
+		<div class="recipe-box">
+			<div class="recipe-details">
+				<div class="recipe-category">
+					<span>CATEGORY</span><span class='category-name'>{{ r.category_name}}</span>
+				</div>
+				<div class="recipe-author">
+					<span>AUTHOR</span><span class='author-name'>{{ r.author_name}}</span>
+				</div>
+			</div>
+			<span>ALLERGENS</span>
+			<div class="recipe-allergens">
+				{% if r.Nuts == 'T' %}
+				<span class="allergen">Nuts</span> {% endif %} {% if r.Egg == 'T' %}
+				<span class="allergen">Egg</span> {% endif %} {% if r.Milk =='T' %}
+				<span class="allergen">Milk</span> {% endif %} {% if r.Pnuts =='T' %}
+				<span class="allergen">Peanuts</span> {% endif %} {% if r.Celery =='T' %}
+				<span class="allergen">Celery</span> {% endif %} {% if r.Mustard =='T' %}
+				<span class="allergen">Mustard</span> {% endif %} {% if r.SSeeds =='T' %}
+				<span class="allergen">Sesame Seeds</span> {% endif %} {% if r.Fish =='T' %}
+				<span class="allergen">Fish</span> {% endif %} {% if r.Moll =='T' %}
+				<span class="allergen">Molluscs</span> {% endif %} {% if r.SBeans =='T' %}
+				<span class="allergen">Soyabeans</span> {% endif %} {% if r.Lupin =='T' %}
+				<span class="allergen">Lupin</span> {% endif %} {% if r.SDioxide =='T' %}
+				<span class="allergen">Sulpher Dioxide</span> {% endif %} {% if r.Cerals =='T' %}
+				<span class="allergen">Cerals</span> {% endif %} {% if r.Crust =='T' %}
+				<span class="allergen">Crustaceans</span> {% endif %}
+			</div>
+			<div class='section-con'>
+				<div class="icons">
+					<div class="likes">
+						<i class="far fa-heart"></i>
+						<span>{{r.likes}}</span>
+					</div>
+					<div class="collect">
+						<i class="far fa-folder-open"></i>
+						<span>{{ r.collected}}</span>
+					</div>
+				</div>
+				<div class='visit'>
+					<div>
+						<a class='view-span' href={{url_for( 'viewrecipe', recipe_name=r .recipe_name )}}>View Recipe</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	{% endfor %}
+</div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src={{url_for('static',filename='js/main.js')}}> </script>
+<script src={{url_for( 'static',filename='js/main.js' )}}>
+</script>
 {% endblock %}
