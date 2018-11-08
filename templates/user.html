@@ -198,9 +198,8 @@
 					<p>Choose your own image or one from generic images for your recipe.</p>
 					<p>If choosing your own image the following limitations apply</p>
 					<ol>
-						<li>Images must be 600px to 700px in width.</li>
-						<li>And Images must be 400px to 700px in height.</li>
-						<li>Best sizes are 600px by 400px or 600px by 600px.</li>
+						<li>Images must be 500px or 600px in both height and width.</li>
+						<li>Preferred size is 500px by 500px.</li>
 						<li>You can choose a generic image from below and edit recipe later and add a image of your choice.</li>
 						<li>You could use one of the many online image editors to resize your image.</li>
 					</ol>
@@ -227,7 +226,7 @@
 					</div>
 				</div>
 				<div class='url-img'>
-					<span>IMAGE SIZE : </span><span class='size'>W : 700px, H : 300px</span>
+					<span>IMAGE SIZE : </span><span class='size'></span>
 					<label>Add image url</label>
 					<input type='text' class='url'><button class='clear'>CLEAR</button>
 					<button class='url-btn'>FETCH IMAGE</button>
@@ -236,10 +235,9 @@
 			</div>
 		</div>
 
-		<div class='create'>
-			<ul class='create-recipe type-a'>
-				<li><button class='sub-btn'>SUBMIT</button></li>
-			</ul>
+		<div class='create-btn'>
+				<button class='sub-btn'>SUBMIT</button>
+				<span class='cr-su'></span>
 		</div>
 
 	</form>
@@ -250,7 +248,7 @@
 		<div class='form-title'>
 			<h1 id='special-h1'>Edit Fields Below</h1>
 		</div>
-		<div class='create'>
+		<div class='create-edt'>
 			<ul class='create-recipe type-a edit-a'>
 				<li><label>RECIPE NAME</label><input type='text' class='recipe-inp-edit'></li>
 				<li><label>AUTHOR NAME</label><input type='text' class='author-inp-edit'></li>
@@ -333,7 +331,7 @@
 					</div>
 				</div>
 				<div class='url-img'>
-					<span>IMAGE SIZE : </span><span class='size-edt'>W : 700px, H : 300px</span>
+					<span>IMAGE SIZE : </span><span class='size-edt'>W : , H : </span>
 					<label>Add image url</label>
 					<input type='text' class='url-edt'><button class='clear-edt'>CLEAR</button>
 					<button class='url-btn-edt'>FETCH IMAGE</button>
