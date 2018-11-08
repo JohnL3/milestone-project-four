@@ -57,7 +57,6 @@ $('.inner-menu-a').click(function(){
 
 // shows users collected recipes ... hides user recipes edit recipe and create recipe if open 
 $('.inner-menu-b').click(function(){
-    let allCollected = $('.all-collected');
    
     getRecipes('/collect', '.all-collected');
     $('.inner-menu-c').removeClass('active-c');
@@ -118,7 +117,7 @@ function fillInEditRecipeDetails(data) {
     $('input[type=checkbox]').prop('checked', false);
     
     let d = data[0][0];
-    ({Celery, Cerals, Crust, Egg, Fish, Lupin, Milk, Moll, Mustard, Nuts, Pnuts, SBeans, SDioxide, SSeeds} = d)
+    ({Celery, Cerals, Crust, Egg, Fish, Lupin, Milk, Moll, Mustard, Nuts, Pnuts, SBeans, SDioxide, SSeeds} = d);
     
     
     let recipeName = d.recipe_name;
@@ -198,9 +197,9 @@ function getRecipes(pageUrl, divClass) {
            if (data.length > 0) recipeTemplate(data, divClass);
            if (data.recipe) {
                ({category, recipe}=data);
-               recipeTemplate(recipe, divClass)
+               recipeTemplate(recipe, divClass);
            }
-           let allCollected = $('.all-collected');
+           
         }
       });
 }
@@ -689,7 +688,7 @@ $('.sub-btn').click(function(event){
         success: function(data){
           
            $('.cr-su').css('display', 'inline');
-           $('.cr-su').text('Recipe Added')
+           $('.cr-su').text('Recipe Added');
            setTimeout(function () {
                $('.cr-su').css('display', 'none');
                 location.reload();
