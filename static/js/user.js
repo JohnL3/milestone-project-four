@@ -60,7 +60,7 @@ $('.inner-menu-b').click(function(){
     let allCollected = $('.all-collected');
     console.log(allCollected[0].childNodes.length);
     console.log(allCollected[0].childNodes);
-    //$('.all-collected').empty();
+   
     getRecipes('/collect', '.all-collected');
     $('.inner-menu-c').removeClass('active-c');
     $('.inner-menu-b').addClass('active-b');
@@ -121,7 +121,7 @@ function fillInEditRecipeDetails(data) {
     
     let d = data[0][0];
     ({Celery, Cerals, Crust, Egg, Fish, Lupin, Milk, Moll, Mustard, Nuts, Pnuts, SBeans, SDioxide, SSeeds} = d)
-    //let allA = [Celery, Cerals, Crust, Egg, Fish, Lupin, Milk, Moll, Mustard, Nuts, Pnuts, SBeans, SDioxide, SSeeds];
+    
     
     let recipeName = d.recipe_name;
     let authorName = d.author_name;
@@ -185,10 +185,6 @@ function fillInEditRecipeDetails(data) {
         let instruct = `<textarea rows="3" class='create-step step-edit' placeholder='Pour into bowl' >`+instructions[item]+`</textarea>`;
         $('.instructions-con-edit').append(instruct);
     }
-    
-    // add recipe image section
-    //let img = '<img class="img-url-edt" src="">';
-    //$('.preview-edt').append(img);
     
 }
 
@@ -271,10 +267,6 @@ function addTextarea(ext='') {
 //used id user decides to use a generic image for recipe rather than supply there own and makes sure if the have allready added a url
 //clears it out and clears preview of url image and span with width and heigt
 $('input:radio').click(function(){
-    /*let cls = $(this).attr('class');
-    //let st ='img'+'[name="'+cls+'"]'
-    let imgAttr = `img[name='${cls}']`;
-    let val = $(imgAttr).attr('src');*/
     $('.url').val('');
     $('.size').text('');
     $('.preview').empty();
@@ -393,7 +385,7 @@ function pair_ing_quan(ing_quan){
   let ing_and_quan = [];
   let inner = [];
   let count = 0;
-  let r_len = ing_quan.length; //$('.ing :input[type=text]').length;
+  let r_len = ing_quan.length; 
   let b_count = 0;
   
   ing_quan.each(function(){
@@ -428,13 +420,13 @@ function isNotBlank(items) {
 
 // validates data being supplied for create a recipe form
 function check_validation() {
-    let image = '';//getSize();
+    let image = '';
   if ($("input[name='choice']:checked").is(':checked')){
       image = true;
   } else {
       image = getSize();
   }
-  //let image = getSize();
+ 
   let ingAndQuan = isNotBlank($('.ing :input[type=text]'));
   let instructions = isNotBlank($('.step'));
   let author =  $('.author-inp').val();
@@ -512,20 +504,13 @@ $('.edit-sub-btn').click(function(){
     let validated = check_validation_edit();
     
     if(validated) {
-        console.log('recipeTobeEdited', recipeTobeEdited);
         let g_edit, ing_edit;
         [g_edit,ing_edit]=recipeTobeEdited;
         g_edit = g_edit[0];
         delete g_edit.likes;
         delete g_edit.collected;
-        //delete g_edit.url;
         
-        console.log('general_edit', g_edit);
-        console.log('ing_edit', ing_edit);
-        //let ng_edit = {...g_edit};
         let keys = Object.keys(g_edit);
-        //let k = [...keys];
-        console.log(keys);
         
         
         let ing_and_quan = pair_ing_quan($('.ing-edit :input[type=text]'));
@@ -558,24 +543,20 @@ $('.edit-sub-btn').click(function(){
         }
         
         
-          
-        //let data = {};
         data.author_name = $('.author-inp-edit').val();
         data.recipe_name = $('.recipe-inp-edit').val();
         data.category_name = $( ".category-option option:selected" ).text();
-        //data.allergens = allergens;
+       
         data.instructions = instructions;
         data.ing_and_quan = ing_and_quan;
         data.prep = $('.prep-inp-edit').val();
         data.cook = $('.cook-inp-edit').val();
         data.serves = +$('.serves-inp-edit').val();
         data.username = $('.page-title').text();
-        //data.url = $('.url-edt').val();'/static/assets/images/dessert.jpg';
        
         let newData = getRequiredEdits(keys, data, g_edit);
         let ing = compareIngredientLists(ing_edit, data.ing_and_quan);
-        
-        //if(ing.length > 0) 
+    
         if(!jQuery.isEmptyObject(ing)) newData.ing_and_quan = ing;
         
         
@@ -693,10 +674,10 @@ $('.sub-btn').click(function(event){
           data.category_name = $('.new-category').val();
       }
       // create data being pushed to server
-      //let data = {};
+ 
       data.author_name = $('.author-inp').val();
       data.recipe_name = $('.recipe-inp').val();
-      //data.category_name = $( ".category-option option:selected" ).text();
+    
       data.allergens = allergens;
       data.instructions = instructions;
       data.ing_and_quan = ing_and_quan;
@@ -710,7 +691,7 @@ $('.sub-btn').click(function(event){
           if(img === 'img-b') data.url = '/static/assets/images/alldessert.jpg';
           if(img === 'img-c') data.url = '/static/assets/images/food.jpg';
       } else {
-          data.url = $('.url').val(); //'/static/assets/images/dessert.jpg';
+          data.url = $('.url').val(); 
       }
      
           
