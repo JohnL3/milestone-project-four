@@ -463,6 +463,7 @@ def filter_by_all(mysql,data):
     return curs.fetchall()
 
 def filter_all_recipes(mysql,data):
+    
     items = check_what_to_filter_by(data)
     
     if len(items) == 1:
@@ -537,24 +538,11 @@ def update_all_except_ingredients(mysql, data):
         
         details =  [itm for sub in data.items() for itm in sub]
         details.append(recipe_id)
-        '''
-        d_even = []
-        d_odd = []
-        for ind, i in enumerate(details):
-            if ind%2 == 0:
-                d_even.append(i)
-            else:
-                d_odd.append(i)
-        '''       
-        # update string look like UPDATE recipe_table SET {} = %s WHERE recipe_id = {}
-        # this line fill in the {} sections
-        #preview = update_str.format(*d_even)
         
-        #The %s secitons are filled in by the preview,d_odd
         try:
             curs.execute(update_str.format(*details));
             con.commit()
-            return update_str #'Every thing went fine'
+            return update_str
         except Exception as e:
             return ' Editing recipe data: '+str(e)
     
@@ -600,11 +588,6 @@ def edit_single_recipe(mysql, data):
     '''
     Edit a single recipe by applying changes to the database
     '''
-    con = mysql.connect()
-    curs = con.cursor()
-    update_str=''
-    #recipe_id = data['zrecipe_id']
-    #del data['zrecipe_id']
     
     if 'ing_and_quan' in data:
         ing = {}
@@ -615,61 +598,14 @@ def edit_single_recipe(mysql, data):
         
         if len(data) > 0:
             result = update_all_except_ingredients(mysql, data)
-            '''
-            details =  [itm for sub in data.items() for itm in sub]
-            query = 'UPDATE recipe_table SET {}= "{}" WHERE recipe_id = {}'
-            details.append(recipe_id)
-            try:
-                curs.execute(query.format(*details));
-                con.commit()
-            except Exception as e:
-                return ' Editing recipe data: '+str(e)
-            '''
+          
         return result
         
     else:
         '''just update recipe with data'''
         result = update_all_except_ingredients(mysql, data)
-        '''
-        if 'author_name' in data:
-            author_name = data['author_name']
-            del data['author_name']
-           
-            data['author_id'] = get_or_add_author_details(mysql, author_name)
-            
-        if 'category_name' in data:
-            category_name = data['category_name']
-            del data['category_name']
-            
-            data['cat_id'] = get_or_add_category_details(mysql, category_name)
-            
-        count = len(data.items())
-        
-        if count > 0:
-            update_str = set_edit_recipe_update_str(count)
-            
-            details =  [itm for sub in data.items() for itm in sub]
-            details.append(recipe_id)
-            d_even = []
-            d_odd = []
-            for ind, i in enumerate(details):
-                if ind%2 == 0:
-                    d_even.append(i)
-                else:
-                    d_odd.append(i)
-                    
-
-            preview = update_str.format(*d_even)
-            
-            try:
-                curs.execute(preview,d_odd);
-                con.commit()
-            except Exception as e:
-                return ' Editing recipe data: '+str(e)
-           ''' 
-            
-            
-    return result #{'update_str':update_str, 'details': details, 'preview': preview, 'data': data}
+      
+    return result 
     
    
     
