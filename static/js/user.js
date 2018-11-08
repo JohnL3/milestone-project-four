@@ -113,7 +113,7 @@ $('select').change(function(){
 function fillInEditRecipeDetails(data) {
     $('.edit-rem').remove();
     $('.create-step').remove();
-    $('.create input').val('');
+    $('.create-edt input').val('');
     $('.edit-div').html('');
     $('input[type=checkbox]').prop('checked', false);
     
@@ -200,7 +200,7 @@ function getCollectedRecipes() {
         url : url,
         success: function(data){
            console.log(data);
-           if (data.length > 0) recipeTemplate(data);
+           if (data.length > 0) recipeTemplate(data, '.all-collected');
            
            let allCollected = $('.all-collected');
            console.log(allCollected[0].childNodes.length);
@@ -325,9 +325,9 @@ function getSize(ext='') {
         let img_h = $('.off-scr'+ext)[0].clientHeight;
         
         let str = `Width ${img_w} Height ${img_h}`;
-        //$('.pre').empty();
+       
         
-        if(((img_w < 701 || (img_w > 599 && img_w < 701)) && img_h >= 400 ) || ((img_h < 701 || (img_h > 599 && img_h < 701)) && img_w >= 400 ) ) {
+        if((img_w >=500 && img_w <=600) && img_h === img_w ) {
              $('.size'+ext).text(str);
              return true;
         } else {
@@ -700,6 +700,12 @@ $('.sub-btn').click(function(event){
         data : JSON.stringify(data),
         success: function(data){
            console.log(data);
+           $('.cr-su').css('display', 'inline');
+           $('.cr-su').text('Recipe Added')
+           setTimeout(function () {
+               $('.cr-su').css('display', 'none');
+                $('.cr-su').text('');
+           },700);
         }
       });
       
@@ -709,8 +715,8 @@ $('.sub-btn').click(function(event){
 
 
 
-function recipeTemplate(data) {
-    $('.all-collected').empty();
+function recipeTemplate(data, type) {
+    $(type).empty();
     let allergen_spans = '';
     
     for(let items in data) {
@@ -812,6 +818,6 @@ function recipeTemplate(data) {
                         `+ recipeBox +`
                         </div>`;
                         
-        $('.all-collected').append(outerDiv);
+        $(type).append(outerDiv);
     }
 }
