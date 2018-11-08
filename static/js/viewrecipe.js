@@ -73,7 +73,7 @@ $('.collect-r').click(function(){
             dataType: 'json',
             data : JSON.stringify(data),
             success: function(data){
-               console.log(data);
+               
                //update the value showing for collect to new value
                if(typeof data === 'number') $('.collect-val').text(data);
             }
@@ -99,7 +99,7 @@ $('.like-r').click(function(){
             dataType: 'json',
             data : JSON.stringify(data),
             success: function(data){
-               console.log(data);
+               
                //update the value showing for like to new value
                if(typeof data === 'number') $('.like-val').text(data);
             }
