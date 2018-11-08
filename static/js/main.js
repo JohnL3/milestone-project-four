@@ -50,6 +50,7 @@ $('.author').click(function(){
     $('.author-sel').focus();
   } else {
     $('.author-input').css('display','none');
+    $('.author-sel').val('');
   }
 });
 
