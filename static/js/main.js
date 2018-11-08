@@ -112,7 +112,7 @@ $('.filter-select-C').on('click', 'input:radio',function(){
 // if a allergen checkbox is clicked it sets clear button to blue and enables submit button
 $('input:checkbox').click(function(){
     
-    let ckboxIsCk = $('input[name="allergen"]:checked').length > 0
+    let ckboxIsCk = $('input[name="allergen"]:checked').length > 0;
     if(ckboxIsCk === true){
         $('.clear-btn').css('background','lightblue');
         $('.sub-btn').prop("disabled", false);
@@ -127,7 +127,7 @@ $('input:checkbox').click(function(){
 // get a list of all category names
 function getCategorys () {
     let categorys = [];
-    let categorysTx = $('.category-tx');
+    
     $( '.category-tx' ).each(function( ) {
       categorys.push($(this).text());
     });
@@ -137,7 +137,7 @@ function getCategorys () {
 // get a list of all author names
 function getAuthors () {
     let authors = [];
-    let authorsTx = $('.author-tx');
+    
     $( '.author-tx' ).each(function( ) {
       authors.push($(this).text());
     });
