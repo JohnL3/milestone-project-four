@@ -17,16 +17,7 @@ app.permanent_session_lifetime = datetime.timedelta(hours=1)
 
 
 mysql = DB_configuration(app)
-'''
-@app.before_request
-def before_request():
-    g.user = None
-    if 'username' in session:
-        g.user = session['username']
-        print('before_request', g.user)
-    else:
-        print('session',session)
-'''
+
 
 @app.route('/', methods=['GET','POST'])
 def index():
@@ -83,23 +74,11 @@ def user():
         username= session['username']
         recipe = get_all_user_recipes(mysql, username)
         categorys = get_all_categorys(mysql)
-        print(categorys)
+       
         return render_template('user.html', recipe=recipe, username=username, categorys=categorys)
     else:
         return redirect(url_for('index'))
 
-@app.route('/user_recipes')
-def user_recipes():
-    if 'username' in session:
-        username= session['username']
-        recipe = get_all_user_recipes(mysql, username)
-        categorys = get_all_categorys(mysql)
-        print(categorys)
-        return jsonify(recipe=recipe, categorys=categorys)
-    else:
-        msg={'msg':''}
-        return jsonify(msg)
-    
 
 @app.route('/newrecipe', methods=['POST'])
 def newrecipe():
