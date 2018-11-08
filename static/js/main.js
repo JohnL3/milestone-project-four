@@ -152,7 +152,7 @@ $( "input[name='category']" ).keyup(function(event) {
   
     let letter, list, word, ind;
     [letter, word, list, ind] = commonCode(event,this);
-    console.log(ind);
+    
     categorys.filter(function(x){
     if( letter === x.charAt(ind).toLocaleLowerCase() &&     x.toLocaleLowerCase().includes(word) && word !=''){
           list.push(x);
@@ -167,7 +167,7 @@ $( "input[name='author']" ).keyup(function(event) {
   
   let letter, list, word, ind;
   [letter, word, list, ind] = commonCode(event,this);
-  console.log(ind);
+  
   
   authors.filter(function(x){
         if( letter === x.charAt(ind).toLocaleLowerCase() &&     x.toLocaleLowerCase().includes(word) && word !=''){
@@ -247,7 +247,7 @@ $('.sub-btn').click(function(){
        $('input:radio').prop('checked',false);
        $('.sub-btn').prop('disabled', true)
        
-       console.log(data);
+     
        let url = '/filter_recipes';
        
         $.ajax({
@@ -271,7 +271,7 @@ $('.all-recipe-btn').click(function(){
         type : 'GET',
         url : url,
         success: function(data){
-           console.log(data);
+          
            createRecipesDivs(data);
         }
       });
