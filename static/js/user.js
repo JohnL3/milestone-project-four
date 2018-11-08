@@ -239,15 +239,7 @@ $(function(){
     $(rem).remove();
        });
 }); 
-/*
-$(function(){
-    $('.ing').on('click', 'span.remove-ing', function(){
-       var rem = $(this).closest('li');
-    $(rem).remove();
-    $('.ing li:last').remove();
-       });
-});  
-*/
+
 
 // for adding extra textarea for instructions in create recipe section
 $('.add-textarea').click(function(){
