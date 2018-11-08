@@ -105,15 +105,15 @@ select:focus {
     background-color: lightcoral;
 }
 
-/***************shared between pages ************************************/
-/*.my-img,*/
+/***************************************************/
+
 .my-img-card {
   width: 100%;
   overflow: hidden;
   display: flex;
   justify-content: center;
   margin: auto;
-  height: 370px;/*changed from 200*/
+  height: 370px;
   align-items: center;
   margin-bottom: 10px;
 }
@@ -544,11 +544,6 @@ nav span:first-of-type {
   color: darkslategray;
 }
 
-/*img {
-  width: 100%;
-  height: auto;
-}*/
-
 .icons {
   margin: 10px 0;
   display: inline-block;
@@ -623,13 +618,7 @@ i {
 }
 
 /************************veiw recipe page ******************************/
-/*.stuff {
-  width: 100%;
-  height: 20px;
-  position: relative;
-  top: 90px;
-  margin-bottom: 10px;
-}*/
+
 .recipe-container {
   color: darkslategray;
 }
@@ -658,12 +647,7 @@ i {
   .recipe-banner {
     display: none;
   }
-  /*
-  .the-allergens {
-    box-sizing: border-box;
-    padding: 0 5px;
-  }
-  */
+  
   .the-allergens {
     border-top: 2px solid lightcoral;
     box-sizing: border-box;
@@ -673,38 +657,13 @@ i {
   .the-allergens > span:first-child {
     font-size: 20px;
   }
-  
- /* .prep {
-    box-sizing: border-box;
-    padding: 5px;
-  }*/
-  
   .prep {
     display: grid;
-    /*grid-template-columns: 1fr 1fr;
     grid-auto-rows: 25px;*/
     font-size: 18px;
     margin-bottom: 10px;
     line-height: 1.4;
   }
-  
-  /*.prep-inner {
-    display: grid;
-    grid-template-columns: 5fr 4fr;
-    min-height: 30px;
-  }*/
-  
-  /*.prep-inner i {
-    font-size: 24px;
-  }*/
-  
-  /*.recipe-page-icon {
-    display: grid;
-    grid-template-columns: repeat(4, 85px);
-    box-sizing: border-box;
-    padding: 5px;
-    text-align: center;
-  }*/
   
   .recipe-page-icon {
     display: flex;
@@ -769,16 +728,6 @@ i {
   }
 
 /*****************************************************************/
-/*.flex-div {
-    display: flex;
-    justify-content: center;
-    height: calc(100vh - 120px);
-    align-items: center;
-}
-
-.pre-tab {
-    width: 100%;
-}*/
 
 .tab-holder {
   display: grid;
@@ -1047,117 +996,6 @@ form.user-page {
 }
 /********************* Create-recipe *******************************/
 
-/*select {
-  margin-left: 10px;
-}
-.create-receipe {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 15px;
-    border: 1px solid black;
-}
-.receipe-catorgory {
-  height: 40px;
-}
-label {
-  font-size: 15px;
-}
-.receipe-name input {
-  border: none;
-  outline: none;
-  grid-row: 2;
-  margin-bottom: 14px;
-  border-bottom: 1px solid gray;
-}
-hr {
-  margin-top: 2px;
-  margin-bottom: 10px;
-  display: none;
-}
-.receipe-name {
-  display: grid;
-  grid-template-columns: minmax(40px, 1fr) minmax(40px, 1fr) 25px;
-  grid-gap: 10px;
-}
-.receipe-ing {
-  display: grid;
-  grid-template-columns: minmax(40px, 1fr) minmax(40px, 1fr) 25px;
-  margin-bottom: 10px;
-  grid-column-gap: 15px;
-}
-.receipe-ing .ing {
-  grid-column: 1;
-}
-.receipe-ing .qun {
-  grid-column: 2;
-}
-.receipe-instructions label,
-.receipe-ing label {
-  border-bottom: 1px solid;
-  width: 115px;
-}
-.receipe-allergens input,
-.receipe-ing input {
-  border: none;
-  outline: none;
-  margin-top: 10px;
-  border-bottom: 1px solid gray;
-  padding-bottom: 3px;
-}
-.list-more-ing {
-  box-sizing: border-box;
-  padding: 15px 0;
-  grid-column: 1/-1;
-}
-.more-ing {
-  color: blue;
-  cursor: pointer;
-  font-weight: 600;
-}
-.ing-del  {
-  grid-column: 1/-1;
-  display: grid;
-  grid-template-columns: minmax(40px, 1fr) minmax(40px, 1fr) 25px;
-  grid-column-gap: 15px;
-}
-.delete {
-  align-self: center;
-  padding-top: 5px;
-  font-weight: 600;
-  color: red;
-  cursor: pointer;
-}
-.allergens {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-  margin:  10px 0;
-}
-.filter-by-cat label,
-.allergens label {
-  font-weight: 100;
-  border-bottom: none;
-  margin-top: 8px;
-  padding: 0 5px;
-  position: relative;
- 
-}
-
-.filter-by-cat input[type='checkbox'],
-.allergens input {
-  display: inline;
-  height: 16px;
-  width: 16px;
-}
-.receipe-instructions {
-  margin-top: 15px;
-}
-textarea {
-  width: 100%;
-  margin-top: 10px;
-  max-width: 100%;
-  min-height: 100px;
-}*/
 form {
   margin-bottom: 40px;
   display: block;
@@ -1171,12 +1009,9 @@ form {
  }
  
 .create-recipe {
-  /* display: grid; */
   padding-left: 0px;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
-  /* clear: BOTH; */
-  /* width: 80%; */
   margin: 0 auto;
 }
 
@@ -1241,7 +1076,6 @@ form {
 }
 
 .recipe-allergens {
-  /*margin-top: 20px;*/
   box-sizing: border-box;
 }
 
@@ -1462,18 +1296,7 @@ form {
   .all-collected{
     display: none;
   }
-  /*
-  .recipe-container {
-    display: grid;
-    grid-column-gap: 2%;
-    position: relative;
-    top: 90px;
-    box-sizing: border-box;
-    padding: 20px 0;
-    overflow: hidden;
-    margin: 0 10px;
-  }*/
-  
+
   .recipe-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1505,7 +1328,6 @@ form {
   }
   
   .my-img {
-    /*height: 370px; changed from 300 */
     grid-column: 1;
     grid-row: 1;
   }
@@ -1515,26 +1337,13 @@ form {
   }
   
 /*********************************************************************************/
-/*.prep {
-    display: grid;
-    box-sizing: border-box;
-    padding: 10px;
-    border-top: 2px solid lightcoral;
-    grid-column: 2;
-    grid-row: 1;
-    font-size: 20px;
-  }*/
-  
+
   .prep {
     padding-left: 10px;
     margin: auto 0;
     padding-left: 10px;
     margin: auto 0;
   }
-  /*
-  .the-allergens {
-    padding: 0;
-  }*/
   
   .the-allergens {
     grid-column: 2;
@@ -1660,12 +1469,6 @@ form {
     padding: 0;
   }
   
-  /*.recipe-allergens-con {
-    max-width: 80%;
-    margin: 0 auto;
-    padding: 0;
-  }*/
-  
   .recipe-instructions {
     width: 65%;
     margin: 0 auto;
@@ -1700,9 +1503,4 @@ form {
     font-size: 20px;
   }
   
-}
-
-@media only screen and (min-width: 1209px) {
-  
- 
 }
