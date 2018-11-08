@@ -1,51 +1,40 @@
-{% extends "base.html" %}
-{% block head %}
+{% extends "base.html" %} {% block head %}
 
-<link rel='stylesheet' href={{url_for('static',filename='css/styles.css')}}>
-{% endblock %}
+<link rel='stylesheet' href={{url_for( 'static',filename='css/styles.css' )}}> {% endblock %} {% block header %}
+<span class='page-title'>Login/Sign up</span> {% endblock %} {% block section %}
+<ul>
+	<li><a href="{{ url_for('recipe') }}">Recipes</a></li>
+	<li><a href="{{ url_for('index') }}">Home</a></li>
+</ul>
+{% endblock %} {% block content %}
 
-{% block header %}
-<span class='page-title'>Login/Sign up</span>
-{% endblock %}
+<div class='signup-login-header'>
+	<ul>
+		<li class='signup-tab sm'>SIGN UP</li>
+		<li class='login-tab'>LOGIN</li>
+	</ul>
+</div>
+<div class='tab-page-holder'>
+	<div class='main-signup-page'>
+		<!-- 'https://our-cookbook-jl.herokuapp.com/' -->
+		<!-- http://our-cookbook-johnl3.c9users.io:8080/ -->
+		<form id='myForm' action="{{url_for('signup')}}" method='POST'>
+			<div id="user">
+				<label>username</label>
+				<input type='text' required='true' maxlength='12' name='username' value=''>
+				<label>password</label>
+				<input type='password' required='true' maxlength='40' name='password' value=''> {% if username %}
+				<button type="submit" disabled value='submit'>Login</button> {% else %}
+				<button type="submit" value='submit'>Sign Up</button> {% endif %}
+			</div>
+		</form>
+	</div>
+</div>
 
-  {% block section %}
-    <ul>
-      <li><a href="{{ url_for('recipe') }}">Recipes</a></li>
-      <li><a href="{{ url_for('index') }}">Home</a></li>
-    </ul>
-  {% endblock %}
-  
-  {% block content %}
- 
-          <div class='signup-login-header'>
-                <ul>
-                    <li class='signup-tab sm'>SIGN UP</li>
-                    <li class='login-tab'>LOGIN</li>
-                </ul>
-            </div>
-          <div class='tab-page-holder'>
-            <div class='main-signup-page'>
-                  <!-- 'https://our-cookbook-jl.herokuapp.com/' -->
-                  <!-- http://our-cookbook-johnl3.c9users.io:8080/ -->
-                  <form id='myForm' action="{{url_for('signup')}}" method='POST'>
-                    <div id="user">
-                        <label>username</label>
-                        <input type='text' required='true' maxlength='12' name='username' value=''>
-                        <label>password</label>
-                        <input type='password' required='true' maxlength='40' name='password' value=''>
-                        {% if username %}
-                        <button type="submit" disabled value='submit'>Login</button>
-                        {% else %}
-                        <button type="submit" value='submit'>Sign Up</button>
-                        {% endif %}
-                    </div>
-                </form>
-            </div>
-          </div>
-        
-          
-   
-  
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src={{url_for('static',filename='js/signuplogin.js')}}> </script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src={{url_for( 'static',filename='js/signuplogin.js' )}}>
+</script>
 {% endblock %}
