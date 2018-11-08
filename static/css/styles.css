@@ -325,6 +325,7 @@ nav span:first-of-type {
   width: 100%;
   box-sizing: border-box;
   padding: 5px;
+  margin-top: 5px;
   margin-bottom: 5px;
   background: gainsboro;
   color: darkslategray;
@@ -345,6 +346,7 @@ nav span:first-of-type {
   border: 1px solid red;
 }
 
+.edit-sub-btn,
 .sub-btn, 
 .clear-btn,
 .all-recipe-btn{
@@ -522,6 +524,8 @@ nav span:first-of-type {
   flex-flow: row;
   flex-wrap: wrap;
   margin: 10px 0;
+  min-height: 35px;
+  border: 1px solid lightcoral;
 }
 
 .all-collected,
@@ -1237,7 +1241,7 @@ form {
 }
 
 .recipe-allergens {
-  margin-top: 20px;
+  /*margin-top: 20px;*/
   box-sizing: border-box;
 }
 
@@ -1296,7 +1300,7 @@ form {
   font-weight: 600;
   color: darkslategray;
 }
-
+.create-btn-edt,
 .create-btn {
     display: grid;
     grid-template-columns: 100px 140px;
@@ -1307,6 +1311,7 @@ form {
     padding-left: 5px;
   }
   
+.cr-su-edt,
 .cr-su {
   display: none;
   font-weight: 600;
@@ -1675,6 +1680,7 @@ form {
     padding: 0;
   }
   
+  .create-btn-edt,
   .create-btn {
     max-width: 65%;
     margin: 0 auto;

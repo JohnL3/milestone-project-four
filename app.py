@@ -88,6 +88,19 @@ def user():
     else:
         return redirect(url_for('index'))
 
+@app.route('/user_recipes')
+def user_recipes():
+    if 'username' in session:
+        username= session['username']
+        recipe = get_all_user_recipes(mysql, username)
+        categorys = get_all_categorys(mysql)
+        print(categorys)
+        return jsonify(recipe=recipe, categorys=categorys)
+    else:
+        msg={'msg':''}
+        return jsonify(msg)
+    
+
 @app.route('/newrecipe', methods=['POST'])
 def newrecipe():
     data = request.get_json()

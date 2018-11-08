@@ -61,7 +61,7 @@ $('.inner-menu-b').click(function(){
     console.log(allCollected[0].childNodes.length);
     console.log(allCollected[0].childNodes);
     //$('.all-collected').empty();
-    getCollectedRecipes();
+    getRecipes('/collect', '.all-collected');
     $('.inner-menu-c').removeClass('active-c');
     $('.inner-menu-b').addClass('active-b');
     $('.inner-menu-a').removeClass('active-a');
@@ -81,7 +81,9 @@ $('.edit-recipe').click(function(){
     $('.edit-page').css('display', 'block');
 
     let recipe_name = $(this).attr('id');
-     let url = '/edit_recipe/'+ recipe_name;
+    
+    let url = '/edit_recipe/'+ recipe_name;
+     
      $.ajax({
         type : 'GET',
         url : url,
@@ -181,30 +183,30 @@ function fillInEditRecipeDetails(data) {
     
     for(let item in instructions) {
         let instruct = `<textarea rows="3" class='create-step step-edit' placeholder='Pour into bowl' >`+instructions[item]+`</textarea>`;
-        $('.instructions-con-edt').append(instruct);
+        $('.instructions-con-edit').append(instruct);
     }
     
-    // add recipe image 
-    $('.url-edt').val(d.url);
-    let img = '<img class="img-url-edt" src="'+d.url+'">';
-    $('.preview-edt').append(img);
+    // add recipe image section
+    //let img = '<img class="img-url-edt" src="">';
+    //$('.preview-edt').append(img);
     
 }
 
 // This helper function is used in a click function above and feteches all collected recipes from backend
-function getCollectedRecipes() {
+function getRecipes(pageUrl, divClass) {
     
-    let url = '/collect';
+    let url = pageUrl;
       $.ajax({
         type : 'GET',
         url : url,
         success: function(data){
            console.log(data);
-           if (data.length > 0) recipeTemplate(data, '.all-collected');
-           
+           if (data.length > 0) recipeTemplate(data, divClass);
+           if (data.recipe) {
+               ({category, recipe}=data);
+               recipeTemplate(recipe, divClass)
+           }
            let allCollected = $('.all-collected');
-           console.log(allCollected[0].childNodes.length);
-           
         }
       });
 }
@@ -258,7 +260,7 @@ $('.add-textarea').click(function(){
 
 // for adding extra textarea for instructions in edit recipe section
 $('.add-textarea-edt').click(function(){
-    addTextarea('-edt');
+    addTextarea('-edit');
 });
 
 function addTextarea(ext='') {
@@ -479,6 +481,7 @@ function check_validation_edit() {
   let cook = $('.cook-inp-edit').val();
   let serves = $('.serves-inp-edit').val();
   let image = getSize('-edt');
+  if($('.url-edt').val() === '') image = true;
   
   
   if(!author || !recipeName  || !category  || !prep  || !cook  || !serves || !ingAndQuan || !instructions || !image) {
@@ -532,6 +535,8 @@ $('.edit-sub-btn').click(function(){
         $('.step-edit').each(function() {
             instructions.push($(this).val());
         });
+        
+       
         instructions = instructions.join('_');
         
     
@@ -545,6 +550,14 @@ $('.edit-sub-btn').click(function(){
               data[cls]='F';
             }
         });
+        
+        if($('.url-edt').val() === '') {
+            data.url = g_edit.url;
+        } else {
+            data.url = $('.url-edt').val();
+        }
+        
+        
           
         //let data = {};
         data.author_name = $('.author-inp-edit').val();
@@ -557,17 +570,19 @@ $('.edit-sub-btn').click(function(){
         data.cook = $('.cook-inp-edit').val();
         data.serves = +$('.serves-inp-edit').val();
         data.username = $('.page-title').text();
-        data.url = $('.url-edt').val();'/static/assets/images/dessert.jpg';
+        //data.url = $('.url-edt').val();'/static/assets/images/dessert.jpg';
        
         let newData = getRequiredEdits(keys, data, g_edit);
         let ing = compareIngredientLists(ing_edit, data.ing_and_quan);
         
         //if(ing.length > 0) 
         if(!jQuery.isEmptyObject(ing)) newData.ing_and_quan = ing;
-        newData.zrecipe_id =g_edit.recipe_id;
+        
+        
         console.log('before post',newData);
         
         if(!jQuery.isEmptyObject(newData)) {
+            newData.zrecipe_id = g_edit.recipe_id;
             let url = '/edit_recipe/recipe';
               $.ajax({
                 type : 'POST',
@@ -577,11 +592,20 @@ $('.edit-sub-btn').click(function(){
                 data : JSON.stringify(newData),
                 success: function(data){
                    console.log(data);
+                   $('.cr-su-edt').css('display', 'inline');
+                   $('.cr-su-edt').text('Recipe Updated');
+                   setTimeout(function () {
+                       $('.cr-su-edt').css('color', 'white');
+                       location.reload();
+                   },1500);
+                   
+                  
                 }
               });
         }
     }
 });
+
 
 // check for change in edit recipe execpt for ingredients which is checked by another function
 function getRequiredEdits(k, d, db) {
@@ -704,7 +728,7 @@ $('.sub-btn').click(function(event){
            $('.cr-su').text('Recipe Added')
            setTimeout(function () {
                $('.cr-su').css('display', 'none');
-                $('.cr-su').text('');
+                location.reload();
            },700);
         }
       });
@@ -718,9 +742,9 @@ $('.sub-btn').click(function(event){
 function recipeTemplate(data, type) {
     $(type).empty();
     let allergen_spans = '';
-    
+    console.log('length of data: ',data.length);
+    console.log(data);
     for(let items in data) {
-        
         if(data[items].Egg === 'T'){
                 allergen_spans += '<span class="allergen">Egg</span>';
             }
@@ -764,6 +788,7 @@ function recipeTemplate(data, type) {
             if(data[items].Crust === 'T'){
                 allergen_spans += '<span class="allergen">Crustaceans</span>';
             }
+            
         
         let rHeader = `<div class="recipe-header">
                           <span>`+ data[items].recipe_name +`</span>
@@ -819,5 +844,6 @@ function recipeTemplate(data, type) {
                         </div>`;
                         
         $(type).append(outerDiv);
+        allergen_spans = '';
     }
 }
