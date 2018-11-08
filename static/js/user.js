@@ -58,8 +58,6 @@ $('.inner-menu-a').click(function(){
 // shows users collected recipes ... hides user recipes edit recipe and create recipe if open 
 $('.inner-menu-b').click(function(){
     let allCollected = $('.all-collected');
-    console.log(allCollected[0].childNodes.length);
-    console.log(allCollected[0].childNodes);
    
     getRecipes('/collect', '.all-collected');
     $('.inner-menu-c').removeClass('active-c');
@@ -88,7 +86,7 @@ $('.edit-recipe').click(function(){
         type : 'GET',
         url : url,
         success: function(data){
-           console.log(data);
+           
            fillInEditRecipeDetails(data);
            recipeTobeEdited = storeInfo(data);
         }
@@ -196,7 +194,7 @@ function getRecipes(pageUrl, divClass) {
         type : 'GET',
         url : url,
         success: function(data){
-           console.log(data);
+          
            if (data.length > 0) recipeTemplate(data, divClass);
            if (data.recipe) {
                ({category, recipe}=data);
@@ -551,9 +549,6 @@ $('.edit-sub-btn').click(function(){
     
         if(!jQuery.isEmptyObject(ing)) newData.ing_and_quan = ing;
         
-        
-        console.log('before post',newData);
-        
         if(!jQuery.isEmptyObject(newData)) {
             newData.zrecipe_id = g_edit.recipe_id;
             let url = '/edit_recipe/recipe';
@@ -564,7 +559,7 @@ $('.edit-sub-btn').click(function(){
                 dataType: 'json',
                 data : JSON.stringify(newData),
                 success: function(data){
-                   console.log(data);
+                   
                    $('.cr-su-edt').css('display', 'inline');
                    $('.cr-su-edt').text('Recipe Updated');
                    setTimeout(function () {
@@ -618,8 +613,6 @@ q.filter((x,ind) => {
   if (q.length < b.length) {
     let extra = b.slice(b.length - (b.length-q.length));
     newArr.push(...extra);
-    console.log('newarr',newArr);
-    console.log('extra',extra);
   }
   if(arr.length > 0) newData.old = arr;
   if(newArr.length > 0) newData.new = newArr;
@@ -686,8 +679,6 @@ $('.sub-btn').click(function(event){
           data.url = $('.url').val(); 
       }
      
-          
-      console.log(data);
       let url = '/newrecipe';
       $.ajax({
         type : 'POST',
@@ -696,7 +687,7 @@ $('.sub-btn').click(function(event){
         dataType: 'json',
         data : JSON.stringify(data),
         success: function(data){
-           console.log(data);
+          
            $('.cr-su').css('display', 'inline');
            $('.cr-su').text('Recipe Added')
            setTimeout(function () {
@@ -715,8 +706,7 @@ $('.sub-btn').click(function(event){
 function recipeTemplate(data, type) {
     $(type).empty();
     let allergen_spans = '';
-    console.log('length of data: ',data.length);
-    console.log(data);
+    
     for(let items in data) {
         if(data[items].Egg === 'T'){
                 allergen_spans += '<span class="allergen">Egg</span>';
