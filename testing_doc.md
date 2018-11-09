@@ -139,7 +139,26 @@ Editing a recipe.
 - If you make a change to the recipe and click submit and all goes ok a message shows to say everything was updated and then page is refreshed and you 
 can observe the changes : True
 
+Create a Recipe  
 
+- All fields have to be filled in except allergens or a warning is shown for fields to be filled in : True
+- Extra Ingredients fields can be added by clicking on the add more lines link : True
+- Unneeded recipe lines can be removed by clicking on the x at the end of the new recipe field added : True
+- Extra Instructions can be add by clicking on the add more instructions link : True
+- You can choose an existing category from the select dropdown or add your own category : True
+- You can not do both choose a category and create your own, if you choose a category and then type in the create your own the select will
+reset to empty : True
+- If you write your own category and then select a category your written category will be erased : True
+- You can choose a generic image for your recipe by clicking a redio button underneath the image : True
+- You can only choose one image : True
+- You can clear your choice by clicking the button under the images : True
+- You can use your own url by adding it to the input and click fetchImage button : True
+- If image is not of specified size you get a warning and will not be able to submit form : True
+- You can only choose on image either the generic or from a url : True
+- If you pick a generic image and then fetch an url it will clear your generic choice : True
+- If you pick a url image and then choose a generic image it will then clear your url : True
+- If all fields are filled and submit button clicked you will see a message recipe created and page will refresh and you will see your new
+recipe in the your recipe section : True
 
 
 
