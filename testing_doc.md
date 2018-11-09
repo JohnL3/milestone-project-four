@@ -136,8 +136,10 @@ Editing a recipe.
 - Instructions can be added to or changed but not removed : True
 - Fetch url button will show a preview of the image when clicked if you supply an url to the image : True
 - The clear button will clear the url from the input and the image from the preview and the size from the text : True
-- If you make a change to the recipe and click submit and all goes ok a message shows to say everything was updated and then you are redirected
-back to show user recipes : True
+- If you make a change to the recipe and click submit and all goes ok a message shows to say everything was updated and then page is refreshed and you 
+- can observe the changes : True
+
+
 
 
 
