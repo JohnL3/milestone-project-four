@@ -33,3 +33,15 @@ This is achieved on the recipe page and you can filter recipes by author, catego
 
  
 ## Future Features
+
+- Ability to not show certain recipes, I would like to implement this, and give users the ability to block content showing that they might not want to see.
+- Ability to show count of all recipes, most collected. It would be nice to be able to show this kind of information.
+
+## Technologies Used
+
+1. cloud9
+  * Recommended by course
+  * ['Cloud9'](https://ide.c9.io/)
+2. jQuery
+  * Used as it simplifies Dom manipulation
+  * ['jQuery'](https://api.jquery.com/)
