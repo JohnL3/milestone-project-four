@@ -21,6 +21,9 @@ recipe page
 users page
 - links show are home recipes logout
 
+view reipe page
+- links are users name home recipes logout
+
 I clicked all these to make sure I was sent to the right page.  
 
 ### General layout for web pages
@@ -159,6 +162,27 @@ reset to empty : True
 - If you pick a url image and then choose a generic image it will then clear your url : True
 - If all fields are filled and submit button clicked you will see a message recipe created and page will refresh and you will see your new
 recipe in the your recipe section : True
+
+
+## View Recipe Page
+
+On mobile views besides the header and menu bar ... You will see recipe name and then image followed by two clickable icons one for like and one for collect.  
+Under this is a seciton showing prep time, cook time, servings and how many times recipe was collected and how many likes it has got.
+Under this is a tabbed section with two tabs ... ingredinets showing list of ingredients and a tab for instructions which if you click shows a list of all the instructions.  
+
+- click instructions tab and it shows instructions : True
+- click ingredients tab and it shows list of ingredients : True
+- Click the collect icon to add it to your collection : True
+- The number on the collect icon will increase by one : True
+- Click the like icon and it will increase by one : True
+- Click the like icon again and nothing will happen : True
+
+On larger screen sizes the layout changes : True
+The screen divides in two with image in top left with recipe name in a banner half on half off image: True  
+On the right side a banner is shown and underneath is the icons for collect and like and the prep and allergens section : True
+Underneath the top section is a single tabbed bar labeled recipe under which is the ingredients on left side of page and instructions on right side of page : True  
+
+
 
 
 
