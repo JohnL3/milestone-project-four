@@ -22,3 +22,14 @@ This is achieved on the view a recipe page where there is a icon you can click o
 As a user I should be able to like recipes.  
 This is achieved on the view recipe page where there is a icon you can click on and it will register your like.  
 
+As a user I should be able to filter recipes.  
+This is achieved on the recipe page and you can filter recipes by author, category, allergens or mixture of two categorys or of all three.  
+
+## Features
+
+A signup/login page ... where you can choose a username to use and a password.  
+A user page where you can view recipes that you create, a section for recipes you collect, a section for creating a recipe and where you can edit your recipes.  
+Filters ... which can be found on the recipe page. Giving you the option to filter recipes so you can find what you are looking for easier.  
+
+ 
+## Future Features
