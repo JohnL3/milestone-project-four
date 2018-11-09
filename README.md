@@ -16,3 +16,9 @@ As a user I should have my own page Where I can
 
 This is achieved when you signup, you are directed to your own page where you can create recipes, view your recipes, collect recipes and edit your own recipes.  
 
+As a user I should be able to collect other peoples reciipes.  
+This is achieved on the view a recipe page where there is a icon you can click on and it will add it to the collect recipe section of your page.  
+
+As a user I should be able to like recipes.  
+This is achieved on the view recipe page where there is a icon you can click on and it will register your like.  
+
