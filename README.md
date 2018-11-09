@@ -8,3 +8,11 @@ A website for people who like to look at different recipes, and are looking for 
 This website is for everybody who enjoys finding different recipes to try out or want to share there recipes or just to store there recipes.  
 As a user I should be able visti the site and have options to signup login or view recipes.  
 This is a achieved on the landing page where you have links to a signup/login section and a link to the recipe page which shows all the recipes.  
+As a user I should have my own page Where I can  
+- Create recipes
+- See Just recipes I created
+- Collect recipes I am interested in
+- Edit my recipes 
+
+This is achieved when you signup, you are directed to your own page where you can create recipes, view your recipes, collect recipes and edit your own recipes.  
+
