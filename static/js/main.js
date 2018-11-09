@@ -8,6 +8,11 @@ $('#burger').click(function(){
 
 // make it so menu items display on large screens if menu has been closed on small screen
 $( window ).resize(function() {
+  if($(window).width() < 1150) {
+     addNames(categorys,'B', 'category');
+     addNames(authors,'C', 'author');
+  }
+  
   if($(window).width() > 767) {
        $('header').css('display', 'grid');
 	   $('.nav-items').css('display','block');
@@ -158,7 +163,7 @@ $( "input[name='category']" ).keyup(function(event) {
           list.push(x);
         } 
     });
-    addNames(list,'B', 'category', 'category');
+    addNames(list,'B', 'category');
     if(ind === -1) addNames(categorys,'B', 'category');
 });
 
@@ -175,7 +180,7 @@ $( "input[name='author']" ).keyup(function(event) {
         } 
     });
     
-    addNames(list,'C', 'author', 'author');
+    addNames(list,'C', 'author');
     if(ind === -1) addNames(authors,'C', 'author');
 });
 

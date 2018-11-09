@@ -523,6 +523,10 @@ nav span:first-of-type {
   outline: navajowhite;
 }
 
+.author-sel,
+.category-sel {
+  display: none;
+}
 /*********************** Recipe Page / also used on user page*********************/
 
 .recipe {
@@ -1720,5 +1724,12 @@ form {
   
   .recipe-title span {
     font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 1150px) {
+  .author-sel,
+  .category-sel {
+    display: block;
   }
 }
