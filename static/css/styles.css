@@ -597,6 +597,11 @@ nav span:first-of-type {
   border: 1px solid lightcoral;
 }
 
+.recipe-allergens.create-edit,
+.recipe-allergens.create {
+    border: none;
+}
+
 .all-collected,
 .grids {
   max-width: 500px;
