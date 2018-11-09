@@ -109,6 +109,35 @@ On desktop screens when author button or category button are clicked, as well as
 that you can type into to filter the list by to make it easier if the list are long.  
 I checked to make sure this is not visible on screen sizes samller than 1150px.  
 
+I tested this by typing in the author section and watched it filter the names by letters pressed.  
+I then tried it in the category seciton and filtered that list by typing in letters.  
+I also tested to make sure when screen is resized and if list is filtered that it resets to full list.  
+
+
+## User Page
+
+On user page you have a tabbed section containing three tabs ... your recipes, collected, create recipe.  
+The .. your recipe section is visible and if user has created recipes they will be shown beneath the tabs.  
+If you click on collected you will be shown any recipes you have collected or statement saying you havent collected any recipes yet and if either of the other sections
+had been visible at the time they would now be hidden.  
+If you click on create recipe tab other sections would be hidden and a form for creating a recipe would appear.  
+
+In the your recipe section are the reciipe cards which are the same as described above except for these have an edit button which when you click
+opens a edit form with all recipe details for you to edit.  
+
+Editing a recipe.  
+
+- If no fields are changed and submit button is clicked nothing happens : True
+- If a fild is cleared and you dont fill it with new information and submit button is clicked a error class is added to the field and form wont submit. : True
+- Image field may be left empty, if it is the image you were using will remain the same. : True
+- You can add a new url to change your recipe image, but if image is not of specified size you get a warning and will not be able to submit : True
+- Allergen fields may be left empty if edit form shows them empty
+- More Ingredients can be added or changed but cannot be removed : True
+- Instructions can be added to or changed but not removed : True
+- Fetch url button will show a preview of the image when clicked if you supply an url to the image : True
+- The clear button will clear the url from the input and the image from the preview and the size from the text : True
+- If you make a change to the recipe and click submit and all goes ok a message shows to say everything was updated and then you are redirected
+back to show user recipes : True
 
 
 
