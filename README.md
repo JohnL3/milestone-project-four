@@ -45,3 +45,32 @@ This is achieved on the recipe page and you can filter recipes by author, catego
 2. jQuery
   * Used as it simplifies Dom manipulation
   * ['jQuery'](https://api.jquery.com/)
+
+
+## Testing
+
+
+## Deployment
+
+When you clone this repo to cloud9 you will need to create a config.py file which can be placed in the root directory.
+And add the following to it.  
+
+DB_CONFIG = {
+    'host': 'your host name',
+    'user': 'user name',
+    'password': 'password',
+    'db':'database name'
+}
+
+SECRET_KEY = 'your secret key'  
+
+
+For deployment to heroku, you should do the following from cloud9
+
+- Login in to your heroku account using: heroku login
+- And then entering you heroku email and password
+- Then do: heroku create < name for your website >
+- If you do just: heroku create, heroku will create a random name for your website
+- Then do: git push heroku master
+
+When the push is completed you will see your web address in the console, you can copy and past this into browser to visit your site. Or type in terminal the following: heroku open
