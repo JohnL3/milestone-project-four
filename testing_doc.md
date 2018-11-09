@@ -73,6 +73,44 @@ The recipe cards contain the following information
 - A collect icon displaying the number of times its being collected
 - A view recipe link
 
+The filter section.  
+
+- Clicking on the filter should allow a dropdown to appear : True
+- Clicking again should hide the dropdown : True
+- The dropdown shows a top section of a submit button a clear button and a show all recipes button : True
+- The bottom section shows a allergens button a category button and a authors button : True
+- Submit button should initially be disabled and have a navajowhite background with a red border : True
+- If an allergen or a category or an author is selected the submit button should no longer be disabled : True
+- And the clear button should show a lightblue background and submit button should loose the background color and border color : True
+- Clicking on the author button category button or allergen button should open there dropdown and close the other dropdowns: True
+- Clicking on a author button category button or allergen button again should close dropdown for that specific button : True
+- In the category or author you should only be able to select one name via the radio buttons : True
+- If the clear button is pressed all radio button are set to off : True
+- You should be able to select more than one item in the allergens dropdown : True
+- Clicking the clear button clears all selected allergens : True
+
+Filtering  
+
+- You can filter by author : True
+- You can filter by category : True
+- You can filter by allergen : True
+- You can filter by combination of any two ... author category allergen : True
+- you can filter by using all three : True
+
+- I clicked on author and selected Jack black and got back only recipes by Jack Black 
+- I clicked on category and selected dessert and got back only recipes by category dessert.  
+- I clicked on allergens and selected Egg and got back only recipes NOT containing Egg.  
+- I clicked on allergens and selected Egg and Milk ang got back only recipes NOT containing Egg and Milk  
+- I clicked on author Jack Black category dessert and got back only recipes that were dessert and Jack Black as author
+- I clicked on category dessert and allergen Egg and got back recipes that were dessets and did not contain egg
+- I clicked on author Jack Black category Dessert and allergen Milk and got back recipes by Jack Black that were dessert and did NOT contain milk
+
+On desktop screens when author button or category button are clicked, as well as a dropdown list of categorys and authors there is an input 
+that you can type into to filter the list by to make it easier if the list are long.  
+I checked to make sure this is not visible on screen sizes samller than 1150px.  
+
+
+
 
  
 
