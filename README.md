@@ -40,8 +40,8 @@ This is achieved on the recipe page and you can filter recipes by author, catego
 ## Technologies Used
 
 1. cloud9
-  * Recommended by course
-  * ['Cloud9'](https://ide.c9.io/)
+ + Recommended by course
+ + ['Cloud9'](https://ide.c9.io/)
 2. jQuery
   * Used as it simplifies Dom manipulation
   * ['jQuery'](https://api.jquery.com/)
