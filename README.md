@@ -55,12 +55,12 @@ This is achieved on the recipe page and you can filter recipes by author, catego
 When you clone this repo to cloud9 you will need to create a config.py file which can be placed in the root directory.
 And add the following to it.  
 
-DB_CONFIG = {
-    'host': 'your host name',
-    'user': 'user name',
-    'password': 'password',
-    'db':'database name'
-}
+DB_CONFIG = {  
+    'host': 'your host name',  
+    'user': 'user name',  
+    'password': 'password',  
+    'db':'database name'  
+} 
 
 SECRET_KEY = 'your secret key'  
 
