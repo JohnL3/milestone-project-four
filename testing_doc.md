@@ -4,14 +4,37 @@ This project has manual testing only.
 
 I will talk about how I tested each page in the site.
 
-### Home page
+## General Navigation Links 
 
-On mobile screens this page will have a header and underneath a navgation bar with a burger which you click to see navigation.  
+Rather than repeat for each page I will cover navigation links here in one section, I visited every page as an user not logged in and visited every link
+to make sure I was sent to the right page. I then logged in and repeated this process to make sure I was sent to the right page.
 
-- When I click this I expect it to open and see a menu list with recipes and signup/login : True
-- When I click this again i expect it to close : True  
-- When I click the recipes link I expect to be taken to the recipe page : True
-- When I click the signup/login link I expect to be taken to the signup/login page : True
+Links for pages are as follows  
+
+- Home page will display recipe and either signup/login  or logout depending if user is logged in or not
+- If logged in home page will show users name, recipe and logout
+
+recipe page  
+- links shown are home signup/login
+- if logged in links are users name, home and logout
+
+users page
+- links show are home recipes logout
+
+I clicked all these to make sure I was sent to the right page.  
+
+### General layout for web pages
+
+Rather than repeat I will cover general layout of web pages here
+
+On mobile screens pages will have a header and underneath a navgation bar with a burger which you click to see navigation.  
+On Tablets and desktops width 768 the navigation is in the header and navgation bar is not visible.  
+
+I visited all pages in mobile sizes and made sure the navigation bar was visible and I clicked on the burger to make sure it opens and closes.  
+I visited all pages for sizes 768 and up to make sure navigation bar was no longer visible and navigation was in the header.  
+
+On recipe page there is also a filter bar, I visited this page to make sure it appears on both mobile sizes and larger.
+
 
 If a user has logged in  
 
@@ -25,15 +48,7 @@ are users username recipe and logout : True
 
 ### Signup/Login page
 
-On mobile screens this page will have a header and underneath a navgation bar with a burger which you click to see navigation : True  
-Links in the menu are recipes and home : True  
-On Tablets and desktops width 768 and up menu is in the header and no burger, links are recipes and home : True  
-
-- If I click burger menu should open and i see links for recipes and home : True
-- If i click recipes i get brought to the recipes page : True  
-- If I click home I get brought to the home page : True  
-
-Underneath there is a tabbed section with tab labelled signup and another labelled login.  
+There is a tabbed section with tab labelled signup and another labelled login.  
 A form with a input for a username and an input for a password, and a button labelled signup.  
 
 - If i click on the tab labelled login I would expect the tab to change color and button text to change to login : True
@@ -45,6 +60,8 @@ If I login successfully I am redirected to my user page : True
 
 
 ## Recipe Page
+
+ 
 
 
 
