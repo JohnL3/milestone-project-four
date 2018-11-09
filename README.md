@@ -55,6 +55,7 @@ This is achieved on the recipe page and you can filter recipes by author, catego
 When you clone this repo to cloud9 you will need to create a config.py file which can be placed in the root directory.
 And add the following to it.  
 
+```python
 DB_CONFIG = {  
     'host': 'your host name',  
     'user': 'user name',  
@@ -63,7 +64,7 @@ DB_CONFIG = {
 } 
 
 SECRET_KEY = 'your secret key'  
-
+```
 
 For deployment to heroku, you should do the following from cloud9
 
