@@ -41,10 +41,6 @@ If a user has logged in
 - I would expect to see a link to the users page : True
 - I would expect to see logout : True
 
-If a user then logs out I would expect list just to show recipes and signup/login : True  
-
-On Tablets and desktops width 768 and up menu is in the header and no burger, links are recipes and signup/login and if user logged in they
-are users username recipe and logout : True  
 
 ### Signup/Login page
 
@@ -60,6 +56,23 @@ If I login successfully I am redirected to my user page : True
 
 
 ## Recipe Page
+
+The recipe page contains a filter bar which is present in both mobile and larger screen views.  
+The recipe page also contains cards of all the recipes created.
+
+The recipe cards all contain a link to a view recipe page, where you can see the full recipe for that particular card.  
+I tested this by clicking on the section that says view recipe, to make sure it brought me to a page showing me the full recipe.  
+
+The recipe cards contain the following information  
+
+- Recipe name
+- Author name
+- Category
+- Allergens .. if the recipe contains allergens
+- A like icon displaying the number of likes
+- A collect icon displaying the number of times its being collected
+- A view recipe link
+
 
  
 
