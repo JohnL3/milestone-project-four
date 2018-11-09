@@ -12,3 +12,10 @@ On mobile screens this page will have a header and underneath a navgation bar wi
 - When I click this again i expect it to close : True  
 - When I click the recipes link I expect to be taken to the recipe page : True
 - When I click the signup/login link I expect to be taken to the signup/login page : True
+
+If a user has logged in  
+
+- I would expect to see a link to the users page : True
+- I would expect to see logout : True
+
+If a user then logs out I would expect list just to show recipes and signup/login : True
