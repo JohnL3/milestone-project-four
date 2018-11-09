@@ -29,6 +29,8 @@ $( window ).resize(function() {
   }
 });
 
+
+
 // show and hide create new recipe form ... hides collected and user recipes and edit recipe if open
 $('.inner-menu-c').click(function(){
     $('.grids').css('display', 'none');
@@ -473,7 +475,7 @@ function check_validation_edit() {
     if(cook === '') $('.cook-inp-edit').addClass('error');
     if(serves === '') $('.serves-inp-edit').addClass('error');
     if(image === false) $('.url-edt').addClass('error');
-    $('html, body').animate({scrollTop: $("form").offset().top}, 500);
+    $('html, body').animate({scrollTop: $("form").offset().top}, 1500);
     
     setTimeout(function(){
        $( ".category-option" ).removeClass('error');
