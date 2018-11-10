@@ -47,6 +47,11 @@ If a user has logged in
 
 ### Signup/Login page
 
+Signup/Login is not part of the requirements .. but I wanted to add a basic signup login section so as to reduce the chances of two people using the same
+username, which would give them access to the same user page.  
+Also I feel with my setup I should be able to come back and convert it into a proper signup login when section is covered in last project.
+
+
 There is a tabbed section with tab labelled signup and another labelled login.  
 A form with a input for a username and an input for a password, and a button labelled signup.  
 
