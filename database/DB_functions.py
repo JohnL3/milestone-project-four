@@ -3,6 +3,9 @@ from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
 
 def DB_configuration(app):
+    '''
+    configure database depending on whether debug is set to true or false
+    '''
     if app.config['DEBUG'] == True:
         import config
         
@@ -24,6 +27,9 @@ def DB_configuration(app):
     return mysql
     
 def signup_new_user(mysql, user, pw):
+    '''
+    Sign up a new user
+    '''
     con = mysql.connect()
     curs = con.cursor()
     query = "SELECT user_name FROM user_table WHERE user_name ='" +user+ "'"
@@ -43,6 +49,9 @@ def signup_new_user(mysql, user, pw):
             return 'Error saving data: '+str(e)
 
 def validate_user(mysql, username, password):
+    '''
+    Function to try ensure only one person is using a username
+    '''
     con = mysql.connect()
     curs = con.cursor()
     query = "SELECT user_name, password FROM user_table WHERE user_name ='" +username+ "'"
@@ -59,10 +68,13 @@ def validate_user(mysql, username, password):
         return False
         
 def get_or_add_author_details(mysql, author_name):
+    '''
+    Helper function ... gets author id and if author not in table adds author to table and gets id
+    '''
     con = mysql.connect()
     curs = con.cursor()
     
-    #query = "SELECT author_id FROM author_table WHERE author_name ='" +data['author_name']+ "'"
+    
     curs.execute('''SELECT author_id FROM author_table WHERE author_name = %s''', author_name)
     author_id = curs.fetchall()
     if len(author_id) == 0:
@@ -81,10 +93,12 @@ def get_or_add_author_details(mysql, author_name):
         return author_id
         
 def get_or_add_category_details(mysql, category_name):
+    '''
+    Helper function ... get category id and if category is not in table adds it to table then returns id
+    '''
     con = mysql.connect()
     curs = con.cursor()
     
-    #query = "SELECT author_id FROM author_table WHERE author_name ='" +data['author_name']+ "'"
     curs.execute('''SELECT cat_id FROM category_table WHERE category_name = %s''', category_name)
     cat_id = curs.fetchall()
     if len(cat_id) == 0:
@@ -92,7 +106,7 @@ def get_or_add_category_details(mysql, category_name):
             curs.execute('''INSERT INTO category_table (cat_id, category_name) VALUES (NULL, %s)''', category_name)
             con.commit()
         except Exception as e:
-            return 'Author section Error saving data: '+str(e)
+            return 'category section Error saving data: '+str(e)
         
         curs.execute('''SELECT LAST_INSERT_ID()''')
         cat_id = curs.fetchall()
@@ -190,6 +204,9 @@ def create_new_recipe(mysql, data):
         return ' Ing sect Error saving data: '+str(e)
             
 def get_query_string(user):
+    '''
+    Helper function ... dynamic query string creator 
+    '''
     part_g = "user_name, "
     part_h = "JOIN user_table ON recipe_table.user_id = user_table.user_id "
     single_recipe = ',prep, cook, serves, instructions '
@@ -211,6 +228,9 @@ def get_query_string(user):
     return full_string
     
 def get_all_recipes(mysql):
+    '''
+    Get all recipes
+    '''
     con = mysql.connect()
     curs = con.cursor()
     
@@ -219,6 +239,9 @@ def get_all_recipes(mysql):
     return curs.fetchall()
     
 def get_all_user_recipes(mysql, username):
+    '''
+    get a users recipes
+    '''
     con = mysql.connect()
     curs = con.cursor()
 
@@ -230,6 +253,9 @@ def get_all_user_recipes(mysql, username):
     return curs.fetchall()
     
 def get_single_recipe(mysql, recipe_name):
+    '''
+    Get a single recipe
+    '''
     con = mysql.connect()
     curs = con.cursor()
     recipe = []
@@ -296,6 +322,9 @@ def user_collects_recipe(mysql, data):
   
     
 def get_collected_recipes(mysql, username):
+    '''
+    function for getting all a users collected recipes
+    '''
     con = mysql.connect()
     curs = con.cursor()
     
@@ -310,6 +339,9 @@ def get_collected_recipes(mysql, username):
     return curs.fetchall()
     
 def like_recipe(mysql, data):
+    '''
+    Function for when user likes a recipe
+    '''
     con = mysql.connect()
     curs = con.cursor()
     
@@ -343,6 +375,9 @@ def like_recipe(mysql, data):
    
 
 def get_all_authors(mysql):
+    '''
+    function to get a list of all authors
+    '''
     con = mysql.connect()
     curs = con.cursor()
     
@@ -351,6 +386,9 @@ def get_all_authors(mysql):
     return authors
     
 def get_all_categorys(mysql):
+    '''
+    function to get a list of categorys
+    '''
     con = mysql.connect()
     curs = con.cursor()
     
@@ -359,6 +397,9 @@ def get_all_categorys(mysql):
     return categorys
     
 def check_what_to_filter_by(data):
+    '''
+    Helper function used to find out what to filter by
+    '''
     if len(data) == 1:
         filter_by = list(data)
        
@@ -371,6 +412,9 @@ def check_what_to_filter_by(data):
         return filter_by
 
 def filter_by_category_or_author(mysql, filter_type, val):
+    '''
+    Helper function to filter by category or author
+    '''
     con = mysql.connect()
     curs = con.cursor()
     
@@ -409,8 +453,10 @@ def filter_recipes_by(mysql, data):
         return curs.fetchall()
         
 
-# used to add a && between allergen options eg hasNuts !='T' && hasEgg !='T'    
 def get_end_str(allergens):
+    '''
+    used to add a && between allergen options eg hasNuts !='T' && hasEgg !='T' 
+    '''
     count = len(allergens)
     b_str = " and "
     if len(allergens) == 1:
@@ -426,6 +472,9 @@ def get_end_str(allergens):
     
 
 def filter_by_author_and_category(mysql, data):
+    '''
+    Helper function to filter by aluthor and category
+    '''
     con = mysql.connect()
     curs = con.cursor()
     start_str = get_query_string('all')
@@ -438,6 +487,9 @@ def filter_by_author_and_category(mysql, data):
     
 
 def filter_by_allergens_and_author_or_category(mysql, data, item):
+    '''
+    Helper function to filter by allergen and author or category
+    '''
     con = mysql.connect()
     curs = con.cursor()
     start_str = get_query_string('all')
@@ -451,6 +503,9 @@ def filter_by_allergens_and_author_or_category(mysql, data, item):
 
 
 def filter_by_all(mysql,data):
+    '''
+    Helper function to filter by author category and allergen
+    '''
     con = mysql.connect()
     curs = con.cursor()
     start_str = get_query_string('all')
@@ -463,6 +518,9 @@ def filter_by_all(mysql,data):
     return curs.fetchall()
 
 def filter_all_recipes(mysql,data):
+    '''
+    Function to filter all recipes
+    '''
     
     items = check_what_to_filter_by(data)
     
@@ -487,8 +545,12 @@ def filter_all_recipes(mysql,data):
     else:
         result = filter_by_all(mysql, data)
         return result
+ 
         
 def set_edit_recipe_update_str(count):
+    '''
+    Create a dynamic query string
+    '''
     
     b_str = "UPDATE recipe_table SET"
     
@@ -502,6 +564,7 @@ def set_edit_recipe_update_str(count):
         y+=1
     
     return b_str
+ 
     
 def update_all_except_ingredients(mysql, data):
     '''
