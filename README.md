@@ -106,7 +106,7 @@ For those cloning this site you wont need to do this as i have the adjusted file
 - This starts mysql 
 - Then enter: mysql -h \< host \> -u\< username \> -p\< password \>
 - leave a space after the -h  but dont leave a space after the -u and the -p
-- Then enter: use <the database name> 
+- Then enter: use \< the database name \> 
 - you are now connected to your database
 
 You are now ready to create the database tables used in the project, and just need to run the file containg the code to create them.  
