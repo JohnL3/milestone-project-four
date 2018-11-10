@@ -85,6 +85,7 @@ For Database you could use clearDB MySQL database through heroku like I used in 
 - Go to setting and click reveal config vars
 - You will see CLEARDB_DATABASE_URL which contains all the information you need to connect to the database
 
+
 I have shown the different parts to the string here : mysql://< DB_USER >:< DB_PASSWORD >@< DB_HOST >/< DB_DB >?reconnect=true  
 In config vars add all the configurations.  
 
@@ -92,3 +93,24 @@ DB_USER .. fill in details from string
 DB_PASSWORD ... fill in details from string  
 DB_HOST ... fill in details from string  
 DB_DB ... fill in details from string  
+
+## Creating database tables
+
+To create the database tables i used MySQL Workbench as it made it easier to visualize the tables and then forward engineered
+the tables, copied the print out and adjusted it to get it working with clearDB.  
+
+For those cloning this site you wont need to do this as i have the adjusted file of the print out, you just need to do the following in cloud9 terminal.  
+
+- Get your clearDB database details eg username password host and database name
+- In terminal of cloud9 enter: mysql-ctl start 
+- This starts mysql 
+- Then enter: mysql -h <host> -u<username> -p<password>
+- leave a space after the -h  but dont leave a space after the -u and the -p
+- Then enter: use <the database name> 
+- you are now connected to your database
+
+You are now ready to create the database tables used in the project, and just need to run the file containg the code to create them.  
+This is located in a file called create_all.sql.  
+To run the file type the following into the ternimal: source create_all.sql; and hit enter  
+You should now have all the tables, you can confirm this by tying in the terminal: show tables;
+To Exit type in: exit
