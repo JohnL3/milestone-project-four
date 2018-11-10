@@ -104,7 +104,7 @@ For those cloning this site you wont need to do this as i have the adjusted file
 - Get your clearDB database details eg username password host and database name
 - In terminal of cloud9 enter: mysql-ctl start 
 - This starts mysql 
-- Then enter: mysql -h <host> -u<username> -p<password>
+- Then enter: mysql -h \< host \> -u\< username \> -p\< password \>
 - leave a space after the -h  but dont leave a space after the -u and the -p
 - Then enter: use <the database name> 
 - you are now connected to your database
