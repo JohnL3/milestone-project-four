@@ -13,7 +13,7 @@ else:
     import config
     app.config['SECRET_KEY'] = config.SECRET_KEY
     
-app.permanent_session_lifetime = datetime.timedelta(hours=1)
+app.permanent_session_lifetime = datetime.timedelta(days=7)
 
 
 mysql = DB_configuration(app)
