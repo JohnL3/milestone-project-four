@@ -67,12 +67,28 @@ DB_CONFIG = {
 SECRET_KEY = 'your secret key'  
 ```
 
+
 For deployment to heroku, you should do the following from cloud9
 
 - Login in to your heroku account using: heroku login
 - And then entering you heroku email and password
 - Then do: heroku create < name for your website >
 - If you do just: heroku create, heroku will create a random name for your website
+- If your going to use clearDB database make sure to read notes below
 - Then do: git push heroku master
 
-When the push is completed you will see your web address in the console, you can copy and past this into browser to visit your site. Or type in terminal the following: heroku open
+When the push is completed you will see your web address in the console, you can copy and past this into browser to visit your site. Or type in terminal the following: heroku open  
+
+For Database you could use clearDB MySQL database through heroku like I used in this project.  
+
+- After you create your heroku app on heroku you can go to the resources section and add on clearDB.
+- Go to setting and click reveal config vars
+- You will see CLEARDB_DATABASE_URL which contains all the information you need to connect to the database
+
+I have shown the different parts to the string here : mysql://< DB_USER >:< DB_PASSWORD >@< DB_HOST >/< DB_DB >?reconnect=true  
+In config vars add all the configurations.  
+
+DB_USER .. fill in details from string  
+DB_PASSWORD ... fill in details from string  
+DB_HOST ... fill in details from string  
+DB_DB ... fill in details from string  
