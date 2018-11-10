@@ -30,7 +30,7 @@ This is achieved on the recipe page and you can filter recipes by author, catego
 - A signup/login page ... where you can choose a username to use and a password.  
 - A user page where you can view recipes that you create, a section for recipes you collect, a section for creating a recipe and where you can edit your recipes.  
 - Filters ... which can be found on the recipe page. Giving you the option to filter recipes so you can find what you are looking for easier.  
-
+- MySQL database for storing recipes and users
  
 ## Future Features
 
