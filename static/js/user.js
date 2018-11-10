@@ -365,7 +365,7 @@ function clearAll(ext='') {
     $('.file-size'+ext).text('');
     $('.file-name'+ext).text('');
     $('.url'+ext).removeClass('error');
-    $('.instructions-con-edt').empty();
+    $('.instructions-con-edit').empty();
 }
 
 /*************************************************************************************************************/
