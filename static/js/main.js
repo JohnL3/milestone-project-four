@@ -335,7 +335,7 @@ function createRecipesDivs(data) {
             }
             
             let recipeHeader =`<div class='recipe-header'><span>`+data[x].recipe_name+`</span></div>`;
-            let imgCard = `<div class='my-img-card'><img src='`+data[x].url+`'></div>`;
+            let imgCard = `<div class='my-img-card'><img src='`+data[x].url+`' alt='`+data[x].recipe_name+`'></div>`;
             
             
             let recipeBox = `<div class='recipe-box'>

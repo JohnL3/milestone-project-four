@@ -28,9 +28,7 @@
 			<button class="clear-btn">CLEAR</button>
 			<button class="all-recipe-btn ">SHOW ALL RECIPES</button>
 		</div>
-		<div class='filtering-by'>
-
-		</div>
+		
 		<div class='filter-items'>
 			<div class='filter-hdr' id='filter-A'>
 				<div class="item allergen"><span>Allergens</span></div>
@@ -100,7 +98,7 @@
 			<span>{{ r.recipe_name }}</span>
 		</div>
 		<div class="my-img-card">
-			<img src='{{r.url}}'>
+			<img src='{{r.url}}' alt='{{ r.recipe_name }}'>
 		</div>
 		<div class="recipe-box">
 			<div class="recipe-details">
