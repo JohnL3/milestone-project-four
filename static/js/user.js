@@ -759,7 +759,7 @@ function recipeTemplate(data, type) {
                         </div>`;
                         
         let imgCard = `<div class="my-img-card">
-                          <img src='`+data[items].url+`'>
+                          <img src='`+data[items].url+`' alt='`+data[items].recipe_name+`'>
                         </div>`;
                         
         let rDetails = `<div class="recipe-details">
