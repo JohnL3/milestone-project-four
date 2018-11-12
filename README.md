@@ -117,5 +117,7 @@ To Exit type in: exit
 
 ## Credits
 
+### Media
+
 I used the following site for recipes and some of the images: [The mealDB](https://www.themealdb.com/)
 I also used images from the following site from there free stock photos: [pexels.com](https://www.pexels.com/search/desserts/)
