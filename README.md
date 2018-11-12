@@ -114,3 +114,8 @@ This is located in a file called create_all.sql.
 To run the file type the following into the ternimal: source create_all.sql; and hit enter  
 You should now have all the tables, you can confirm this by tying in the terminal: show tables;
 To Exit type in: exit
+
+## Credits
+
+I used the following site for recipes and some of the images: [The mealDB](https://www.themealdb.com/)
+I also used images from the following site from there free stock photos: [pexels.com](https://www.pexels.com/search/desserts/)
