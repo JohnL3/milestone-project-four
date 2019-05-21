@@ -267,16 +267,41 @@ def get_all_recipes(mysql):
     
 def get_all_user_recipes(mysql, username):
     '''
-    get a users recipes
+    get any recipes created by the logged in  user
     '''
     con = mysql.connect()
     curs = con.cursor()
 
-    query_a = get_query_string('user')
-    query_b = "Where user_name ='"+ username+"'"
-    query = query_a + query_b
+    data = ('recipe_name',
+    'recipe_id',
+    'category_name',
+    'author_name',
+    'collected',
+    'likes',
+    'url',
+    'Nuts',
+    'Egg',
+    'Milk',
+    'Pnuts',
+    'Celery',
+    'Mustard',
+    'SSeeds',
+    'Fish',
+    'Moll',
+    'SBeans',
+    'Lupin',
+    'SDioxide',
+    'Cerals',
+    'Crust',
+    username,)
     
-    curs.execute(query)
+    query = '''SELECT {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {} FROM recipe_table 
+    JOIN author_table ON recipe_table.author_id = author_table.author_id 
+    JOIN category_table ON recipe_table.cat_id = category_table.cat_id
+    JOIN user_table ON recipe_table.user_id = user_table.user_id
+    Where user_name = "{}" '''
+    
+    curs.execute(query.format(*data))
     return curs.fetchall()
     
 def get_single_recipe(mysql, recipe_name):
@@ -374,7 +399,6 @@ def get_collected_recipes(mysql, username):
     JOIN author_table ON recipe_table.author_id = author_table.author_id
     where user_name = "{}" '''
     
-    #query = part_a + part_b + part_c + part_d + part_e
     curs.execute(query.format(username))
     return curs.fetchall()
     
