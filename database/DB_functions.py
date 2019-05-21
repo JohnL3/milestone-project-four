@@ -32,9 +32,10 @@ def signup_new_user(mysql, user, pw):
     '''
     con = mysql.connect()
     curs = con.cursor()
-    query = "SELECT user_name FROM user_table WHERE user_name ='" +user+ "'"
+    #query = "SELECT user_name FROM user_table WHERE user_name ='" +user+ "'"
+    query = '''SELECT user_name FROM user_table WHERE user_name = "{}" '''
     
-    curs.execute(query)
+    curs.execute(query.format(user))
     result = curs.fetchall()
     
     if result:
