@@ -32,7 +32,6 @@ def signup_new_user(mysql, user, pw):
     '''
     con = mysql.connect()
     curs = con.cursor()
-    #query = "SELECT user_name FROM user_table WHERE user_name ='" +user+ "'"
     query = '''SELECT user_name FROM user_table WHERE user_name = "{}" '''
     
     curs.execute(query.format(user))
@@ -55,9 +54,9 @@ def validate_user(mysql, username, password):
     '''
     con = mysql.connect()
     curs = con.cursor()
-    query = "SELECT user_name, password FROM user_table WHERE user_name ='" +username+ "'"
+    query = '''SELECT user_name, password FROM user_table WHERE user_name ="{}" '''
 
-    curs.execute(query)
+    curs.execute(query.format(username))
     result = curs.fetchall()
     
     if  len(result) != 0:
