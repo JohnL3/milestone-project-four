@@ -235,8 +235,34 @@ def get_all_recipes(mysql):
     con = mysql.connect()
     curs = con.cursor()
     
-    query = get_query_string('all')
-    curs.execute(query)
+    data = ('recipe_name',
+    'recipe_id',
+    'category_name',
+    'author_name',
+    'collected',
+    'likes',
+    'url',
+    'Nuts',
+    'Egg',
+    'Milk',
+    'Pnuts',
+    'Celery',
+    'Mustard',
+    'SSeeds',
+    'Fish',
+    'Moll',
+    'SBeans',
+    'Lupin',
+    'SDioxide',
+    'Cerals',
+    'Crust')
+    
+    query = '''SELECT {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {} FROM recipe_table 
+    JOIN author_table ON recipe_table.author_id = author_table.author_id 
+    JOIN category_table ON recipe_table.cat_id = category_table.cat_id'''
+    
+    curs.execute(query.format(*data))
+    
     return curs.fetchall()
     
 def get_all_user_recipes(mysql, username):
