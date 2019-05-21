@@ -123,14 +123,15 @@ def create_new_recipe(mysql, data):
     
     username = data['username']
     category = data['category_name']
+    author_name = data['author_name']
     
-    query = "SELECT user_id FROM user_table WHERE user_name ='" +username+ "'"
-    curs.execute(query)
+    query = '''SELECT user_id FROM user_table WHERE user_name ="{}" '''
+    curs.execute(query.format(username))
     user_id = curs.fetchall()
     user_id = user_id[0]['user_id']
     
-    query = "SELECT author_id FROM author_table WHERE author_name ='" +data['author_name']+ "'"
-    curs.execute(query)
+    query = '''SELECT author_id FROM author_table WHERE author_name = "{}" '''
+    curs.execute(query.format(author_name))
     author_id = curs.fetchall()
     if len(author_id) == 0:
         try:
@@ -146,8 +147,8 @@ def create_new_recipe(mysql, data):
     else:
         author_id = author_id[0]['author_id']
     
-    query = "SELECT cat_id FROM category_table WHERE category_name ='" +category+ "'"
-    curs.execute(query)
+    query = '''SELECT cat_id FROM category_table WHERE category_name = "{}" '''
+    curs.execute(query.format(category))
     cat_id = curs.fetchall()
     
     if len(cat_id) == 0:
