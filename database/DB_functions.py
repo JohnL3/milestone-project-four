@@ -255,27 +255,38 @@ def get_all_user_recipes(mysql, username):
 def get_single_recipe(mysql, recipe_name):
     '''
     Get a single recipe
+    Recipe is contained on two tables
+    First query gets main part of recipe
+    recipe id is then used to get the ingredients from another table in a second query
     '''
     con = mysql.connect()
     curs = con.cursor()
     recipe = []
     
-    query_a = get_query_string('single')
-    query_b = "WHERE recipe_name ='"+ recipe_name +"'"
-    query = query_a + query_b
+
+    query ='''SELECT * FROM recipe_table 
+    JOIN author_table ON recipe_table.author_id = author_table.author_id 
+    JOIN category_table ON recipe_table.cat_id = category_table.cat_id 
+    WHERE recipe_name = "{}" '''
     
-    curs.execute(query)
+    curs.execute(query.format(recipe_name))
     recipe_details = curs.fetchall()
     
-    recipe_id = recipe_details[0]['recipe_id']
+    if recipe_details:
+        # Get the ingredients used in the recipe 
+        
+        recipe_id = recipe_details[0]['recipe_id']
     
-    ing_query = "SELECT ing_name, ing_quantity FROM ingredients_table WHERE recipe_id = " + str(recipe_id) 
+        ing_query = '''SELECT ing_name, ing_quantity FROM ingredients_table WHERE recipe_id = "{}" '''
     
-    curs.execute(ing_query)
-    recipe_ing = curs.fetchall()
+        curs.execute(ing_query.format(str(recipe_id)))
+        recipe_ing = curs.fetchall()
     
-    recipe =[recipe_details, recipe_ing]
-    return recipe
+        recipe =[recipe_details, recipe_ing]
+        return recipe
+    else:
+        # In case someone uses the ulr bar and types in a recipe name wrong
+        return ['No recipe by that name']
     
 def user_collects_recipe(mysql, data):
     '''
