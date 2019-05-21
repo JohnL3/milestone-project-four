@@ -5,7 +5,7 @@ from database.DB_functions import DB_configuration, signup_new_user, validate_us
 import base64
 
 app = Flask(__name__)
-app.config['DEBUG'] = False
+app.config['DEBUG'] = True
 
 if app.config['DEBUG'] == False:
    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
@@ -56,16 +56,23 @@ def viewrecipe(recipe_name):
         username = session['username']
     else:
         username = None
+    # Fetch recipe
     recipe = get_single_recipe(mysql, recipe_name)
-    instructions = recipe[0][0]['instructions']
-    instructions = instructions.split('_')
     
-    ins = []
-    for i in instructions:
-        ins.append([i])
-    recipe[0][0]['instructions'] = ins
-    
-    return render_template('viewrecipe.html', recipe=recipe[0], recipe_ing=recipe[1], username=username)
+    if len(recipe) >1:
+        # recipe was found make it easier to work with on frontend
+        instructions = recipe[0][0]['instructions']
+        instructions = instructions.split('_')
+        
+        ins = []
+        for i in instructions:
+            ins.append([i])
+        recipe[0][0]['instructions'] = ins
+        
+        return render_template('viewrecipe.html', recipe=recipe[0], recipe_ing=recipe[1], username=username)
+    else:
+        # Needed incase someone use url bar to manually type in recipe name and spells it wrong
+        return render_template('viewrecipe.html', error=recipe[0], username=username)
     
  
 @app.route('/user')
