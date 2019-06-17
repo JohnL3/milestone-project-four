@@ -5,13 +5,14 @@ from database.DB_functions import DB_configuration, signup_new_user, validate_us
 import base64
 
 app = Flask(__name__)
-app.config['DEBUG'] = True
 
-if app.config['DEBUG'] == False:
-   app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
-else:
+
+if os.environ.get('C9_HOSTNAME'):
     import config
+    app.config['DEBUG'] = True
     app.config['SECRET_KEY'] = config.SECRET_KEY
+else:
+    app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
     
 app.permanent_session_lifetime = datetime.timedelta(days=7)
 
